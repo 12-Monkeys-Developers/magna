@@ -1,0 +1,10 @@
+<div class="ongletdesc">
+  <div class="description-bloc">
+      <h2>Description</h2>
+      {{#if editable}}
+        {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+      {{else}}
+        {{{descriptionhtml}}}
+      {{/if}}
+  </div>
+</div>

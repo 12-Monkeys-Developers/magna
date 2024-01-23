@@ -1,0 +1,32 @@
+<div class="grid_pouvoirs">
+    {{#each listevoies as |voie|}}
+    <div class="bloc-voie">
+        <h3>{{voie}}</h3>
+        {{#each ../pouvoirs as |pouvoir id|}}
+        {{#if (eq pouvoir.system.voie voie)}}
+            <div class="item-contextmenu" data-item-id="{{pouvoir._id}}">
+            <details>
+                <summary class="bloc-pouvoir">
+                    <div class="ligne-pouvoir">
+                    <div class="pouvoir-rang">{{pouvoir.system.rang}}</div>
+                    <div class="icon_caracteristique">
+                    <i class="fas fa-dice roll-carac" data-group="pouvoir" data-field="{{pouvoir._id}}"></i>
+                    </div>
+                    <div class="pouvoir-name">{{pouvoir.name}}</div>
+                    <div class="pouvoir-value">{{pouvoir.system.resume}}</div>
+                    </div>
+                    <div class="ligne-pouvoir">
+                        <div class="field-name">Portée: </div>
+                        <div class="pouvoir-value">{{pouvoir.system.portee}}</div>
+                        <div class="field-name">Cibles: </div>
+                        <div class="pouvoir-value">{{pouvoir.system.cibles}}</div>
+                    </div>
+                </summary>
+                <div class="desc">{{{pouvoir.system.descriptionhtml}}}</div>
+            </details>
+            </div>
+        {{/if}}
+        {{/each}}
+    </div>
+    {{/each}}
+</div>

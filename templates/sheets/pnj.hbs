@@ -1,0 +1,27 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+  {{!log "pnj" this}}
+  <section class="sheet-body pnj-sheet">
+    <div class="charname">
+      <input name="name" type="text" value="{{actor.name}}" />
+      <a class="change-lock" title="{{localize 'MAGNA.LABEL.unlockSheet'}}">
+        {{#if unlocked}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock"></i>{{/if}}</a>
+    </div>
+    <div class="description">
+      {{editor descriptionHTML target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+    </div>
+    <div class="difficulte">
+      <label>Difficulté</label>
+      <input type="number" name="system.difficulte" value="{{system.difficulte}}" {{disabled locked}} />
+    </div>
+    <div class="points-vie">
+      <label>Points de vie{{#if unlocked}} (Max : <input class="max" type="number" name="system.pv.max" value="{{system.pv.max}}" />) {{/if}}
+      </label>
+      <div class="ligne-vie">
+        {{#times system.pv.max}}
+          <a class="pts-vie" data-index="{{@index}}">{{#if (gte system.pv.valeur @index)}}<i class="fas fa-circle"></i>{{else}}<i class="far fa-circle"></i>{{/if}}</a>
+        {{/times}}
+      </div>
+    </div>
+  </section>
+</form>

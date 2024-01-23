@@ -1,0 +1,54 @@
+{
+    "id": "magna",
+    "title": "Magna",
+    "description": "Magna",
+    "version": "#{VERSION}#",
+    "compatibility": {
+      "minimum": "11",
+      "verified": "11"
+    },
+    "authors": [
+      {
+        "name": "Khaali"
+      }
+    ],
+    "esmodules": ["magna.mjs"],
+    "scripts": [],
+    "styles": ["css/magna.css"],
+    "packs": [
+  ],
+    "languages": [
+       {
+        "lang": "fr",
+        "name": "French",
+        "path": "lang/fr.json"
+      },
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/fr.json"
+      }
+    ],
+    "flags": {
+      "hotReload": {
+        "extensions": [
+          "css",
+          "hbs",
+          "json"
+        ],
+        "paths": [
+          "lang/",
+          "assets/",
+          "templates/",
+          "css/"
+        ]
+      }
+    },
+    "gridDistance": 1.5,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "",
+    "initiative": "1d20 + @caracteristiques.agi.valeur",
+    "url": "#{URL}#",
+    "manifest": "#{MANIFEST}#",
+    "download": "#{DOWNLOAD}#"
+  }

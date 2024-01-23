@@ -1,0 +1,38 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{!log "pouvoir" this}}
+  <div class="pouvoir-sheet">
+    <div class="name-title">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+      <input name="name" type="text" value="{{item.name}}" />
+    </div>
+    <div class="pouvoir-content">
+      <div class="domaine-name">Domaine</div>
+      <div class="domaine-val">
+        <select name="system.domaine">
+          {{selectOptions domaines selected=system.domaine labelAttr="label"}}
+        </select>
+      </div>
+      <input name="system.voie" class="input-large"  type="text" value="{{item.system.voie}}" />
+      <div></div>
+      <div class="field-name">Résumé</div>
+      <input class="input-large"  name="system.resume" type="text" value="{{item.system.resume}}" />
+      <div class="field-name">Portée</div>
+      <input class="input-large"  name="system.portee" type="text" value="{{item.system.portee}}" />
+      <div class="field-name">Cibles</div>
+      <input class="input-large" name="system.cibles" type="text" value="{{item.system.cibles}}" />
+      <div class="field-name">Rang</div>
+      <input name="system.rang" min="1" max="20" type="number" value="{{item.system.rang}}" />
+      <div class="field-name">Rang minimum</div>
+      <select name="system.rang_min">
+        {{#select system.rang_min}}
+          <option value="0">0</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+        {{/select}}
+      </select>
+    </div>
+    <div class="field-name">Description</div>
+    {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+  </div>
+</form>

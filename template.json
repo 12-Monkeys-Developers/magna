@@ -1,0 +1,11 @@
+{
+  "Actor": {
+    "types": ["pj", "pnj"],
+    "pj": {},
+    "pnj": {}
+  },
+  "Item": {
+    "types": ["pouvoir"],
+    "pouvoir" : {}
+  }
+}

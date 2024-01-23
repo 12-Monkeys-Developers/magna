@@ -1,0 +1,195 @@
+.magna.sheet.actor.pj {
+  .window-content {
+    background: var(--background_pj);
+  }
+  .editor {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f6f1;
+    background: var(--background_base);
+    box-shadow: inset 0 0 6px black;
+    font-family: "garamond";
+    text-align: justify;
+    padding-left: 5px;
+    padding-right: 5px;
+    min-height: 5em;
+  }
+  .editor-content {
+    min-height: 5em;
+    margin: 0px 5px 0px 5px;
+  }
+  .pj-sheet {
+    display: grid;
+    gap: 5px;
+    color: var(--font-pj-color);
+  }
+  .pj-header {
+    display: grid;
+    grid-template-columns: 450px 50px 190px;
+    grid-template-rows: 35px 35px;
+    .charname {
+      grid-row: 1/3;
+      display: flex;
+      input {
+        font: var(--font-pj-name);
+        color: var(--font-pj-name-color);
+        text-align: left;
+        border: none;
+        height: 100%;
+      }
+    }
+    .change-lock {
+      width: 50px;
+      grid-row: 1/2;
+      grid-column: 2/3;
+      border: solid black 2px;
+      i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: medium;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    }
+    .change-aura {
+      width: 50px;
+      grid-row: 2/3;
+      grid-column: 2/3;
+      border: solid black 2px;
+      i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: medium;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    }
+    .bloc_stats {
+      display: grid;
+      margin-left: 10px;
+      align-items: center;
+      grid-template-columns: 70px 50px 20px;
+      grid-template-rows: 35px;
+      .nom_stat {
+        font-size: 12px;
+        color: black;
+        margin: 5px 5px 3px 5px;
+        text-transform: uppercase;
+      }
+      .val_stats {
+        color: #31191f;
+        margin: 5px 5px 3px 5px;
+        input {
+          width: 2em;
+        }
+      }
+    }
+  }
+  .grid_carac {
+    margin-top: 15px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 160px 160px 160px;
+    .bloc_caracteristique {
+      display: grid;
+      grid-template-columns: 40px 50px 30px 20px;
+      grid-template-rows: 35px;
+      .nom_caracteristique {
+        font-size: 14px;
+        color: black;
+        margin: 5px 5px 3px 5px;
+        text-transform: uppercase;
+      }
+      .val_caracteristique {
+        color: #31191f;
+        margin: 5px 5px 3px 5px;
+        input {
+          width: 2em;
+        }
+      }
+      .attribut-icon {
+        font-size: 14px;
+        color: #31191f;
+        margin: 5px 5px 3px 5px;
+      }
+    }
+  }
+  .grid_comp {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 190px 190px 190px;
+  }
+  .grid_spe {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 160px 160px 160px 160px;
+  }
+  .bloc_vertical {
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+  }
+  .bloc_comp {
+    display: grid;
+    grid-template-columns: 100px 30px 20px;
+    grid-template-rows: 35px;
+    .nom_comp {
+      font-size: 12px;
+      color: black;
+      margin: 5px 5px 3px 5px;
+    }
+    .val_comp {
+      color: #31191f;
+      margin: 5px 5px 3px 5px;
+      input {
+        width: 2em;
+      }
+    }
+    .attribut-icon {
+      font-size: 14px;
+      color: #31191f;
+      margin: 5px 5px 3px 5px;
+    }
+  }
+  .bloc-pouvoir {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    .ligne-pouvoir {
+      display: flex;
+      flex-direction: row;
+      margin: 5px;
+      .pouvoir-rang {
+        margin-right: 5px;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .pouvoir-name {
+        margin: 0px 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .field-name {
+        margin-right: 5px;
+        font-weight: bold;
+      }
+      .pouvoir-value {
+        margin-right: 5px;
+      }
+    }
+    input {
+      width: 2em;
+    }
+    .input-large {
+      width: 10em;
+    }
+  }
+}

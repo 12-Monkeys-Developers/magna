@@ -1,0 +1,124 @@
+<h2>Caractéristiques</h2>
+<div class="grid_carac">
+{{#each system.caracteristiques as |caracteristique id|}}
+  <div class="bloc_caracteristique">
+    <div class="nom_caracteristique">
+      {{localize caracteristique.label_short}}
+    </div>
+    <div class="val_caracteristique">
+      <input type="number" name="system.caracteristiques.{{id}}.valeur" value="{{getSystemProperty ../actor 'caracteristiques' id 'valeur'}}" /> / 
+    </div>
+    <div class="val_caracteristique">
+      {{#if ../unlocked}}
+        <input type="number" name="system.caracteristiques.{{id}}.max" value="{{getSystemProperty ../actor 'caracteristiques' id 'max'}}" placeholder="0" />
+      {{else}}
+        {{caracteristique.max}}
+      {{/if}}
+    </div>
+    <div class="icon_caracteristique">
+    <i class="fas fa-dice roll-carac" data-group="caracteristiques" data-field="{{id}}"></i>
+    </div>
+  </div>
+{{/each}}
+</div>
+<h2>Indices</h2>
+<div class="grid_carac">
+{{#each indices as |indice id|}}
+  <div class="bloc_caracteristique">
+    <div class="nom_caracteristique">
+      {{indice.label_short}}
+    </div>
+    <div class="val_caracteristique">
+            {{indice.valeur}}
+    </div>
+    <div class="val_caracteristique">
+    </div>
+    <div class="icon_caracteristique">
+    <i class="fas fa-dice roll-carac" data-group="indices" data-field="{{id}}"></i>
+    </div>
+  </div>
+{{/each}}
+</div>
+<h2>Compétences</h2>
+<div class="grid_comp">
+{{#each system.competences as |competence id|}}
+  <div class="bloc_comp">
+    <div class="nom_comp">
+      {{localize competence.label}}
+    </div>
+    <div class="val_comp">
+            {{#if ../unlocked}}
+            <input type="number" name="system.competences.{{id}}.valeur" value="{{getSystemProperty ../actor 'competences' id 'valeur'}}" placeholder="0" />
+            {{else}}
+            {{competence.valeur}}
+          {{/if}}
+    </div>
+    <div class="icon_caracteristique">
+    <i class="fas fa-dice roll-carac" data-group="competences" data-field="{{id}}"></i>
+    </div>
+  </div>
+{{/each}}
+</div>
+<h2>Compétences de combat</h2>
+<div class="grid_comp">
+{{#each system.combat as |competence id|}}
+  <div class="bloc_comp">
+    <div class="nom_comp">
+      {{localize competence.label}}
+    </div>
+    <div class="val_comp">
+            {{#if ../unlocked}}
+            <input type="number" name="system.combat.{{id}}.valeur" value="{{getSystemProperty ../actor 'combat' id 'valeur'}}" placeholder="0" />
+            {{else}}
+            {{competence.valeur}}
+          {{/if}}
+    </div>
+    <div class="icon_caracteristique">
+    <i class="fas fa-dice roll-carac" data-group="combat" data-field="{{id}}"></i>
+    </div>
+  </div>
+{{/each}}
+</div>
+<h2>Compétences spécialisées</h2>
+<div class="grid_spe">
+  <div class="bloc_vertical">
+    <h3>Langues</h3>
+    <div class="icon_caracteristique">
+      <i class="fas fa-plus new-comp" data-field="langues"></i>
+    </div>
+    <div class="grid_comp">
+      {{#each system.competences_spe.langues as |competence id|}}
+        {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='langues' }}
+      {{/each}}
+    </div>
+  </div>
+  <div class="bloc_vertical">
+    <h3>Connaissances</h3>
+    <div class="icon_caracteristique">
+    <i class="fas fa-plus new-comp" data-field="connaissances"></i>
+    </div>
+    {{#each system.competences_spe.connaissances as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='connaissances' }}
+    {{/each}}
+  </div>
+  <div class="bloc_vertical">
+    <h3>Artisanats</h3>
+    <div class="icon_caracteristique">
+      <i class="fas fa-plus new-comp" data-field="artisanats"></i>
+    </div>
+    {{#each system.competences_spe.artisanats as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='artisanats' }}
+    {{/each}}
+  </div>
+  <div class="bloc_vertical">
+    <h3>Pilotage</h3>
+    {{#if unlocked}}
+    <div class="icon_caracteristique">
+      <i class="fas fa-plus new-comp" data-field="pilotage"></i>
+    </div>
+    {{/if}}
+    {{#each system.competences_spe.pilotage as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='pilotage' }}
+    {{/each}}
+  </div>
+</div>
