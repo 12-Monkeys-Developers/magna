@@ -37,6 +37,7 @@ export default class StandardCheck extends Roll {
     group1: "caracteristiques",
     field1: "hab",
     typecomp1: null,
+    part2: true,
     group2: "caracteristiques",
     field2: "hab",
     typecomp2: null,
@@ -83,48 +84,35 @@ export default class StandardCheck extends Roll {
    */
   static async #configureData(data) {
     const actingChar = game.actors.get(data.actorId);
-    data.valeur1 =  this.getValeur(data.actorId, data.group1, data.typecomp1, data.field1);
-    data.valeur2 =  this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2);
-    data.label1 = await this.getLabel(data.actorId, data.group1, data.typecomp1, data.field1);
-    data.label2 = await this.getLabel(data.actorId, data.group2, data.typecomp2, data.field2);
-    data.seuilReussite =
-     this.getValeur(data.actorId, data.group1, data.typecomp1, data.field1) +
-     this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2) +
-      parseInt(data.modificateur) -
-      data.opposition;
+    if (data.group1 === "mental") {
+      data.valeur1 = actingChar.system.mental.valeur;
+      data.valeur2 = 0;
+      data.label1 = "Mental";
+      data.part2 = false;
+      data.label2 = "";
+      data.seuilReussite = actingChar.system.mental.valeur;
+    } else if (data.group1 === "pouvoir") {
+      let pouvoir = actingChar.items.get(data.field1);
+      data.valeur1 = pouvoir.system.rang;
+      data.valeur2 = this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.label1 = "Rang " + pouvoir.name;
+      data.label2 = await this.getLabel(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.seuilReussite = actingChar.system.mental.valeur;
+      data.seuilReussite = pouvoir.system.rang + this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2) + parseInt(data.modificateur) - data.opposition;
+    } else {
+      data.valeur1 = this.getValeur(data.actorId, data.group1, data.typecomp1, data.field1);
+      data.valeur2 = this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.label1 = await this.getLabel(data.actorId, data.group1, data.typecomp1, data.field1);
+      data.label2 = await this.getLabel(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.seuilReussite =
+        this.getValeur(data.actorId, data.group1, data.typecomp1, data.field1) +
+        this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2) +
+        parseInt(data.modificateur) -
+        data.opposition;
+    }
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
     data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
-    
-    /*
-    if (data.metierOuTalent) difficulteToolTip += " + 1";
-    if (!data.reussiteCritique && !data.echecCritique && (data.difficulte === "" || data.difficulte === undefined)) {
-      data.target = data.composanteValeur + data.moyenValeur + (data.metierOuTalent ? 1 : 0);
-      data.finalText = "Action réussie si difficulté " + data.target.toString();
-
-      if (data.target - data.result > 3) data.finalText = "Action réussie contre une difficulté <em>très difficile</em> ou moins";
-      else if (data.target - data.result > 1) data.finalText = "Action réussie contre une difficulté <em>difficile</em> ou moins";
-      else if (data.target - data.result > 0) data.finalText = "Action réussie contre une difficulté <em>malaisée</em> ou moins";
-      else if (data.target - data.result > -1) data.finalText = "Action réussie contre une difficulté <em>normale</em> ou moins";
-      else if (data.target - data.result > -2) data.finalText = "Action réussie contre une difficulté <em>aisée</em> ou moins";
-      else if (data.target - data.result > -3) data.finalText = "Action réussie contre une difficulté <em>facile</em> ou moins";
-      else if (data.target - data.result > -5) data.finalText = "Action réussie contre une difficulté <em>très facile</em> ou moins";
-      else data.finalText = "Action ratée même contre une difficulté <em>très facile</em>";
-    } else if (!data.reussiteCritique && !data.echecCritique && data.difficulte !== "" && data.difficulte !== undefined) {
-      difficulteToolTip += data.difficulteValeur > 0 ? " + " + data.difficulteValeur : " " + data.difficulteValeur;
-      data.difficulteValeur = parseInt(SYSTEM.DIFFICULTES[data.difficulte].modificateur);
-      data.difficulteLabel = game.i18n.localize(SYSTEM.DIFFICULTES[data.difficulte].label);
-      data.target = data.composanteValeur + data.moyenValeur + (data.metierOuTalent ? 1 : 0) + data.difficulteValeur;
-      difficulteToolTip += " = " + data.target.toString();
-      if (data.result > data.target) data.finalText = "Action ratée contre une difficulté " + data.difficulteLabel;
-      else data.finalText = "Action réussie contre une difficulté " + data.difficulteLabel;
-
-      data.difficulteToolTip = difficulteToolTip;
-    } else if (data.reussiteCritique) {
-      data.finalText = "Le jet est un succès critique !";
-    } else if (data.echecCritique) {
-      data.finalText = "Le jet est un échec critique !";
-    }*/
   }
   static getValeur(actorId, group, typecomp, field) {
     const actingChar = game.actors.get(actorId);
@@ -144,6 +132,8 @@ export default class StandardCheck extends Roll {
     let label = "";
     if (group === "competences_spe") {
       label = game.i18n.localize("MAGNA.COMPETENCE_SPE." + typecomp + ".label") + ": " + field.label;
+    } else if (group === "caracteristiques") {
+      label = game.i18n.localize(SYSTEM.CARACTERISTIQUES[field].label_short);
     } else if (group === "indices") {
       label = game.i18n.localize(SYSTEM.INDICES[field].label_short);
     } else {

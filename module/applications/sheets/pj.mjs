@@ -112,11 +112,24 @@ export default class PJSheet extends MagnaActorSheet {
       data.field2 = SYSTEM.COMPETENCES_COMBAT[data.field1].defaultCarac;
     }
     else if(group==="competences_spe"){
-      console.log(dataset);
       const compSpe = await this.actor.lectureCompSpe(dataset.type, dataset.field);
-      console.log("compSpe", compSpe);
       data.field1 = compSpe;
       data.field2 = compSpe.defaultCarac;
+    }
+    else if(group==="mental"){
+      data.askDialog= false;
+      data.field1 = "mental";
+    }
+    else if(group==="aura"){
+      data.askDialog= false;
+      data.group1 = "caracteristiques";
+      data.field1 = "psi";
+      data.group2 = "caracteristiques";
+      data.field2 = "psi";
+    }
+    else if(group==="pouvoir"){
+      data.group2 = "indices";
+      data.field2 = "distpsi";
     }
     return this.actor.rollAction(data);
   }

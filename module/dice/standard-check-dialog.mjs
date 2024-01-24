@@ -15,7 +15,7 @@ export default class ActionDialog extends Dialog {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 500,
-      height: 400,
+      height: 300,
       classes: ["magna", "roll"],
       template: `systems/${SYSTEM.id}/templates/dice/standard-check-dialog.hbs`,
       submitOnChange: true,
@@ -39,11 +39,8 @@ export default class ActionDialog extends Dialog {
 
   /** @override */
   activateListeners(html) {
-    html.find('changefield').change(this._onChangeAction.bind(this));
     html.find('select[class="changefield"]').change(this._onChangeAction.bind(this));
-    /*html.find('select[name="indices"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="modificateur"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="opposition"]').change(this._onChangeAction.bind(this));*/
+    html.find('input[class="changefield"]').change(this._onChangeAction.bind(this));
     super.activateListeners(html);
   }
 
@@ -56,7 +53,6 @@ export default class ActionDialog extends Dialog {
     event.preventDefault();
     const action = event.currentTarget.dataset.action;
     const newValue = event.currentTarget.value;
-  console.log("event.currentTarget : ", event.currentTarget);
     const actionMap = {
       "caracteristique-change": () => ({ group2: "caracteristiques", field2: newValue }),
       "indice-change": () => ({ group2: "indices", field2: newValue }),
@@ -94,7 +90,6 @@ export default class ActionDialog extends Dialog {
   _onSubmit(html) {
     const form = html.querySelector("form");
     const fd = new FormDataExtended(form);
-console.log("this : ", this);
     this.roll.initialize(fd.object);
     return this.roll;
   }

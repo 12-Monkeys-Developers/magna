@@ -83,9 +83,11 @@
 <div class="grid_spe">
   <div class="bloc_vertical">
     <h3>Langues</h3>
+    {{#if unlocked}}
     <div class="icon_caracteristique">
       <i class="fas fa-plus new-comp" data-field="langues"></i>
     </div>
+    {{/if}}
     <div class="grid_comp">
       {{#each system.competences_spe.langues as |competence id|}}
         {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='langues' }}

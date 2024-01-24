@@ -2,6 +2,13 @@
   {{!log "pj" this}}
   <section class="sheet-body pj-sheet">
     <header class="pj-header">
+      <div class="pj-portrait">
+      {{#if unlocked}}
+          <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{else if (ne actor.img "icons/svg/mystery-man.svg")}}
+            <img src="{{actor.img}}" title="{{actor.name}}" />
+      {{/if}}
+      </div>
       <div class="charname">
         <input name="name" type="text" value="{{actor.name}}" />
       </div>
@@ -9,9 +16,9 @@
           {{#if unlocked}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}
       </div>
         <div class="change-aura" title="{{localize 'MAGNA.LABEL.deployerAura'}}">
-            {{#if auradeployee}}<i class="fa-solid fa-person-rays roll-carac" data-group="aura" data-field="{{auradeployee}}"></i>{{else}}<i class="fas fa-person"></i>{{/if}}
+            {{#if auradeployee}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person roll-carac" data-group="aura" data-field="{{auradeployee}}"></i>{{/if}}
         </div>
-      <div class="bloc_stats" style="grid-row: 1/2;grid-column: 3/4;">
+      <div class="bloc_stats" style="grid-row: 1/2;grid-column: 4/5;">
         <div class="nom_stat">
           Vitalité
         </div>
@@ -22,7 +29,7 @@
           {{vitalite_max}}
         </div>
       </div>
-      <div class="bloc_stats" style="grid-row: 2/3;grid-column: 3/4;">
+      <div class="bloc_stats" style="grid-row: 2/3;grid-column: 4/5;">
         <div class="nom_stat">
           Mental
           <a class="icon_caracteristique">
@@ -36,7 +43,7 @@
           {{mental_max}}
         </div>
       </div>
-      <div class="bloc_stats" style="grid-row: 3/4; grid-column:3/4">
+      <div class="bloc_stats" style="grid-row: 3/4; grid-column:4/5">
         <div class="nom_stat">
           PEX
         </div>

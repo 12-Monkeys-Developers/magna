@@ -1,24 +1,27 @@
 {{!log "chat standard check roll" this}}
-<div class="action-roll-chat {{cssClass}}">
-  <div class="intro">
+<div class="action-chat {{cssClass}}">
+  <div class="intro-chat">
     {{#if (ne data.actingCharImg "icons/svg/mystery-man.svg")}}
-      <div class="introImg">
+      <div class="intro-img">
         <img src="{{data.actingCharImg}}" title="{{data.actingCharName}}" />
       </div>
     {{/if}}
-    <div class="intro_right">
+    <div class="intro-right">
       <p class="introText">{{{data.introText}}}</p>
-      Jet de {{data.label1}} + {{data.label2}}
-      <div class="ligne_img">
-      SR : {{data.seuilReussite}}
     </div>
   </div>
-  <div class="dice-result">
-    <div class="result-tooltip">
+    <div class="dice-result">
+      <p class="dice-result">
+          Jet de {{data.label1}}{{#if data.part2}} + {{data.label2}}{{/if}}
+      </p>
+      <p class="dice-result">
+        SR : {{data.seuilReussite}}
+      </p>
+      <div class="result-tooltip">
+        <span class="tooltiptext">{{{data.diceTooltip}}}</span>
+      </div>
+      <p class="finalText" data-tooltip="{{data.difficulteToolTip}}"></p>
       <p>Marge du résultat : {{{data.result}}}</p>
       <p>{{{data.finalText}}}</p>
-      <span class="tooltiptext">{{{data.diceTooltip}}}</span>
-    </div>
-    <p class="finalText" data-tooltip="{{data.difficulteToolTip}}">{{{data.finalText}}}</p>
   </div>
 </div>

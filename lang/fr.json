@@ -1,7 +1,7 @@
 {
   "MAGNA": {
     "CHATMESSAGE": {
-      "introActionStd": "{actingCharName} agit : {label1} + {label2}",
+      "introActionStd": "{actingCharName} agit.",
       "largereussite": "Le test est largement réussi.",
       "reussite": "Le test est réussi.",
       "justereussite": "La réussite est limitée.",
@@ -130,7 +130,7 @@
         "description":"Pour suivre discrètement et à distance."
       },
       "forcer": {
-        "label": "forcer",
+        "label": "Forcer",
         "description": "Pour utiliser la force sur un objet, que ce soit pour le briser, le tordre, l’ouvrir, le lancer haut, loin, etc."
       },
       "fouille": {
