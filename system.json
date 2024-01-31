@@ -44,8 +44,23 @@
         ]
       }
     },
+    "media": [
+      {
+        "type": "cover",
+        "thumbnail": "systems/magna/assets/logo_magna.webp",
+        "loop": false,
+        "flags": {}
+      },
+      {
+        "type": "setup",
+        "loop": false,
+        "thumbnail": "systems/magna/assets/logo_magna.webp",
+        "flags": {}
+      }
+    ],
     "gridDistance": 1.5,
     "gridUnits": "m",
+    "background":"systems/magna/assets/logo_magna.webp",
     "primaryTokenAttribute": "",
     "initiative": "1d20 + @caracteristiques.agi.valeur",
     "url": "#{URL}#",
