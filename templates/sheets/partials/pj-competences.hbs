@@ -96,21 +96,29 @@
   </div>
   <div class="bloc_vertical">
     <h3>Connaissances</h3>
+    {{#if unlocked}}
     <div class="icon_caracteristique">
     <i class="fas fa-plus new-comp" data-field="connaissances"></i>
     </div>
+    {{/if}}
+    <div class="grid_comp">
     {{#each system.competences_spe.connaissances as |competence id|}}
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='connaissances' }}
     {{/each}}
+    </div>
   </div>
   <div class="bloc_vertical">
     <h3>Artisanats</h3>
+    {{#if unlocked}}
     <div class="icon_caracteristique">
       <i class="fas fa-plus new-comp" data-field="artisanats"></i>
     </div>
+    {{/if}}
+    <div class="grid_comp">
     {{#each system.competences_spe.artisanats as |competence id|}}
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='artisanats' }}
     {{/each}}
+    </div>
   </div>
   <div class="bloc_vertical">
     <h3>Pilotage</h3>
@@ -119,8 +127,10 @@
       <i class="fas fa-plus new-comp" data-field="pilotage"></i>
     </div>
     {{/if}}
+    <div class="grid_comp">
     {{#each system.competences_spe.pilotage as |competence id|}}
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='pilotage' }}
     {{/each}}
+    </div>
   </div>
 </div>
