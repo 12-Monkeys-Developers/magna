@@ -14,6 +14,16 @@
       <p class="dice-result">
           Jet de {{data.label1}}{{#if data.part2}} + {{data.label2}}{{/if}}
       </p>
+      {{#if data.modificateur}}
+      <p class="dice-result">
+        Modificateur : {{data.modificateur}}
+      </p>
+      {{/if}}
+      {{#if data.opposition}}
+      <p class="dice-result">
+        Oposition : {{data.opposition}}
+      </p>
+      {{/if}}
       <p class="dice-result">
         SR : {{data.seuilReussite}}
       </p>

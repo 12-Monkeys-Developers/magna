@@ -10,7 +10,7 @@ export default class PouvoirSheet extends MagnaItemSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      height: 390,
+      height: 490,
       width: 450,
       classes: [SYSTEM.id, "sheet", "item", this.itemType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,

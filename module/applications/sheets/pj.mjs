@@ -10,7 +10,7 @@ export default class PJSheet extends MagnaActorSheet {
     const options = super.defaultOptions;
     return Object.assign(options, {
       width: 700,
-      height: 700,
+      height: 900,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "competences" }],
     });
   }
