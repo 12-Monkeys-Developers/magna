@@ -102,10 +102,11 @@ export default class MagnaActorSheet extends ActorSheet {
    */
   async _onSheetChangeaura(event) {
     event.preventDefault();
-
-    let flagData = await this.actor.getFlag(game.system.id, "AuraDeployee");
-    if (flagData) await this.actor.unsetFlag(game.system.id, "AuraDeployee");
-    else await this.actor.setFlag(game.system.id, "AuraDeployee", "AuraDeployee");
+    const pouvoirId = event.currentTarget.dataset.field;
+    
+    let flagData = await this.actor.getFlag(game.system.id, pouvoirId);
+    if (flagData) await this.actor.unsetFlag(game.system.id, pouvoirId);
+    else await this.actor.setFlag(game.system.id, pouvoirId, "AuraDeployee");
     this.actor.sheet.render(true);
   }
 
@@ -119,6 +120,8 @@ export default class MagnaActorSheet extends ActorSheet {
     if (item === null) {
       return;
     }
+    let flagData = await this.actor.getFlag(game.system.id, itemId);
+    if (flagData) await this.actor.unsetFlag(game.system.id, itemId);
     await this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true });
   }
 }

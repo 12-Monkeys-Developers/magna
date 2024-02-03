@@ -69,8 +69,9 @@ export default class PJSheet extends MagnaActorSheet {
       .sort(function (a, b) {
         return a.system.rang > b.system.rang;
       });
-    context.pouvoirs.forEach((element) => {
+    context.pouvoirs.forEach(async (element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+      element.system.auradeployee = await this.actor.getFlag(game.system.id, element.id);
     });
     return context;
   }
