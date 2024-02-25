@@ -1,5 +1,14 @@
 {
   "MAGNA": {
+    "TYPES": {
+      "Actor": {
+        "pj": "PJ",
+        "pnj": "PNJ"
+      },
+      "Item": {
+        "pouvoir": "Pouvoir"
+      }
+    },
     "CHATMESSAGE": {
       "introActionStd": "{actingCharName} agit.",
       "largereussite": "Le test est largement réussi.",
@@ -91,43 +100,43 @@
     "COMPETENCE": {
       "acrobaties": {
         "label": "Acrobaties",
-        "description":"Pour toutes les actions relatives aux mouvements fugaces comme sauter, éviter les obstacles, grimper."
+        "description": "Pour toutes les actions relatives aux mouvements fugaces comme sauter, éviter les obstacles, grimper."
       },
       "athletisme": {
         "label": "Athlétisme",
-        "description":"Pour toutes les actions qui nécessitent un effort sur le long terme et une éventuelle technique spécifique (comme nager, escalader, courir longtemps, etc.)."
+        "description": "Pour toutes les actions qui nécessitent un effort sur le long terme et une éventuelle technique spécifique (comme nager, escalader, courir longtemps, etc.)."
       },
       "bluff": {
         "label": "Bluff",
-        "description":"Pour mentir, détourner l’attention ou faire une diversion."
+        "description": "Pour mentir, détourner l’attention ou faire une diversion."
       },
       "camouflage": {
         "label": "Camouflage",
-        "description":"Pour se maquiller, se déguiser, masquer sa voix ou son écriture."
+        "description": "Pour se maquiller, se déguiser, masquer sa voix ou son écriture."
       },
       "clairvoyance": {
         "label": "Clairvoyance",
-        "description":"Pour comprendre une situation, les enjeux d’une annonce, d’un choix, etc."
+        "description": "Pour comprendre une situation, les enjeux d’une annonce, d’un choix, etc."
       },
       "crochetage": {
         "label": "Crochetage",
-        "description":"Pour forcer avec ou sans matériel des serrures et verrous mécaniques. De 1 à 6, un matériel de crochetage est nécessaire, à partir de 7, le personnage improvise sans problème avec son environnement."
+        "description": "Pour forcer avec ou sans matériel des serrures et verrous mécaniques. De 1 à 6, un matériel de crochetage est nécessaire, à partir de 7, le personnage improvise sans problème avec son environnement."
       },
       "derober": {
         "label": "Dérober",
-        "description":"Pour tout ce qui relève du vol sur une personne consciente."
+        "description": "Pour tout ce qui relève du vol sur une personne consciente."
       },
       "discretion": {
         "label": "Discrétion",
-        "description":"Pour éviter de faire du bruit, de se faire remarquer, pour se dissimuler dans l’obscurité, etc."
+        "description": "Pour éviter de faire du bruit, de se faire remarquer, pour se dissimuler dans l’obscurité, etc."
       },
       "empathie": {
         "label": "Empathie",
-        "description":"Pour ressentir les sentiments des interlocuteurs, prévoir une réaction de leur part."
+        "description": "Pour ressentir les sentiments des interlocuteurs, prévoir une réaction de leur part."
       },
       "filature": {
         "label": "Filature",
-        "description":"Pour suivre discrètement et à distance."
+        "description": "Pour suivre discrètement et à distance."
       },
       "forcer": {
         "label": "Forcer",
@@ -135,220 +144,220 @@
       },
       "fouille": {
         "label": "Fouille",
-        "description":"Pour organiser ses recherches sur un lieu physique où l’on ne peut trouver qu’en manipulant les meubles et objets."
+        "description": "Pour organiser ses recherches sur un lieu physique où l’on ne peut trouver qu’en manipulant les meubles et objets."
       },
       "interroger": {
         "label": "Interroger",
-        "description":"Pour poser des questions avec les tournures adéquates, pour mener un interrogatoire sur la longueur."
+        "description": "Pour poser des questions avec les tournures adéquates, pour mener un interrogatoire sur la longueur."
       },
       "intimider": {
         "label": "Intimider",
-        "description":"Pour s’imposer auprès de son interlocuteur, que ce soit par les gestes ou par la parole."
+        "description": "Pour s’imposer auprès de son interlocuteur, que ce soit par les gestes ou par la parole."
       },
       "jeux": {
         "label": "Jeux",
-        "description":"Pour gagner plus souvent aux jeux, aux paris."
+        "description": "Pour gagner plus souvent aux jeux, aux paris."
       },
       "memoire": {
         "label": "Mémoire",
-        "description":"Pour faire appel à ses souvenirs, concernant une discussion, une scène, etc."
+        "description": "Pour faire appel à ses souvenirs, concernant une discussion, une scène, etc."
       },
       "observation": {
         "label": "Observation",
-        "description":"Pour analyser un lieu ou un objet et repérer quelque chose en particulier."
+        "description": "Pour analyser un lieu ou un objet et repérer quelque chose en particulier."
       },
       "soins": {
         "label": "Premiers soins",
-        "description":"Pour analyser rapidement une blessure ou des symptômes en particulier et choisir au mieux les soins à apporter."
+        "description": "Pour analyser rapidement une blessure ou des symptômes en particulier et choisir au mieux les soins à apporter."
       },
       "resistance": {
         "label": "Résistance",
-        "description":"Pour résister physiquement à différentes contraintes comme la douleur, la chaleur, la tension du corps, etc."
+        "description": "Pour résister physiquement à différentes contraintes comme la douleur, la chaleur, la tension du corps, etc."
       },
       "seduction": {
         "label": "Séduction",
-        "description":"Pour amadouer son interlocuteur, obtenir une faveur, etc."
+        "description": "Pour amadouer son interlocuteur, obtenir une faveur, etc."
       },
       "selfcontrol": {
         "label": "Self-control",
-        "description":"Pour garder son sang-froid dans des cas d’urgence ou face à des situations tendues ou éprouvantes survenues par surprise."
+        "description": "Pour garder son sang-froid dans des cas d’urgence ou face à des situations tendues ou éprouvantes survenues par surprise."
       },
       "serenseigner": {
         "label": "Se renseigner",
-        "description":"Pour chercher efficacement des données intéressantes auprès de personnes (amis, travail, réseaux sociaux, administrations, etc.)."
+        "description": "Pour chercher efficacement des données intéressantes auprès de personnes (amis, travail, réseaux sociaux, administrations, etc.)."
       },
       "sinformer": {
         "label": "S’informer",
-        "description":"Pour chercher efficacement des données intéressantes dans un média (sur un manuscrit, dans un livre, sur Internet, dans une bibliothèque, etc.)."
+        "description": "Pour chercher efficacement des données intéressantes dans un média (sur un manuscrit, dans un livre, sur Internet, dans une bibliothèque, etc.)."
       },
       "survie": {
         "label": "Survie",
-        "description":"Pour savoir improviser avec son environnement."
+        "description": "Pour savoir improviser avec son environnement."
       }
     },
     "COMPETENCE_COMBAT": {
       "mainsnues": {
         "label": "Mains nues",
-        "description":"Permet de mieux frapper avec différentes parties de son corps, pieds, poings, coudes, genoux, etc."
+        "description": "Permet de mieux frapper avec différentes parties de son corps, pieds, poings, coudes, genoux, etc."
       },
       "armeblanche": {
         "label": "Arme blanche",
-        "description":"Permet d’utiliser une arme de contact ou de jet."
+        "description": "Permet d’utiliser une arme de contact ou de jet."
       },
       "armefeu": {
         "label": "Arme à feu légère",
-        "description":"Permet d’utiliser une arme de tir (revolver, fusil, mitrailleuse légère, etc.)."
+        "description": "Permet d’utiliser une arme de tir (revolver, fusil, mitrailleuse légère, etc.)."
       },
       "armelourde": {
         "label": "Arme lourde",
-        "description":"Permet d’utiliser une arme de tir de très gros calibre (montée sur un pied ou un véhicule : canon, mortier, mitrailleuse, Kalashnikov, etc.)."
+        "description": "Permet d’utiliser une arme de tir de très gros calibre (montée sur un pied ou un véhicule : canon, mortier, mitrailleuse, Kalashnikov, etc.)."
       },
       "esquive": {
         "label": "Esquive",
-        "description":"Permet de mieux se protéger contre les attaques à distance si c’est possible."
+        "description": "Permet de mieux se protéger contre les attaques à distance si c’est possible."
       },
       "parade": {
         "label": "Parade",
-        "description":"Permet de mieux se protéger contre les attaques au corps à corps si c’est possible."
+        "description": "Permet de mieux se protéger contre les attaques au corps à corps si c’est possible."
       }
     },
-    "COMPETENCE_SPE":{
+    "COMPETENCE_SPE": {
       "pilotage": {
         "label": "Pilotage",
-        "description":"Pour garder le contrôle d’un engin dont on connaît le maniement. Il faut une compétence par engin choisi (moto, voiture, poids lourd, bateau, avion, etc.)."
+        "description": "Pour garder le contrôle d’un engin dont on connaît le maniement. Il faut une compétence par engin choisi (moto, voiture, poids lourd, bateau, avion, etc.)."
       },
       "connaissances": {
         "label": "Connaissances",
-        "description":"Pour connaître des éléments spécifiques dans un domaine en particulier. Il faut une compétence par domaine choisi (architecture, armées, arts, biologie, business, lois, technologies, religions, politique, etc.)."
+        "description": "Pour connaître des éléments spécifiques dans un domaine en particulier. Il faut une compétence par domaine choisi (architecture, armées, arts, biologie, business, lois, technologies, religions, politique, etc.)."
       },
       "langues": {
         "label": "Langues",
-        "description":"Pour réaliser des objets et repérer des contrefaçons. Il faut une compétence par domaine d’artisanat choisi (bijouterie, céramique, gravure, menuiserie, reliure, serrurerie, sculpture, etc.)."
+        "description": "Pour réaliser des objets et repérer des contrefaçons. Il faut une compétence par domaine d’artisanat choisi (bijouterie, céramique, gravure, menuiserie, reliure, serrurerie, sculpture, etc.)."
       },
       "artisanats": {
         "label": "Artisanats",
-        "description":"Pour réaliser des objets et repérer des contrefaçons. Il faut une compétence par domaine d’artisanat choisi (bijouterie, céramique, gravure, menuiserie, reliure, serrurerie, sculpture, etc.)."
+        "description": "Pour réaliser des objets et repérer des contrefaçons. Il faut une compétence par domaine d’artisanat choisi (bijouterie, céramique, gravure, menuiserie, reliure, serrurerie, sculpture, etc.)."
       }
     },
-    "DOMAINES":{
-      "vie" : {
-        "label" : "La Vie",
+    "DOMAINES": {
+      "vie": {
+        "label": "La Vie",
         "description": "Pour soigner, agir sur la force vitale des êtres vivants."
       },
-      "lumiere" : {
-        "label" : "La Lumière",
-      "description": "Pour jouer avec la lumière (en tant qu’outil ou en tant qu’arme)."
+      "lumiere": {
+        "label": "La Lumière",
+        "description": "Pour jouer avec la lumière (en tant qu’outil ou en tant qu’arme)."
       },
-      "force" :{
-        "label" : "La Force",
+      "force": {
+        "label": "La Force",
         "description": "Pour améliorer son corps (et devenir endurant, puissant, souple, agile, etc.)."
       },
-      "elements" :{
-        "label" : "Les Éléments",
+      "elements": {
+        "label": "Les Éléments",
         "description": "Pour maîtriser un ou plusieurs éléments, les déplacer, les déformer, les transmuter."
       },
-      "matiere" :{
-        "label" : "La Matière",
+      "matiere": {
+        "label": "La Matière",
         "description": "Pour devenir immatériel, se déphaser de notre monde et abolir les frontières du physique."
       },
-      "memoire" :{
-        "label" : "La Mémoire",
+      "memoire": {
+        "label": "La Mémoire",
         "description": "Pour tout ce qui concerne les pensées, les souvenirs, les perceptions passées."
       },
-      "precognition" :{
-        "label" : "La Précognition",
+      "precognition": {
+        "label": "La Précognition",
         "description": "Pour obtenir des informations concernant l’avenir."
       },
-      "amplification" :{
-        "label" : "L’Amplification",
+      "amplification": {
+        "label": "L’Amplification",
         "description": "Pour améliorer les pouvoirs des autres et imiter des pouvoirs de manière ponctuelle."
       },
-      "magnetisme" :{
-        "label" : "Le Magnétisme",
+      "magnetisme": {
+        "label": "Le Magnétisme",
         "description": "Pour contrôler les champs électriques, les champs de forces, l’attraction, la répulsion."
       },
-      "temps" :{
-        "label" : "Le Temps",
+      "temps": {
+        "label": "Le Temps",
         "description": "Pour freiner l’écoulement du temps, voire l’arrêter. Et au bout d’une vie entière d’entraînement, le voyage dans le temps, peut-être."
       },
-      "technologies" :{
-        "label" : "Les Technologies",
+      "technologies": {
+        "label": "Les Technologies",
         "description": "Pour comprendre et maîtriser instinctivement les processus et les machines."
       },
-      "sens" :{
-        "label" : "Les Sens",
+      "sens": {
+        "label": "Les Sens",
         "description": "Pour utiliser au mieux l’un de ses sens, voire plusieurs, ou même ceux des autres."
       },
-      "connaissance" :{
-        "label" : "La Connaissance",
+      "connaissance": {
+        "label": "La Connaissance",
         "description": "Pour obtenir facilement des savoirs."
       },
-      "transformation" :{
-        "label" : "La Transformation",
+      "transformation": {
+        "label": "La Transformation",
         "description": "Pour tout ce qui concerne les transformations de la matière, de la déformation à la transmutation."
       },
-      "vide" :{
-        "label" : "Le Vide",
+      "vide": {
+        "label": "Le Vide",
         "description": "Pour tenir à distance autant la matière que les pouvoirs environnants."
       },
-      "langage" :{
-        "label" : "Le Langage",
+      "langage": {
+        "label": "Le Langage",
         "description": "Pour comprendre des langues, décrypter des codes ou les micro-expressions."
       },
-      "invisible" :{
-        "label" : "L’Invisible",
+      "invisible": {
+        "label": "L’Invisible",
         "description": "Pour devenir ou rendre… invisible !"
       },
-      "sceaux" :{
-        "label" : "Les Sceaux",
+      "sceaux": {
+        "label": "Les Sceaux",
         "description": "Pour agir sur les limites et les frontières, qu’elles soient physiques ou spirituelles, pour relier deux points de l’espace ou créer des accès là où il n’y en a pas."
       },
-     "destin" :{
-        "label" : "Le Destin",
+      "destin": {
+        "label": "Le Destin",
         "description": "Pour jouer sur la chance, sur les probabilités ou voir les liens entre les personnes."
       },
-      "infections" :{
-        "label" : "Les Infections",
+      "infections": {
+        "label": "Les Infections",
         "description": "Pour maîtriser les virus et la vie bactérienne, pour soigner des maladies, pour se renforcer ou pour tuer."
       },
-      "ubiquite" :{
-        "label" : "L’Ubiquité",
+      "ubiquite": {
+        "label": "L’Ubiquité",
         "description": "Pour se trouver en plusieurs endroits en même temps."
       },
-      "comunication" :{
-        "label" : "Communication",
+      "comunication": {
+        "label": "Communication",
         "description": "Pour capter les données qui circulent par les ondes, qu’elles soient technologiques ou psychiques."
       },
-      "celerite" :{
-        "label" : "La Célérité",
+      "celerite": {
+        "label": "La Célérité",
         "description": "Pour améliorer sa vitesse de déplacement et d’exécution."
       },
-      "gravite" :{
-        "label" : "La Gravité",
+      "gravite": {
+        "label": "La Gravité",
         "description": "Pour maîtriser le poids des choses et voler."
       },
-      "ombre" :{
-        "label" : "L’Ombre ",
+      "ombre": {
+        "label": "L’Ombre ",
         "description": "Pour devenir… une ombre !, jouer avec celles des autres et voyager d’une ombre à l’autre."
       },
-      "mimetisme" :{
-        "label" : "Le Mimétisme",
+      "mimetisme": {
+        "label": "Le Mimétisme",
         "description": "Pour copier le pouvoir d’un autre."
       },
-      "mort" :{
-        "label" : "La Mort ",
+      "mort": {
+        "label": "La Mort ",
         "description": "Pour interagir avec les morts, leur corps comme leur esprit."
       },
-      "vivant" :{
-        "label" : "Le Vivant",
+      "vivant": {
+        "label": "Le Vivant",
         "description": "Pour comprendre les végétaux et les animaux, les aider, les modifier, les contrôler."
       }
     },
     "NOUVEAU": {
-      "artisanats":"Nom artisanat",
-      "connaissances":"Champ connaissance",
-      "langues":"Nouvelle langue",
-      "pilotage" : "Type véhicule"
+      "artisanats": "Nom artisanat",
+      "connaissances": "Champ connaissance",
+      "langues": "Nouvelle langue",
+      "pilotage": "Type véhicule"
     },
 
     "MENU": {
@@ -363,15 +372,17 @@
       "facile": "Facile",
       "normale": "Normale",
       "difficile": "Difficile"
-    }
-  },
-  "TYPES": {
-    "Actor": {
-      "pj": "PJ",
-      "pnj": "PNJ"
     },
-    "Item":{
-      "pouvoir":"Pouvoir"
+    "SEARCHTOOL": {
+      "window_title": "Rechercher",
+      "button_search": "Rechercher",
+      "button_cancel": "Annuler",
+      "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
+      "dialog_input": "Entrez ici le texte à rechercher :",
+      "chat_intro": "Résultat de la recherche",
+      "chat_text": "Texte recherché : ",
+      "no_results": "Aucun résultat",
+      "too_much_results": "Plus de 20 résultats, affinez votre recherche."
     }
   }
 }

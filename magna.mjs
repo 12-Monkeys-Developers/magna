@@ -1,4 +1,6 @@
 import { SYSTEM } from "./module/config/system.mjs";
+import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
+import { SearchChat } from "./module/applications/search/research.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -44,6 +46,9 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/pouvoir.hbs`,
   ]);
 
+  // menu de gauche
+  initControlButtons();
+
   Handlebars.registerHelper("getSystemProperty", function (actor, group, nom_id, prop) {
     return actor.system[group][nom_id][prop];
   });
@@ -71,3 +76,14 @@ function preLocalizeConfig() {
 
   localizeConfigObject(SYSTEM.DIFFICULTES, ["label"]);
 }
+
+Hooks.on("renderChatMessage", (message, html, data) => {
+  console.debug("renderChatMessage", message, html, data);
+
+  const typeMessage = data.message.flags.world?.type;
+  // ******  CODE FOR SEARCH 
+  if (typeMessage === "searchPage") {
+    html.find("#ouvrirpage").click((event) => SearchChat.onOpenJournalPage(event, data.message.flags.world?.searchPattern));
+  }
+  // ******  END OF CODE FOR SEARCH 
+});
