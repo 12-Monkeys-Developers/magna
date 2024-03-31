@@ -1,41 +1,47 @@
 {{log "standard check dialog" this}}
 <form class="dialog-jet-action">
   <section class="content">
+    <div class="dialog-intro">Jet de : <span class="label_comp">{{label1}}  +  {{label2}}</span></div>
     <div class="dialog-grid">
-      <div class="dialog-intro">Jet de : <span class="label_comp">{{label1}}   +</span></div>
-      <div class="comp-titre" style="grid-column: 2 / 3; grid-row: 1 / 2;">Une caractéristique ?</div>
-      <div class="action-val" style="grid-column: 3 / 4; grid-row: 1 / 2;">
-        <select class="changefield" name="caracteristiques" data-action="caracteristique-change">
-        {{selectOptions caracteristiques selected=carac labelAttr="label_short" blank="Aucune"}}
-        </select>
+      <div class="left_col">
+        <h3>Modifier le second terme</h3>
+        <div class="dialog-colgrid">
+          <div class="comp-titre">Caractéristiques</div>
+          <div class="comp-titre">
+            <select class="changefield" name="caracteristiques" data-action="caracteristique-change">
+            {{selectOptions caracteristiques selected=carac labelAttr="label_short" blank="Aucune"}}
+            </select>
+          </div>
+          <div class="comp-titre">Indices</div>
+          <div class="comp-titre">
+            <select class="changefield" name="indices" data-action="indice-change">
+              {{selectOptions indices selected=indice labelAttr="label_short" blank="Aucun"}}
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="comp-titre" style="grid-column: 2 / 3; grid-row: 2 / 3;">Un indice ?</div>
-      <div class="action-val" style="grid-column: 3 / 4; grid-row: 2 / 3;">
-        <select class="changefield" name="indices" data-action="indice-change">
-          {{selectOptions indices selected=indice labelAttr="label_short" blank="Aucun"}}
-        </select>
+      <div class="right-col">
+        <div class="dialog-colgrid">
+        <div class="comp-titre">Modificateur</div>
+          <div class="comp-titre">
+            <select class="changefield" data-action="modificateur-change" name="modificateur">
+              {{#select modificateur}}
+                <option value="-10">-10</option>
+                <option value="-5">-5</option>
+                <option value="0">0</option>
+                <option value="5">5</option>
+              {{/select}}
+            </select>
+          </div>
+        <div class="comp-titre">Opposition</div>
+        <div class="comp-titre">
+          <input class="changefield" data-action="opposition-change" name="opposition" type="number" value="{{opposition}}" placeholder="Pas d'opposition" />
+        </div>
       </div>
-    </div>
-    <div class="mod-grid">
-      <div class="modificateur">
-        <div class="field-name">Modificateur</div>
-        <select class="changefield" data-action="modificateur-change" name="modificateur">
-          {{#select modificateur}}
-            <option value="-10">-10</option>
-            <option value="-5">-5</option>
-            <option value="0">0</option>
-            <option value="5">5</option>
-          {{/select}}
-        </select>
-      </div>
-      <div class="opposition">
-        <label>Valeur opposition (facultatif)</label>
-        <input class="changefield" data-action="opposition-change" name="opposition" type="number" value="{{opposition}}" placeholder="Pas d'opposition" />
-      </div>
-    </div>
       <button type="button" class="dialog-button" data-button="ok">
         <i class="fa-solid fa-dice-d20"></i>
         <label>Lancer le dé</label>
       </button>
+    </div></div>
   </section>
 </form>

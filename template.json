@@ -5,7 +5,8 @@
     "pnj": {}
   },
   "Item": {
-    "types": ["pouvoir"],
+    "types": ["pouvoir", "arme"],
+    "arme" : {},
     "pouvoir" : {}
   }
 }

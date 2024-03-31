@@ -40,9 +40,13 @@ export default class MagnaActor extends Actor {
     return false;
   }
 
-  get auraDeployee() {
-    if (this.getFlag(game.system.id, "AuraDeployee")) return true;
-    return false;
+  get nbAuraDeployees() {
+    let auraDeployee = 0;
+    const pouvoirs = this.items.filter((item) => item.type == "pouvoir");
+    pouvoirs.forEach(async (element) => {
+      if (element.system.auraDeployee) auraDeployee += 1;
+    });
+    return auraDeployee;
   }
 
   /**
@@ -89,7 +93,7 @@ export default class MagnaActor extends Actor {
       }
     });
     console.log("liste", liste);
-    return(liste);
+    return liste;
   }
 
   async ajouterCompSpe(compType) {
@@ -139,8 +143,8 @@ export default class MagnaActor extends Actor {
 
     if (compData.askDialog) {
       // Prompt the user with a roll dialog
-      const flavor = "Réaliser une action";
-      const title = "Réaliser une action";
+      const flavor = compData.flavor ?? "Réaliser une action";
+      const title = compData.title ?? "Réaliser une action";
       const response = await sc.dialog({ title, flavor });
       if (response === null) return null;
     }
@@ -149,5 +153,107 @@ export default class MagnaActor extends Actor {
     // Execute the roll to chat
     await sc.toMessage();
     return sc;
+  }
+
+  /**
+   * Déployer une aura
+   * @param {string} id - L'id du pouvoir dont l'aura tente dêtre déployée
+   * @param {boolean} force - forcer le déploiement
+   * @param {boolean} forceFree - forcer le déploiement sans dépense de Mental
+   * @returns {Promise<StandardCheck>} - A promise that resolves to the rolled check.
+   */
+
+  async deployerAura(itemId, force = false, forceFree = false) {
+    let pouvoir = this.items.get(itemId);
+    if (!pouvoir) return;
+    if (force) {
+      pouvoir.update({ ["system.auraDeployee"]: true });
+      if (!forceFree) this.update({ ["system.mental.valeur"]: this.system.mental.valeur - 3 });
+      return true;
+    }
+    let data = {
+      group1: "caracteristiques",
+      typecomp1: false,
+      field1: "psi",
+      group2: "caracteristiques",
+      field2: "psi",
+    };
+    let sc = await this.rollAction(data);
+    if (sc._total - sc.data.seuilReussite < 1) {
+      pouvoir.update({ ["system.auraDeployee"]: true });
+      return true;
+    } else return false;
+  }
+
+  /**
+   * Rétracter
+   * @param {string} id - L'id du pouvoir
+   * @returns {Promise<StandardCheck>} - A promise that resolves to the rolled check.
+   */
+  async retracterAura(itemId) {
+    let pouvoir = this.items.get(itemId);
+    if (!pouvoir) return;
+    pouvoir.update({ ["system.auraDeployee"]: false });
+    return true;
+  }
+  async rollInit() {
+    let r = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
+    let options = { rollMode: "gmroll", user: game.user._id };
+    if (this.type === "pj") options.rollMode = r.toMessage({ speaker: ChatMessage.implementation.getSpeaker({ actor: this }), flavor: "Initiative de " + this.name });
+  }
+
+  /**
+   * Calcul des dégats modifés par la compétence
+   * @param {string} id - L'id de l'arme
+   * @returns {number} les dégats.
+   */
+  async degatsmodifies(armeId) {
+    let arme = this.items.get(armeId);
+    if (!arme) return;
+    let competence = arme.system.competence;
+    let comvalue = this.system.combat[competence].valeur;
+    if (comvalue > 6) return arme.system.degats + 2;
+    else if (comvalue > 3) return arme.system.degats + 1;
+    else return arme.system.degats;
+  }
+
+  async utiliserArme(itemId) {
+    const arme = this.items.get(itemId);
+    if (!arme) return;
+    let data = {
+      group1: "combat",
+      typecomp1: false,
+      field1: arme.system.competence,
+      group2: "indices",
+      field2: SYSTEM.COMPETENCES_COMBAT[arme.system.competence].defaultIndice,
+      askDialog: true,
+    };
+    return this.rollAction(data);
+  }
+  
+  async getValeur(group, typecomp, field) {
+    let valeur = 0;
+    if (group === "competences_spe") {
+      valeur = field.valeur;
+    } else if (group === "indices") {
+      valeur = this[field];
+    } else {
+      valeur = this.system[group][field].valeur;
+    }
+    return valeur;
+  }
+
+  async getLabelShort(group, typecomp, field) {
+    let label = "";
+    if (group === "competences_spe") {
+      label = game.i18n.localize("MAGNA.COMPETENCE_SPE." + typecomp + ".label") + ": " + field.label;
+    } else if (group === "caracteristiques") {
+      label = game.i18n.localize(SYSTEM.CARACTERISTIQUES[field].label_short);
+    } else if (group === "indices") {
+      label = game.i18n.localize(SYSTEM.INDICES[field].label_short);
+    } else {
+      label = game.i18n.localize(this.system[group][field].label);
+    }
+    return label;
   }
 }

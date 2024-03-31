@@ -12,6 +12,7 @@ export default class MagnaPouvoir extends foundry.abstract.TypeDataModel {
     schema.description = new fields.HTMLField({ required: true, blank: true, textSearch: true });
     schema.rang = new fields.NumberField({ required: true, initial: 1 });
     schema.rang_min = new fields.NumberField({ required: true, initial: 0 });
+    schema.auraDeployee = new fields.BooleanField({ required: true, initial: false });
 
     return schema;
   }

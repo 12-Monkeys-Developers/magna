@@ -26,35 +26,41 @@ export default class PJSheet extends MagnaActorSheet {
     const context = await super.getData(options);
 
     context.system = this.document.system;
-    context.descriptionHTML = TextEditor.enrichHTML(this.actor.system.description, { async: false });
-    context.equipementHTML = TextEditor.enrichHTML(this.actor.system.equipement, { async: false });
+    context.descriptionHTML = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.equipementHTML = await TextEditor.enrichHTML(this.actor.system.equipement, { async: false });
     context.unlocked = this.actor.isUnlocked;
     context.locked = !this.actor.isUnlocked;
-    context.auradeployee = this.actor.auraDeployee;
+    context.nbAuraDeployees = this.actor.nbAuraDeployees;
     context.indices = {
       cac: {
         valeur: this.actor.cac,
-        label_short: "CAC",
+        label_short: "MAGNA.INDICE.cac.label_short",
+        label: "MAGNA.INDICE.cac.label",
       },
       dist: {
         valeur: this.actor.dist,
-        label_short: "DIST",
+        label_short: "MAGNA.INDICE.dist.label_short",
+        label: "MAGNA.INDICE.dist.label",
       },
       ref: {
         valeur: this.actor.ref,
-        label_short: "REF",
+        label_short: "MAGNA.INDICE.ref.label_short",
+        label: "MAGNA.INDICE.ref.label",
       },
       cacpsi: {
         valeur: this.actor.cacpsi,
-        label_short: "CAC PSI",
+        label_short: "MAGNA.INDICE.cacpsi.label_short",
+        label: "MAGNA.INDICE.cacpsi.label",
       },
       distpsi: {
         valeur: this.actor.distpsi,
-        label_short: "DIST PSI",
+        label_short: "MAGNA.INDICE.distpsi.label_short",
+        label: "MAGNA.INDICE.distpsi.label",
       },
       refpsi: {
         valeur: this.actor.refpsi,
-        label_short: "REF PSI",
+        label_short: "MAGNA.INDICE.refpsi.label_short",
+        label: "MAGNA.INDICE.refpsi.label",
       },
     };
     context.vitalite_max = this.actor.vitalite_max;
@@ -64,14 +70,21 @@ export default class PJSheet extends MagnaActorSheet {
 
     context.listevoies = this.actor.listeVoies;
 
+    context.armes = this.actor.items
+      .filter((item) => item.type == "arme")
+      .sort(function (a, b) {
+        return a.name > b.name;
+      });
+      context.armes.forEach(async (element) => {
+        element.system.degatsmodifies = await this.actor.degatsmodifies(element._id);
+      });
     context.pouvoirs = this.actor.items
       .filter((item) => item.type == "pouvoir")
       .sort(function (a, b) {
         return a.system.rang > b.system.rang;
       });
     context.pouvoirs.forEach(async (element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
-      element.system.auradeployee = await this.actor.getFlag(game.system.id, element.id);
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
     return context;
   }
@@ -103,32 +116,21 @@ export default class PJSheet extends MagnaActorSheet {
       typecomp1: dataset.type,
       field1: dataset.field,
       group2: "caracteristiques",
-      field2:"hab",
-      askDialog: true
-    }
-    if(group==="competences"){
+      field2: "hab",
+      askDialog: true,
+    };
+    if (group === "competences") {
       data.field2 = SYSTEM.COMPETENCES[data.field1].defaultCarac;
-    }
-    else if(group==="combat"){
+    } else if (group === "combat") {
       data.field2 = SYSTEM.COMPETENCES_COMBAT[data.field1].defaultCarac;
-    }
-    else if(group==="competences_spe"){
+    } else if (group === "competences_spe") {
       const compSpe = await this.actor.lectureCompSpe(dataset.type, dataset.field);
       data.field1 = compSpe;
       data.field2 = compSpe.defaultCarac;
-    }
-    else if(group==="mental"){
-      data.askDialog= false;
+    } else if (group === "mental") {
+      data.askDialog = false;
       data.field1 = "mental";
-    }
-    else if(group==="aura"){
-      data.askDialog= false;
-      data.group1 = "caracteristiques";
-      data.field1 = "psi";
-      data.group2 = "caracteristiques";
-      data.field2 = "psi";
-    }
-    else if(group==="pouvoir"){
+    } else if (group === "pouvoir") {
       data.group2 = "indices";
       data.field2 = "distpsi";
     }

@@ -28,10 +28,12 @@ Hooks.once("init", async function () {
 
   CONFIG.Item.dataModels = {
     pouvoir: models.MagnaPouvoir,
+    arme: models.MagnaArme
   };
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
+  Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
 
   
   // Dice system configuration
@@ -43,6 +45,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/pj-pouvoirs.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/pj-description.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pj.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pouvoir.hbs`,
   ]);
 
@@ -74,6 +77,11 @@ function preLocalizeConfig() {
     }
   };
 
+  localizeConfigObject(SYSTEM.CARACTERISTIQUES, ["label"]);
+  localizeConfigObject(SYSTEM.INDICES, ["label"]);
+  localizeConfigObject(SYSTEM.COMPETENCES, ["label"]);
+  localizeConfigObject(SYSTEM.COMPETENCES_COMBAT, ["label"]);
+  localizeConfigObject(SYSTEM.DOMAINES, ["label"]);
   localizeConfigObject(SYSTEM.DIFFICULTES, ["label"]);
 }
 

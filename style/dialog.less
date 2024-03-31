@@ -1,37 +1,54 @@
 .dialog-jet-action {
-  .dialog-grid {
-    display: grid;
-    grid-template-columns: 150px 150px 170px;
+  background: var(--background_dialog);
+  font-family: "pillgothic";
+  font-weight: bold;
+  input {
+    width: 4em;
   }
   .dialog-intro {
-    grid-column: 1 / 2;
-    grid-row: 1 / 5;
-    font-size: 1.5em;
-    align-self: center;
+    font-family: "codepro";
+    font-weight: bold;
+    font-size: 22px;
+    background: #97141c;
+    color: white;
+    border: solid 2px black;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
   }
-  .mod-grid {
+  .dialog-grid {
+    grid-template-columns: 235px 235px;
+    margin: 15px 10px 10px 10px;
     display: grid;
-    grid-template-columns: 230px 230px;
-    margin-top: 20px;
   }
-  .modificateur {
+  .left_col {
     display: flex;
-    flex-direction: row;
-    margin: 10px;
+    flex-direction: column;
+    margin: 0px 10px;
+    border: solid black;
+    padding: 5px;
   }
-  .opposition {
+  .right_col {
     display: flex;
-    flex-direction: row;
-    margin: 10px;
-    input {
-      width: 4em;
-    }
+    flex-direction: column;
+    margin: 0px 10px;
+    padding-left: 40px;
+  }
+  .dialog-colgrid {
+    display: grid;
+    grid-template-columns: 110px 80px;
+    grid-template-rows: 40px;
+    margin-top: 10px;
+  }
+  .comp-titre {
+    margin-top: 10px;
+    align-self: center;
   }
   .dialog-button {
     padding: 10px;
     border: solid 2px black;
     border-radius: 20px;
-    margin: 5px 260px;
+    margin: 20px 0px 0px 10px;
     width: 170px;
   }
 }

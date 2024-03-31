@@ -1,6 +1,8 @@
 .magna.sheet.actor.pj {
   .window-content {
-    background: var(--background_pj);
+    background: no-repeat url("../assets/system/fond_fdp.webp") rgba(79.6, 20.4, 18, 0.8);
+    font-family: "pillgothic";
+    font-weight: bold;
   }
   .editor {
     width: 100%;
@@ -8,7 +10,7 @@
     background-color: #f9f6f1;
     background: var(--background_base);
     box-shadow: inset 0 0 6px black;
-    font-family: "garamond";
+    font-family: "pillgothic";
     text-align: justify;
     padding-left: 5px;
     padding-right: 5px;
@@ -17,6 +19,16 @@
   .editor-content {
     min-height: 5em;
     margin: 0px 5px 0px 5px;
+  }
+  h2 {
+    font-family: "codepro";
+    font-weight: bold;
+    font-size: 22px;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
   }
   .pj-sheet {
     display: grid;
@@ -105,62 +117,200 @@
       }
     }
   }
+  .ligne_caract {
+    display: flex;
+    flex-direction: row;
+  }
+  .zone_carac {
+    flex-direction: column;
+    width: 250px;
+  }
+  .zone_indices {
+    flex-direction: column;
+    margin-left: 20px;
+  }
   .grid_carac {
     margin-top: 15px;
+    margin-left: 45px;
+    padding-top: 20px;
     display: grid;
     align-items: center;
-    grid-template-columns: 160px 160px 160px;
-    .bloc_caracteristique {
-      display: grid;
-      grid-template-columns: 40px 50px 30px 20px;
-      grid-template-rows: 35px;
+    grid-template-columns: 75px 70px 70px;
+    grid-template-rows: 75px 70px 70px;
+    .margin_caracteristique {
+      margin: 0px;
+    }
+    .PSI {
+      margin-top: -70px;
+      margin-left: -14px;
+      background: no-repeat url("../assets/system/hexa_r.webp");
+    }
+    .CHA {
+      margin-top: -75px;
+      margin-left: -14px;
+    }
+    .INS {
+      margin-top: -75px;
+      margin-left: -14px;
+    }
+    .PER {
+      margin-left: -23px;
+    }
+    .INT {
+      margin-left: -23px;
+    }
+    .VOL {
+      margin-left: -23px;
+    }
+  }
+  .grid_indices {
+    margin-top: 15px;
+    margin-left: 47px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 120px 120px 120px;
+    grid-template-rows: 75px 70px;
+    .margin_indices {
+      margin: 0px 0px 0px 5px;
+    }
+    .cacpsi {
+      margin-top: -59px;
+      margin-left: -57px;
+      background: no-repeat url("../assets/system/hexa_r.webp");
       .nom_caracteristique {
-        font-size: 14px;
-        color: black;
-        margin: 5px 5px 3px 5px;
-        text-transform: uppercase;
+        font-size: 11px;
+        width: 42px;
+        margin: 10px 10px;
       }
-      .val_caracteristique {
-        color: #31191f;
-        margin: 5px 5px 3px 5px;
-        input {
-          width: 2em;
-        }
+    }
+    .distpsi {
+      margin-top: -59px;
+      margin-left: -57px;
+      background: no-repeat url("../assets/system/hexa_r.webp");
+      .nom_caracteristique {
+        font-size: 11px;
+        width: 42px;
+        margin: 10px 10px;
       }
-      .attribut-icon {
-        font-size: 14px;
-        color: #31191f;
-        margin: 5px 5px 3px 5px;
+    }
+    .refpsi {
+      margin-top: -59px;
+      margin-left: -57px;
+      background: no-repeat url("../assets/system/hexa_r.webp");
+      .nom_caracteristique {
+        font-size: 12px;
+        width: 42px;
+        margin: 10px 10px;
       }
+    }
+  }
+  .bloc_caracteristique {
+    background: no-repeat url("../assets/system/hexa.webp");
+    display: grid;
+    grid-template-columns: 20px 45px;
+    grid-template-rows: 20px 24px 20px;
+    padding-left: 6px;
+    text-align: center;
+    .nom_caracteristique {
+      grid-row: 1 / 2;
+      grid-column: 1 / 3;
+      font-size: 14px;
+      color: black;
+      margin-top: 4px;
+      margin-left: -3px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .val_caracteristique {
+      color: #31191f;
+      font-size: 21px;
+
+      input {
+        width: 1.5em;
+        margin: 0px;
+        border: 0px;
+      }
+    }
+    .attribut-icon {
+      font-size: 14px;
+      color: #31191f;
+      margin: 0px;
     }
   }
   .grid_comp {
     display: grid;
     align-items: center;
-    grid-template-columns: 190px 190px 190px;
+    grid-template-columns: 170px 170px 170px 170px;
+    grid-template-rows: 25px;
   }
   .grid_spe {
     display: grid;
     align-items: center;
-    grid-template-columns: 160px 160px 160px 160px;
+    grid-template-columns: 170px 170px 170px 170px;
   }
   .bloc_vertical {
     display: flex;
     flex-direction: column;
     align-self: start;
+
+    .titre_compspe {
+      font-family: "codepro";
+      font-weight: bold;
+      font-size: 15px;
+      background: #f9f6f1;;
+      color: black;
+      text-align: center;
+      padding: 5px;
+      text-transform: uppercase;
+    }
   }
   .bloc_comp {
     display: grid;
-    grid-template-columns: 100px 30px 20px;
-    grid-template-rows: 35px;
+    grid-template-columns: 130px 15px 20px;
+    background: #faf3f0;
+    margin: 2px;
+    padding-left: 2px;
+    border-radius: 5px;
     .nom_comp {
-      font-size: 12px;
+      align-self: center;
+      font-size: 16px;
       color: black;
-      margin: 5px 5px 3px 5px;
     }
     .val_comp {
       color: #31191f;
+      align-self: center;
+      font-size: 18px;
+      input {
+        width: 2em;
+      }
+    }
+    .attribut-icon {
+      font-size: 14px;
+      color: #31191f;
       margin: 5px 5px 3px 5px;
+    }
+  }
+  .grid_combat{
+    display: grid;
+    grid-template-columns: 190px 190px;
+    grid-template-rows: 30px 30px 30px;
+  }
+  .bloc_arme {
+    display: grid;
+    grid-template-columns: 100px 90px;
+    background: #faf3f0;
+    margin: 2px;
+    padding-left: 2px;
+    border-radius: 5px;
+    .nom_comp {
+      align-self: center;
+      font-size: 16px;
+      color: black;
+    }
+    .val_comp {
+      color: #31191f;
+      align-self: center;
+      font-size: 18px;
       input {
         width: 2em;
       }
@@ -184,6 +334,9 @@
         font-size: 1.2em;
         font-weight: bold;
       }
+      .change-aura {
+        margin: 0px 5px;
+      }
       .pouvoir-name {
         margin: 0px 10px;
         font-size: 1.2em;
@@ -205,21 +358,21 @@
     }
   }
   .description-bloc {
-  .editor {
-    width: 100%;
-    height: 100%;
-    background-color: #f9f6f1;
-    background: var(--background_base);
-    box-shadow: inset 0 0 6px black;
-    font-family: "garamond";
-    text-align: justify;
-    padding-left: 5px;
-    padding-right: 5px;
-    min-height: 30em;
-  }
-  .editor-content {
-    min-height: 30em;
-    margin: 0px 5px 0px 5px;
-  }
+    .editor {
+      width: 100%;
+      height: 100%;
+      background-color: #f9f6f1;
+      background: var(--background_base);
+      box-shadow: inset 0 0 6px black;
+      font-family: "garamond";
+      text-align: justify;
+      padding-left: 5px;
+      padding-right: 5px;
+      min-height: 30em;
+    }
+    .editor-content {
+      min-height: 30em;
+      margin: 0px 5px 0px 5px;
+    }
   }
 }

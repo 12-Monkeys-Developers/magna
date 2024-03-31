@@ -1,7 +1,8 @@
+@import "./arme.less";
+@import "./chat.less";
+@import "./dialog.less";
 @import "./pj.less";
 @import "./pouvoir.less";
-@import "./dialog.less";
-@import "./chat.less";
 @import "./search.less";
 
 .prosemirror menu {
@@ -10,11 +11,30 @@
     margin: 0px 0px;
   }
 }
+@font-face {
+  font-family: "codepro";
+  src: url("../assets/fonts/code_light.otf") format("truetype");
+}
+@font-face {
+  font-family: "codepro";
+  src: url("../assets/fonts/code_bold.otf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "pillgothic";
+  src: url("../assets/fonts/pillgothic_light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "pillgothic";
+  src: url("../assets/fonts/pillgothic_bold.ttf") format("truetype");
+  font-weight: bold;
+}
 
 :root {
   --font-pj-color: black;
-  --background_pj: white;
-  --background_chat: white;
+  --background_pj: no-repeat url("../assets/system/fond_fdp.webp") rgba(79.6, 20.4, 18, 0.8);
+  --background_chat: repeat url("../assets/system/fond_chat.webp") white;
+  --background_dialog: repeat url("../assets/system/fond_dialog.webp") white;
   --font-pj-name: 30px "garamond";
   --font-pj-name-color: black;
   --font-pj-indications: 15px "garamond";

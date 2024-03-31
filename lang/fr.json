@@ -1,14 +1,15 @@
 {
-  "MAGNA": {
-    "TYPES": {
-      "Actor": {
-        "pj": "PJ",
-        "pnj": "PNJ"
-      },
-      "Item": {
-        "pouvoir": "Pouvoir"
-      }
+  "TYPES": {
+    "Actor": {
+      "pj": "PJ",
+      "pnj": "PNJ"
     },
+    "Item": {
+      "pouvoir": "Pouvoir",
+      "arme": "Arme"
+    }
+  },
+  "MAGNA": {
     "CHATMESSAGE": {
       "introActionStd": "{actingCharName} agit.",
       "largereussite": "Le test est largement réussi.",
@@ -49,9 +50,9 @@
         "label_short": "INT",
         "description": "Se rapporte aux connaissances du personnage. Une intelligence importante indique qu’un personnage est cultivé, mais qu’il a aussi une excellente mémoire et/ou un esprit de synthèse."
       },
-      "chr": {
+      "cha": {
         "label": "Charisme",
-        "label_short": "CHR",
+        "label_short": "CHA",
         "description": "Se rapporte aux capacités sociales et à l’aspect du personnage. Un charisme important indique qu’il maîtrise les interactions sociales et qu’il peut à la fois comprendre les autres, mais également, bluffer, amadouer, persuader, etc."
       },
       "ins": {
@@ -359,7 +360,12 @@
       "langues": "Nouvelle langue",
       "pilotage": "Type véhicule"
     },
-
+    "ACTION": {
+      "tooltip": {
+        "jet_mental": "Faire un test de Mental",
+        "jet": "Faire un test"
+      }
+    },
     "MENU": {
       "lock": "Verrouiller",
       "unlock": "Déverrouiller"

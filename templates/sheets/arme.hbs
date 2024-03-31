@@ -1,0 +1,19 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{!log "arme" this}}
+  <div class="arme-sheet">
+    <div class="name-title">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+      <input name="name" type="text" value="{{item.name}}" />
+    </div>
+    <div class="pouvoir-content">
+      <div class="field-name">Dégats</div>
+      <input name="system.degats" min="1" max="20" type="number" value="{{item.system.degats}}" />
+      <div class="field-name">Compétence utilisée</div>
+          <select name="system.competence">
+            {{selectOptions competencescombat selected=system.competence labelAttr="label" sort=true}}
+          </select>
+    </div>
+    <div class="field-name">Description</div>
+    {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+  </div>
+</form>

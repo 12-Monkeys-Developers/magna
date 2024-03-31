@@ -20,6 +20,21 @@ export default class MagnaActorSheet extends ActorSheet {
     return context;
   }
 
+  /* Context menu standar*/
+  _getStdContextOptions() {
+    return [
+      {
+        name: `Jet d'Iniative`,
+        icon: `<i class="fa-solid fa-hourglass-start"></i>`,
+        condition: (li) => {
+          return (li.data("cond")==="init");
+        },
+        callback: (li) => {
+          return this.actor.rollInit();
+        },
+      },
+    ]
+  };
   /**
    * Retourne les context options des embedded items
    * @returns {object[]}
@@ -28,8 +43,8 @@ export default class MagnaActorSheet extends ActorSheet {
   _getItemEntryContextOptions() {
     return [
       {
-        name: `Utiliser (Jet d'action)`,
-        icon: `<i class="fa-regular fa-hand-fist"></i>`,
+        name: `Utiliser pouvoir (Jet d'action)`,
+        icon: `<i class="fa-regular fa-bolt"></i>`,
         condition: (li) => {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
@@ -37,8 +52,66 @@ export default class MagnaActorSheet extends ActorSheet {
           return item.type === "pouvoir";
         },
         callback: (li) => {
-          const pouvoirId = li.data("itemId");
-          //this.actor.utiliserArme(armeId, "Frapper");
+          const itemId = li.data("itemId");
+        },
+      },
+      {
+        name: `Frapper / Tirer`,
+        icon: `<i class="fa-regular fa-gun"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return item.type === "arme";
+        },
+        callback: (li) => {
+          const itemId = li.data("itemId");
+          this.actor.utiliserArme(itemId);
+        },
+      },
+      {
+        name: `Déployer l'aura (Jet d'action)`,
+        icon: `<i class="fa-regular fa-person-rays"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return ((item.type === "pouvoir")&& !item.system.auraDeployee);
+        },
+        callback: async (li) => {
+          const itemId = li.data("itemId");
+            if(await this.actor.deployerAura(itemId, false, false)) this.actor.sheet.render(true);;
+            return;
+        },
+      },
+      {
+        name: `Rétracter l'aura`,
+        icon: `<i class="fa-regular fa-person"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return ((item.type === "pouvoir")&& item.system.auraDeployee);
+        },
+        callback: async (li) => {
+          const itemId = li.data("itemId");
+            if(this.actor.retracterAura(itemId)) this.actor.sheet.render(true);;
+            return;
+        },
+      },
+      {
+        name: `Forcer l'aura`,
+        icon: `<i class="fa-regular fa-person-rays"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return ((item.type === "pouvoir")&& !item.system.auraDeployee);
+        },
+        callback: (li) => {
+          const itemId = li.data("itemId");
+            if(this.actor.deployerAura(itemId, true, false)) this.actor.sheet.render(true);;
+            return;
         },
       },
       {
@@ -68,7 +141,6 @@ export default class MagnaActorSheet extends ActorSheet {
 
     // Lock/Unlock la fiche
     html.find(".change-lock").click(this._onSheetChangelock.bind(this));
-    html.find(".change-aura").click(this._onSheetChangeaura.bind(this));
 
     // Activate context menu
     this._contextMenu(html);
@@ -77,6 +149,7 @@ export default class MagnaActorSheet extends ActorSheet {
   /** @inheritdoc */
   _contextMenu(html) {
     ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
+    ContextMenu.create(this, html, ".std-contextmenu", this._getStdContextOptions());
   }
 
   /**
@@ -91,22 +164,6 @@ export default class MagnaActorSheet extends ActorSheet {
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
     if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
     else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
-    this.actor.sheet.render(true);
-  }
-
-  /**
-   * bouton deployer / retracter l'aura
-   *
-   * @name _onSheetChangeaura
-   * @param {*} event
-   */
-  async _onSheetChangeaura(event) {
-    event.preventDefault();
-    const pouvoirId = event.currentTarget.dataset.field;
-    
-    let flagData = await this.actor.getFlag(game.system.id, pouvoirId);
-    if (flagData) await this.actor.unsetFlag(game.system.id, pouvoirId);
-    else await this.actor.setFlag(game.system.id, pouvoirId, "AuraDeployee");
     this.actor.sheet.render(true);
   }
 

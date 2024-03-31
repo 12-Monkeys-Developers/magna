@@ -8,15 +8,15 @@
             <details>
                 <summary class="bloc-pouvoir">
                     <div class="ligne-pouvoir">
-                    <div class="pouvoir-rang">{{pouvoir.system.rang}}</div>
-        <div class="change-aura" data-field="{{pouvoir._id}}" title="{{localize 'MAGNA.LABEL.deployerAura'}}">
-            {{#if pouvoir.system.auradeployee}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person roll-carac" data-group="aura" data-field="{{auradeployee}}"></i>{{/if}}
-        </div>
-                    <div class="icon_caracteristique">
-                    <i class="fas fa-dice roll-carac" data-group="pouvoir" data-field="{{pouvoir._id}}"></i>
-                    </div>
-                    <div class="pouvoir-name">{{pouvoir.name}}</div>
-                    <div class="pouvoir-value">{{pouvoir.system.resume}}</div>
+                        <div class="pouvoir-rang">{{pouvoir.system.rang}}</div>
+                        <div class="change-aura" title="{{localize 'MAGNA.LABEL.deployerAura'}}">
+                            {{#if pouvoir.system.auraDeployee}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person"></i>{{/if}}
+                        </div>
+                        <a class="icon_caracteristique">
+                        <i class="fas fa-dice roll-carac" data-group="pouvoir" data-field="{{pouvoir._id}}"></i>
+                        </a>
+                        <div class="pouvoir-name">{{pouvoir.name}}</div>
+                        <div class="pouvoir-value">{{pouvoir.system.resume}}</div>
                     </div>
                     <div class="ligne-pouvoir">
                         <div class="field-name">Portée: </div>

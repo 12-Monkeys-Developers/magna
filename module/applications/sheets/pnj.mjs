@@ -24,7 +24,7 @@ export default class PJSheet extends MagnaActorSheet {
     const context = await super.getData(options);
 
     context.system = this.document.system;
-    context.descriptionHTML = TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.descriptionHTML = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
     context.unlocked = this.actor.isUnlocked;
     context.locked = !this.actor.isUnlocked;
 

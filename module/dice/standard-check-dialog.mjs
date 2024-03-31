@@ -32,6 +32,8 @@ export default class ActionDialog extends Dialog {
     //data optionsBonus = [{ indice: index + 1, label: index + 1 }]Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
     if(data.group2==="caracteristiques") context.carac = data.field2;
     else if(data.group2==="indices") context.indice = data.field2;
+    const actingChar = game.actors.get(data.actorId);
+    context.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
     context.rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
 
     return foundry.utils.mergeObject(context, data);

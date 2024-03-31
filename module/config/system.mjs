@@ -6,45 +6,45 @@ export const CARACTERISTIQUES = Object.freeze({
         label: "MAGNA.CARACTERISTIQUE.vig.label",
         label_short: "VIG",
     },
-    agi: {
-        id: "agi",
-        label: "MAGNA.CARACTERISTIQUE.agi.label",
-        label_short: "AGI",
-    },
-    hab: {
-        id: "hab",
-        label: "MAGNA.CARACTERISTIQUE.hab.label",
-        label_short: "HAB",
+    psi:{
+        id: "psi",
+        label: "MAGNA.CARACTERISTIQUE.psi.label",
+        label_short: "PSI",
     },
     per:{
         id: "per",
         label: "MAGNA.CARACTERISTIQUE.per.label",
         label_short: "PER",
     },
-    vol:{
-        id: "vol",
-        label: "MAGNA.CARACTERISTIQUE.vol.label",
-        label_short: "VOL",
+    hab: {
+        id: "hab",
+        label: "MAGNA.CARACTERISTIQUE.hab.label",
+        label_short: "HAB",
+    },
+    cha:{
+        id: "cha",
+        label: "MAGNA.CARACTERISTIQUE.cha.label",
+        label_short: "CHA",
     },
     int:{
         id: "int",
         label: "MAGNA.CARACTERISTIQUE.int.label",
         label_short: "INT",
     },
-    chr:{
-        id: "chr",
-        label: "MAGNA.CARACTERISTIQUE.chr.label",
-        label_short: "CHR",
+    agi: {
+        id: "agi",
+        label: "MAGNA.CARACTERISTIQUE.agi.label",
+        label_short: "AGI",
     },
     ins:{
         id: "ins",
         label: "MAGNA.CARACTERISTIQUE.ins.label",
         label_short: "INS",
     },
-    psi:{
-        id: "psi",
-        label: "MAGNA.CARACTERISTIQUE.psi.label",
-        label_short: "PSI",
+    vol:{
+        id: "vol",
+        label: "MAGNA.CARACTERISTIQUE.vol.label",
+        label_short: "VOL",
     }
 });
 
@@ -95,7 +95,7 @@ export const COMPETENCES = Object.freeze({
     bluff : {
         id: "bluff",
         label: "MAGNA.COMPETENCE.bluff.label",
-        defaultCarac:"chr"
+        defaultCarac:"cha"
     },
     camouflage : {
         id: "camouflage",
@@ -144,12 +144,12 @@ export const COMPETENCES = Object.freeze({
     interroger : {
         id: "interroger",
         label: "MAGNA.COMPETENCE.interroger.label",
-        defaultCarac:"chr"
+        defaultCarac:"cha"
     },
     intimider : {
         id: "intimider",
         label: "MAGNA.COMPETENCE.intimider.label",
-        defaultCarac:"chr"
+        defaultCarac:"cha"
     },
     jeux : {
         id: "jeux",
@@ -179,7 +179,7 @@ export const COMPETENCES = Object.freeze({
     seduction : {
         id: "seduction",
         label: "MAGNA.COMPETENCE.seduction.label",
-        defaultCarac:"chr"
+        defaultCarac:"cha"
     },
     selfcontrol : {
         id: "selfcontrol",
@@ -189,7 +189,7 @@ export const COMPETENCES = Object.freeze({
     serenseigner : {
         id: "serenseigner",
         label: "MAGNA.COMPETENCE.serenseigner.label",
-        defaultCarac:"chr"
+        defaultCarac:"cha"
     },
     sinformer : {
         id: "sinformer",
@@ -203,38 +203,44 @@ export const COMPETENCES = Object.freeze({
     }
 });
 
-export const COMPETENCES_COMBAT = Object.freeze({
+export const COMPETENCES_COMBAT = {
     mainsnues : {
         id: "mainsnues",
         label: "MAGNA.COMPETENCE_COMBAT.mainsnues.label",
-        defaultCarac:"vig"
+        defaultCarac:"vig",
+        defaultIndice:"cac"
     },
     armeblanche : {
         id: "armeblanche",
         label: "MAGNA.COMPETENCE_COMBAT.armeblanche.label",
-        defaultCarac:"hab"
+        defaultCarac:"hab",
+        defaultIndice:"dist"
     },
     armefeu : {
         id: "armefeu",
         label: "MAGNA.COMPETENCE_COMBAT.armefeu.label",
-        defaultCarac:"hab"
+        defaultCarac:"hab",
+        defaultIndice:"dist"
     },
     armelourde : {
         id: "armelourde",
         label: "MAGNA.COMPETENCE_COMBAT.armelourde.label",
-        defaultCarac:"hab"
+        defaultCarac:"hab",
+        defaultIndice:"dist"
     },
     esquive : {
         id: "esquive",
         label: "MAGNA.COMPETENCE_COMBAT.esquive.label",
-        defaultCarac:"agi"
+        defaultCarac:"agi",
+        defaultIndice:"ref"
     },
     parade : {
         id: "parade",
         label: "MAGNA.COMPETENCE_COMBAT.parade.label",
-        defaultCarac:"vig"
+        defaultCarac:"vig",
+        defaultIndice:"ref"
     }
-});
+};
 
 export const COMPETENCES_SPE = Object.freeze({
     artisanats : {

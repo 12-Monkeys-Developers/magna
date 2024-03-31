@@ -1,5 +1,139 @@
+.arme-sheet .name-title input {
+  font-size: 2em;
+  border: 0px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+.arme-sheet .name-title img {
+  border: 0px;
+  max-height: 50px;
+}
+.arme-sheet .arme-content {
+  display: grid;
+  grid-template-columns: 150px 50px;
+}
+.arme-sheet .arme-content .domaine-name {
+  margin: 5px;
+}
+.arme-sheet .arme-content .field-name {
+  margin: 5px;
+}
+.arme-sheet .arme-content input {
+  width: 2em;
+}
+.arme-sheet .arme-content .input-large {
+  width: 10em;
+}
+.arme-sheet .editor {
+  min-height: 235px;
+}
+.arme-sheet .editor-content {
+  min-height: 235px;
+  font-weight: normal;
+  margin: 0px 5px;
+}
+.action-chat {
+  background-color: #394e55;
+  background: var(--background_chat);
+  display: flex;
+  flex-direction: column;
+}
+.action-chat img {
+  border: 0px;
+}
+.action-chat .intro-chat {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.action-chat .intro-chat .intro-img {
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+}
+.action-chat .intro-chat .intro-right {
+  display: flex;
+  flex-direction: column;
+}
+.action-chat .intro-chat .intro-right .introText {
+  font-family: "alexbrush";
+  font-size: 1.8em;
+  width: 210px;
+  padding-top: 0.5em;
+  text-align: center;
+}
+.action-chat .resultText {
+  font-family: "alexbrush";
+  font-size: 2em;
+  text-align: center;
+}
+.action-chat .dice-result {
+  font-family: "garamondpro";
+  font-size: 1.2em;
+  text-align: center;
+}
+.dialog-jet-action {
+  background: var(--background_dialog);
+  font-family: "pillgothic";
+  font-weight: bold;
+}
+.dialog-jet-action input {
+  width: 4em;
+}
+.dialog-jet-action .dialog-intro {
+  font-family: "codepro";
+  font-weight: bold;
+  font-size: 22px;
+  background: #97141c;
+  color: white;
+  border: solid 2px black;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.dialog-jet-action .dialog-grid {
+  grid-template-columns: 235px 235px;
+  margin: 15px 10px 10px 10px;
+  display: grid;
+}
+.dialog-jet-action .left_col {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px;
+  border: solid black;
+  padding: 5px;
+}
+.dialog-jet-action .right_col {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px;
+  padding-left: 40px;
+}
+.dialog-jet-action .dialog-colgrid {
+  display: grid;
+  grid-template-columns: 110px 80px;
+  grid-template-rows: 40px;
+  margin-top: 10px;
+}
+.dialog-jet-action .comp-titre {
+  margin-top: 10px;
+  align-self: center;
+}
+.dialog-jet-action .dialog-button {
+  padding: 10px;
+  border: solid 2px black;
+  border-radius: 20px;
+  margin: 20px 0px 0px 10px;
+  width: 170px;
+}
 .magna.sheet.actor.pj .window-content {
-  background: var(--background_pj);
+  background: no-repeat url("../assets/system/fond_fdp.webp") rgba(80, 20, 18, 0.8);
+  font-family: "pillgothic";
+  font-weight: bold;
 }
 .magna.sheet.actor.pj .editor {
   width: 100%;
@@ -7,7 +141,7 @@
   background-color: #f9f6f1;
   background: var(--background_base);
   box-shadow: inset 0 0 6px black;
-  font-family: "garamond";
+  font-family: "pillgothic";
   text-align: justify;
   padding-left: 5px;
   padding-right: 5px;
@@ -16,6 +150,16 @@
 .magna.sheet.actor.pj .editor-content {
   min-height: 5em;
   margin: 0px 5px 0px 5px;
+}
+.magna.sheet.actor.pj h2 {
+  font-family: "codepro";
+  font-weight: bold;
+  font-size: 22px;
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
 }
 .magna.sheet.actor.pj .pj-sheet {
   display: grid;
@@ -104,68 +248,204 @@
 .magna.sheet.actor.pj .pj-header .bloc_stats .val_stats input {
   width: 2em;
 }
+.magna.sheet.actor.pj .ligne_caract {
+  display: flex;
+  flex-direction: row;
+}
+.magna.sheet.actor.pj .zone_carac {
+  flex-direction: column;
+  width: 250px;
+}
+.magna.sheet.actor.pj .zone_indices {
+  flex-direction: column;
+  margin-left: 20px;
+}
 .magna.sheet.actor.pj .grid_carac {
   margin-top: 15px;
+  margin-left: 45px;
+  padding-top: 20px;
   display: grid;
   align-items: center;
-  grid-template-columns: 160px 160px 160px;
+  grid-template-columns: 75px 70px 70px;
+  grid-template-rows: 75px 70px 70px;
 }
-.magna.sheet.actor.pj .grid_carac .bloc_caracteristique {
+.magna.sheet.actor.pj .grid_carac .margin_caracteristique {
+  margin: 0px;
+}
+.magna.sheet.actor.pj .grid_carac .PSI {
+  margin-top: -70px;
+  margin-left: -14px;
+  background: no-repeat url("../assets/system/hexa_r.webp");
+}
+.magna.sheet.actor.pj .grid_carac .CHA {
+  margin-top: -75px;
+  margin-left: -14px;
+}
+.magna.sheet.actor.pj .grid_carac .INS {
+  margin-top: -75px;
+  margin-left: -14px;
+}
+.magna.sheet.actor.pj .grid_carac .PER {
+  margin-left: -23px;
+}
+.magna.sheet.actor.pj .grid_carac .INT {
+  margin-left: -23px;
+}
+.magna.sheet.actor.pj .grid_carac .VOL {
+  margin-left: -23px;
+}
+.magna.sheet.actor.pj .grid_indices {
+  margin-top: 15px;
+  margin-left: 47px;
   display: grid;
-  grid-template-columns: 40px 50px 30px 20px;
-  grid-template-rows: 35px;
+  align-items: center;
+  grid-template-columns: 120px 120px 120px;
+  grid-template-rows: 75px 70px;
 }
-.magna.sheet.actor.pj .grid_carac .bloc_caracteristique .nom_caracteristique {
+.magna.sheet.actor.pj .grid_indices .margin_indices {
+  margin: 0px 0px 0px 5px;
+}
+.magna.sheet.actor.pj .grid_indices .cacpsi {
+  margin-top: -59px;
+  margin-left: -57px;
+  background: no-repeat url("../assets/system/hexa_r.webp");
+}
+.magna.sheet.actor.pj .grid_indices .cacpsi .nom_caracteristique {
+  font-size: 11px;
+  width: 42px;
+  margin: 10px 10px;
+}
+.magna.sheet.actor.pj .grid_indices .distpsi {
+  margin-top: -59px;
+  margin-left: -57px;
+  background: no-repeat url("../assets/system/hexa_r.webp");
+}
+.magna.sheet.actor.pj .grid_indices .distpsi .nom_caracteristique {
+  font-size: 11px;
+  width: 42px;
+  margin: 10px 10px;
+}
+.magna.sheet.actor.pj .grid_indices .refpsi {
+  margin-top: -59px;
+  margin-left: -57px;
+  background: no-repeat url("../assets/system/hexa_r.webp");
+}
+.magna.sheet.actor.pj .grid_indices .refpsi .nom_caracteristique {
+  font-size: 12px;
+  width: 42px;
+  margin: 10px 10px;
+}
+.magna.sheet.actor.pj .bloc_caracteristique {
+  background: no-repeat url("../assets/system/hexa.webp");
+  display: grid;
+  grid-template-columns: 20px 45px;
+  grid-template-rows: 20px 24px 20px;
+  padding-left: 6px;
+  text-align: center;
+}
+.magna.sheet.actor.pj .bloc_caracteristique .nom_caracteristique {
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
   font-size: 14px;
   color: black;
-  margin: 5px 5px 3px 5px;
+  margin-top: 4px;
+  margin-left: -3px;
   text-transform: uppercase;
+  font-weight: bold;
 }
-.magna.sheet.actor.pj .grid_carac .bloc_caracteristique .val_caracteristique {
+.magna.sheet.actor.pj .bloc_caracteristique .val_caracteristique {
   color: #31191f;
-  margin: 5px 5px 3px 5px;
+  font-size: 21px;
 }
-.magna.sheet.actor.pj .grid_carac .bloc_caracteristique .val_caracteristique input {
-  width: 2em;
+.magna.sheet.actor.pj .bloc_caracteristique .val_caracteristique input {
+  width: 1.5em;
+  margin: 0px;
+  border: 0px;
 }
-.magna.sheet.actor.pj .grid_carac .bloc_caracteristique .attribut-icon {
+.magna.sheet.actor.pj .bloc_caracteristique .attribut-icon {
   font-size: 14px;
   color: #31191f;
-  margin: 5px 5px 3px 5px;
+  margin: 0px;
 }
 .magna.sheet.actor.pj .grid_comp {
   display: grid;
   align-items: center;
-  grid-template-columns: 190px 190px 190px;
+  grid-template-columns: 170px 170px 170px 170px;
+  grid-template-rows: 25px;
 }
 .magna.sheet.actor.pj .grid_spe {
   display: grid;
   align-items: center;
-  grid-template-columns: 160px 160px 160px 160px;
+  grid-template-columns: 170px 170px 170px 170px;
 }
 .magna.sheet.actor.pj .bloc_vertical {
   display: flex;
   flex-direction: column;
   align-self: start;
 }
+.magna.sheet.actor.pj .bloc_vertical .titre_compspe {
+  font-family: "codepro";
+  font-weight: bold;
+  font-size: 15px;
+  background: #f9f6f1;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  text-transform: uppercase;
+}
 .magna.sheet.actor.pj .bloc_comp {
   display: grid;
-  grid-template-columns: 100px 30px 20px;
-  grid-template-rows: 35px;
+  grid-template-columns: 130px 15px 20px;
+  background: #faf3f0;
+  margin: 2px;
+  padding-left: 2px;
+  border-radius: 5px;
 }
 .magna.sheet.actor.pj .bloc_comp .nom_comp {
-  font-size: 12px;
+  align-self: center;
+  font-size: 16px;
   color: black;
-  margin: 5px 5px 3px 5px;
 }
 .magna.sheet.actor.pj .bloc_comp .val_comp {
   color: #31191f;
-  margin: 5px 5px 3px 5px;
+  align-self: center;
+  font-size: 18px;
 }
 .magna.sheet.actor.pj .bloc_comp .val_comp input {
   width: 2em;
 }
 .magna.sheet.actor.pj .bloc_comp .attribut-icon {
+  font-size: 14px;
+  color: #31191f;
+  margin: 5px 5px 3px 5px;
+}
+.magna.sheet.actor.pj .grid_combat {
+  display: grid;
+  grid-template-columns: 190px 190px;
+  grid-template-rows: 30px 30px 30px;
+}
+.magna.sheet.actor.pj .bloc_arme {
+  display: grid;
+  grid-template-columns: 100px 90px;
+  background: #faf3f0;
+  margin: 2px;
+  padding-left: 2px;
+  border-radius: 5px;
+}
+.magna.sheet.actor.pj .bloc_arme .nom_comp {
+  align-self: center;
+  font-size: 16px;
+  color: black;
+}
+.magna.sheet.actor.pj .bloc_arme .val_comp {
+  color: #31191f;
+  align-self: center;
+  font-size: 18px;
+}
+.magna.sheet.actor.pj .bloc_arme .val_comp input {
+  width: 2em;
+}
+.magna.sheet.actor.pj .bloc_arme .attribut-icon {
   font-size: 14px;
   color: #31191f;
   margin: 5px 5px 3px 5px;
@@ -184,6 +464,9 @@
   margin-right: 5px;
   font-size: 1.2em;
   font-weight: bold;
+}
+.magna.sheet.actor.pj .bloc-pouvoir .ligne-pouvoir .change-aura {
+  margin: 0px 5px;
 }
 .magna.sheet.actor.pj .bloc-pouvoir .ligne-pouvoir .pouvoir-name {
   margin: 0px 10px;
@@ -253,84 +536,49 @@
   font-weight: normal;
   margin: 0px 5px;
 }
-.dialog-jet-action .dialog-grid {
-  display: grid;
-  grid-template-columns: 150px 150px 170px;
-}
-.dialog-jet-action .dialog-intro {
-  grid-column: 1 / 2;
-  grid-row: 1 / 5;
-  font-size: 1.5em;
-  align-self: center;
-}
-.dialog-jet-action .mod-grid {
-  display: grid;
-  grid-template-columns: 230px 230px;
-  margin-top: 20px;
-}
-.dialog-jet-action .modificateur {
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-}
-.dialog-jet-action .opposition {
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-}
-.dialog-jet-action .opposition input {
-  width: 4em;
-}
-.dialog-jet-action .dialog-button {
-  padding: 10px;
-  border: solid 2px black;
-  border-radius: 20px;
-  margin: 5px 260px;
-  width: 170px;
-}
-.action-chat {
+.search_chat {
   background-color: #394e55;
   background: var(--background_chat);
-  display: flex;
-  flex-direction: column;
-}
-.action-chat img {
-  border: 0px;
-}
-.action-chat .intro-chat {
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.action-chat .intro-chat .intro-img {
-  padding: 5px;
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  object-position: center;
-  align-self: center;
-}
-.action-chat .intro-chat .intro-right {
-  display: flex;
-  flex-direction: column;
-}
-.action-chat .intro-chat .intro-right .introText {
-  font-family: "alexbrush";
-  font-size: 1.8em;
-  width: 210px;
-  padding-top: 0.5em;
-  text-align: center;
-}
-.action-chat .resultText {
-  font-family: "alexbrush";
-  font-size: 2em;
-  text-align: center;
-}
-.action-chat .dice-result {
   font-family: "garamondpro";
   font-size: 1.2em;
+}
+.search_chat h3 {
+  margin: 10px;
+  font: 1.5em "garamondpro";
+  font-weight: bold;
   text-align: center;
+}
+.search_chat h4 {
+  margin: 10px;
+  font: 1.3em "garamondpro";
+  font-weight: bold;
+  text-align: center;
+}
+.search_chat .motif {
+  margin: 10px;
+}
+.search_chat .content-link {
+  background: none;
+  border: 0px;
+}
+.search_chat .btn-search button {
+  padding: 5px;
+  margin: 5px;
+  line-height: 18px;
+}
+.search_dialog {
+  background-color: #394e55;
+  background: var(--background_chat);
+  font: 1.2em "garamondpro";
+}
+.search_dialog h3 {
+  margin: 10px;
+  font: 1.5em "garamondpro";
+  font-weight: bold;
+  text-align: center;
+}
+.search_dialog .dialog-buttons {
+  padding-top: 15px;
 }
 .prosemirror menu {
   font-size: 0.8em;
@@ -338,9 +586,29 @@
 .prosemirror menu li {
   margin: 0px 0px;
 }
+@font-face {
+  font-family: "codepro";
+  src: url("../assets/fonts/code_light.otf") format("truetype");
+}
+@font-face {
+  font-family: "codepro";
+  src: url("../assets/fonts/code_bold.otf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "pillgothic";
+  src: url("../assets/fonts/pillgothic_light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "pillgothic";
+  src: url("../assets/fonts/pillgothic_bold.ttf") format("truetype");
+  font-weight: bold;
+}
 :root {
   --font-pj-color: black;
-  --background_pj: white;
+  --background_pj: no-repeat url("../assets/system/fond_fdp.webp") rgba(80, 20, 18, 0.8);
+  --background_chat: repeat url("../assets/system/fond_chat.webp") white;
+  --background_dialog: repeat url("../assets/system/fond_dialog.webp") white;
   --font-pj-name: 30px "garamond";
   --font-pj-name-color: black;
   --font-pj-indications: 15px "garamond";

@@ -94,52 +94,26 @@ export default class StandardCheck extends Roll {
     } else if (data.group1 === "pouvoir") {
       let pouvoir = actingChar.items.get(data.field1);
       data.valeur1 = pouvoir.system.rang;
-      data.valeur2 = this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.valeur2 = actingChar.getValeur(data.group2, data.typecomp2, data.field2);
       data.label1 = "Rang " + pouvoir.name;
-      data.label2 = await this.getLabel(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
       data.seuilReussite = actingChar.system.mental.valeur;
-      data.seuilReussite = pouvoir.system.rang + this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2) + parseInt(data.modificateur) - data.opposition;
+      data.seuilReussite = pouvoir.system.rang + actingChar.getValeur(data.group2, data.typecomp2, data.field2) + parseInt(data.modificateur) - data.opposition;
     } else {
-      data.valeur1 = this.getValeur(data.actorId, data.group1, data.typecomp1, data.field1);
-      data.valeur2 = this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2);
-      data.label1 = await this.getLabel(data.actorId, data.group1, data.typecomp1, data.field1);
-      data.label2 = await this.getLabel(data.actorId, data.group2, data.typecomp2, data.field2);
+      data.valeur1 = actingChar.getValeur(data.group1, data.typecomp1, data.field1);
+      data.valeur2 = actingChar.getValeur(data.group2, data.typecomp2, data.field2);
+      data.label1 = await actingChar.getLabelShort(data.group1, data.typecomp1, data.field1);
+      data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
       data.seuilReussite =
-        this.getValeur(data.actorId, data.group1, data.typecomp1, data.field1) +
-        this.getValeur(data.actorId, data.group2, data.typecomp2, data.field2) +
+      await actingChar.getValeur(data.group1, data.typecomp1, data.field1) +
+      await actingChar.getValeur(data.group2, data.typecomp2, data.field2) +
         parseInt(data.modificateur) -
         data.opposition;
     }
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
     data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
-  }
-  static getValeur(actorId, group, typecomp, field) {
-    const actingChar = game.actors.get(actorId);
-    let valeur = 0;
-    if (group === "competences_spe") {
-      valeur = field.valeur;
-    } else if (group === "indices") {
-      valeur = actingChar[field];
-    } else {
-      valeur = actingChar.system[group][field].valeur;
-    }
-    return valeur;
-  }
-
-  static async getLabel(actorId, group, typecomp, field) {
-    const actingChar = game.actors.get(actorId);
-    let label = "";
-    if (group === "competences_spe") {
-      label = game.i18n.localize("MAGNA.COMPETENCE_SPE." + typecomp + ".label") + ": " + field.label;
-    } else if (group === "caracteristiques") {
-      label = game.i18n.localize(SYSTEM.CARACTERISTIQUES[field].label_short);
-    } else if (group === "indices") {
-      label = game.i18n.localize(SYSTEM.INDICES[field].label_short);
-    } else {
-      label = game.i18n.localize(actingChar.system[group][field].label);
-    }
-    return label;
+    return data;
   }
   /** @override */
   static parse(_, data) {
