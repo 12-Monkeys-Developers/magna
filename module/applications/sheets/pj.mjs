@@ -9,7 +9,7 @@ export default class PJSheet extends MagnaActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 700,
+      width: 720,
       height: 900,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "competences" }],
     });
@@ -37,25 +37,25 @@ export default class PJSheet extends MagnaActorSheet {
         label_short: "MAGNA.INDICE.cac.label_short",
         label: "MAGNA.INDICE.cac.label",
       },
-      dist: {
-        valeur: this.actor.dist,
-        label_short: "MAGNA.INDICE.dist.label_short",
-        label: "MAGNA.INDICE.dist.label",
-      },
-      ref: {
-        valeur: this.actor.ref,
-        label_short: "MAGNA.INDICE.ref.label_short",
-        label: "MAGNA.INDICE.ref.label",
-      },
       cacpsi: {
         valeur: this.actor.cacpsi,
         label_short: "MAGNA.INDICE.cacpsi.label_short",
         label: "MAGNA.INDICE.cacpsi.label",
       },
+      dist: {
+        valeur: this.actor.dist,
+        label_short: "MAGNA.INDICE.dist.label_short",
+        label: "MAGNA.INDICE.dist.label",
+      },
       distpsi: {
         valeur: this.actor.distpsi,
         label_short: "MAGNA.INDICE.distpsi.label_short",
         label: "MAGNA.INDICE.distpsi.label",
+      },
+      ref: {
+        valeur: this.actor.ref,
+        label_short: "MAGNA.INDICE.ref.label_short",
+        label: "MAGNA.INDICE.ref.label",
       },
       refpsi: {
         valeur: this.actor.refpsi,

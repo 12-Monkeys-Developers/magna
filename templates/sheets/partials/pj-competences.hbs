@@ -3,7 +3,7 @@
     <h2>Caractéristiques</h2>
     <div class="grid_carac">
     {{#each system.caracteristiques as |caracteristique id|}}
-      <div class="bloc_caracteristique {{caracteristique.label_short}}">
+      <div class="bloc_caracteristique {{caracteristique.label_short}} std-contextmenu" data-group="caracteristiques" data-compname="{{id}}">
         <div title={{localize caracteristique.label}} class="nom_caracteristique">
           {{localize caracteristique.label_short}}
         </div>
@@ -17,9 +17,6 @@
             {{caracteristique.max}}
           {{/if}}
         </div>
-        <a class="icon_caracteristique" style="grid-row: 3 / 4; grid-column: 1 / 3;">
-        <i class="fas fa-dice roll-carac" data-tooltip="MAGNA.ACTION.tooltip.jet" data-group="caracteristiques" data-field="{{id}}"></i>
-        </a>
       </div>
     {{/each}}
     </div>
@@ -28,16 +25,13 @@
     <h2>Indices</h2>
     <div class="grid_indices">
     {{#each indices as |indice id|}}
-      <div class="bloc_caracteristique {{id}}">
+      <div class="bloc_caracteristique {{id}} std-contextmenu" data-group="indices" data-compname="{{id}}">
         <div class="nom_caracteristique" title="{{localize indice.label}}">
           {{localize indice.label_short}}
         </div>
         <div class="val_caracteristique margin_indices" style="grid-row: 2 / 3; grid-column: 1 / 3;">
           {{indice.valeur}}
         </div>
-        <a class="icon_caracteristique" style="grid-row: 3 / 4; grid-column: 1 / 3;">
-        <i class="fas fa-dice roll-carac" data-tooltip="MAGNA.ACTION.tooltip.jet" data-group="indices" data-field="{{id}}"></i>
-        </a>
       </div>
     {{/each}}
     </div>
@@ -50,13 +44,21 @@
         {{system.caracteristiques.agi.valeur}}+1d20
       </div>
     </div>
+    <div class="bloc_arme std-contextmenu" data-cond="init">
+      <div class="nom_comp">
+        Esquive
+      </div>
+      <div class="val_comp">
+        {{system.caracteristiques.agi.valeur}}+1d20
+      </div>
+    </div>
   {{#each armes as |arme id|}}
     <div class="bloc_arme item-contextmenu" data-item-id="{{arme._id}}">
       <div class="nom_comp">
         {{arme.name}}
       </div>
       <div class="val_comp">
-        Dégats : {{arme.system.degatsmodifies}}
+        Dgts: {{arme.system.degatsmodifies}}
       </div>
     </div>
     {{/each}}
@@ -67,20 +69,17 @@
   <h2>Compétences</h2>
   <div class="grid_comp">
   {{#each system.competences as |competence id|}}
-    <div class="bloc_comp">
+    <div class="bloc_comp std-contextmenu" data-group="competences" data-compname="{{id}}">
       <div class="nom_comp">
         {{localize competence.label}}
       </div>
       <div class="val_comp">
-              {{#if ../unlocked}}
-              <input type="number" name="system.competences.{{id}}.valeur" value="{{getSystemProperty ../actor 'competences' id 'valeur'}}" placeholder="0" />
-              {{else}}
-              {{competence.valeur}}
-            {{/if}}
+        {{#if ../unlocked}}
+        <input type="number" name="system.competences.{{id}}.valeur" value="{{getSystemProperty ../actor 'competences' id 'valeur'}}" placeholder="0" />
+        {{else}}
+        {{competence.valeur}}
+        {{/if}}
       </div>
-      <a class="icon_caracteristique">
-      <i class="fas fa-dice roll-carac" data-tooltip="MAGNA.ACTION.tooltip.jet" data-group="competences" data-field="{{id}}"></i>
-      </a>
     </div>
   {{/each}}
   </div>
@@ -89,7 +88,7 @@
   <h2>Compétences de combat</h2>
   <div class="grid_comp">
   {{#each system.combat as |competence id|}}
-    <div class="bloc_comp">
+    <div class="bloc_comp std-contextmenu" data-group="combat" data-compname="{{id}}">
       <div class="nom_comp">
         {{localize competence.label}}
       </div>
@@ -100,11 +99,6 @@
               {{competence.valeur}}
             {{/if}}
       </div>
-      <div class="icon_caracteristique">
-        <a>
-      <i class="fas fa-dice roll-carac" data-group="combat" data-field="{{id}}"></i>
-      </a>
-      </div>
     </div>
   {{/each}}
   </div>
@@ -114,55 +108,47 @@
   <div class="grid_spe">
     <div class="bloc_vertical">
       <div class="titre_compspe">Langues</div>
-      {{#if unlocked}}
-      <div class="icon_caracteristique">
-        <i class="fas fa-plus new-comp" data-field="langues"></i>
-      </div>
-      {{/if}}
-      <div class="grid_comp">
         {{#each system.competences_spe.langues as |competence id|}}
           {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='langues' }}
         {{/each}}
-      </div>
+      {{#if unlocked}}
+      <span style="align-self: center">
+        <i class="fas fa-plus new-comp" data-field="langues"></i>
+      </span>
+      {{/if}}
     </div>
     <div class="bloc_vertical">
      <div class="titre_compspe">Connaissances</div>
-      {{#if unlocked}}
-      <div class="icon_caracteristique">
-      <i class="fas fa-plus new-comp" data-field="connaissances"></i>
-      </div>
-      {{/if}}
-      <div class="grid_comp">
       {{#each system.competences_spe.connaissances as |competence id|}}
         {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='connaissances' }}
       {{/each}}
-      </div>
+      {{#if unlocked}}
+      <span style="align-self: center">
+      <i class="fas fa-plus new-comp" data-field="connaissances"></i>
+      </span>
+      {{/if}}
     </div>
     <div class="bloc_vertical">
       <div class="titre_compspe">Artisanats</div>
-      {{#if unlocked}}
-      <div class="icon_caracteristique">
-        <i class="fas fa-plus new-comp" data-field="artisanats"></i>
-      </div>
-      {{/if}}
-      <div class="grid_comp">
       {{#each system.competences_spe.artisanats as |competence id|}}
         {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='artisanats' }}
       {{/each}}
-      </div>
+      {{#if unlocked}}
+      <span style="align-self: center">
+        <i class="fas fa-plus new-comp" data-field="artisanats"></i>
+      </span>
+      {{/if}}
     </div>
     <div class="bloc_vertical">
       <div class="titre_compspe">Pilotage</div>
-      {{#if unlocked}}
-      <div class="icon_caracteristique">
-        <i class="fas fa-plus new-comp" data-field="pilotage"></i>
-      </div>
-      {{/if}}
-      <div class="grid_comp">
       {{#each system.competences_spe.pilotage as |competence id|}}
         {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='pilotage' }}
       {{/each}}
-      </div>
+      {{#if unlocked}}
+      <span style="align-self: center">
+        <i class="fas fa-plus new-comp" data-field="pilotage"></i>
+      </span>
+      {{/if}}
     </div>
   </div>
 </div>

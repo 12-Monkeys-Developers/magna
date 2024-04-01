@@ -27,14 +27,72 @@ export default class MagnaActorSheet extends ActorSheet {
         name: `Jet d'Iniative`,
         icon: `<i class="fa-solid fa-hourglass-start"></i>`,
         condition: (li) => {
-          return (li.data("cond")==="init");
+          return li.data("cond") === "init";
         },
         callback: (li) => {
           return this.actor.rollInit();
         },
       },
-    ]
-  };
+      {
+        name: `Jet simple`,
+        icon: `<i class="fa-solid fa-dice-d20"></i>`,
+        condition: (li) => {
+          return ["competences", "competences_spe", "combat"].includes(li.data("group"));
+        },
+        callback: async (li) => {
+          const compname = li.data("compname");
+          const group = li.data("group");
+          let data = {
+            group1: group,
+            typecomp1: false,
+            field1: compname,
+            group2: "caracteristiques",
+            field2: "hab",
+            askDialog: false,
+          };
+          if (group === "competences") {
+            data.field2 = SYSTEM.COMPETENCES[compname].defaultCarac;
+          } else if (group === "combat") {
+            data.field2 = SYSTEM.COMPETENCES_COMBAT[compname].defaultCarac;
+          } else if (group === "competences_spe") {
+            const compSpe = await this.actor.lectureCompSpe(li.data("type"), compname);
+            data.field1 = compSpe;
+            data.field2 = compSpe.defaultCarac;
+          }
+          return this.actor.rollAction(data);
+        },
+      },
+      {
+        name: `Jet modifiable`,
+        icon: `<i class="fa-solid fa-dice-d20"></i>`,
+        condition: (li) => {
+          return ["competences", "competences_spe", "combat", "indices", "caracteristiques"].includes(li.data("group"));
+        },
+        callback: async (li) => {
+          const compname = li.data("compname");
+          const group = li.data("group");
+          let data = {
+            group1: group,
+            typecomp1: false,
+            field1: compname,
+            group2: "caracteristiques",
+            field2: "hab",
+            askDialog: true,
+          };
+          if (group === "competences") {
+            data.field2 = SYSTEM.COMPETENCES[compname].defaultCarac;
+          } else if (group === "combat") {
+            data.field2 = SYSTEM.COMPETENCES_COMBAT[compname].defaultCarac;
+          } else if (group === "competences_spe") {
+            const compSpe = await this.actor.lectureCompSpe(li.data("type"), compname);
+            data.field1 = compSpe;
+            data.field2 = compSpe.defaultCarac;
+          }
+          return this.actor.rollAction(data);
+        },
+      },
+    ];
+  }
   /**
    * Retourne les context options des embedded items
    * @returns {object[]}
@@ -53,6 +111,15 @@ export default class MagnaActorSheet extends ActorSheet {
         },
         callback: (li) => {
           const itemId = li.data("itemId");
+          let data = {
+            group1: "pouvoir",
+            typecomp1: false,
+            field1: itemId,
+            group2: "indices",
+            field2: "distpsi",
+            askDialog: true,
+          };
+          return this.actor.rollAction(data);
         },
       },
       {
@@ -76,12 +143,12 @@ export default class MagnaActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return ((item.type === "pouvoir")&& !item.system.auraDeployee);
+          return item.type === "pouvoir" && !item.system.auraDeployee;
         },
         callback: async (li) => {
           const itemId = li.data("itemId");
-            if(await this.actor.deployerAura(itemId, false, false)) this.actor.sheet.render(true);;
-            return;
+          if (await this.actor.deployerAura(itemId, false, false)) this.actor.sheet.render(true);
+          return;
         },
       },
       {
@@ -91,12 +158,12 @@ export default class MagnaActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return ((item.type === "pouvoir")&& item.system.auraDeployee);
+          return item.type === "pouvoir" && item.system.auraDeployee;
         },
         callback: async (li) => {
           const itemId = li.data("itemId");
-            if(this.actor.retracterAura(itemId)) this.actor.sheet.render(true);;
-            return;
+          if (this.actor.retracterAura(itemId)) this.actor.sheet.render(true);
+          return;
         },
       },
       {
@@ -106,12 +173,12 @@ export default class MagnaActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return ((item.type === "pouvoir")&& !item.system.auraDeployee);
+          return item.type === "pouvoir" && !item.system.auraDeployee;
         },
         callback: (li) => {
           const itemId = li.data("itemId");
-            if(this.actor.deployerAura(itemId, true, false)) this.actor.sheet.render(true);;
-            return;
+          if (this.actor.deployerAura(itemId, true, false)) this.actor.sheet.render(true);
+          return;
         },
       },
       {
@@ -171,7 +238,7 @@ export default class MagnaActorSheet extends ActorSheet {
     const item = this.actor.items.get(itemId);
     if (item) item.sheet.render(true);
   }
-  
+
   async _supprimerItem(itemId) {
     let item = this.actor.items.get(itemId);
     if (item === null) {

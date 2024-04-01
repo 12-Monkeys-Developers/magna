@@ -54,25 +54,25 @@ export const INDICES = Object.freeze({
         label: "MAGNA.INDICE.cac.label",
         label_short: "CAC",
     },
-    dist : {
-        id: "dist",
-        label: "MAGNA.INDICE.dist.label",
-        label_short: "DIST",
-    },
-    ref : {
-        id: "ref",
-        label: "MAGNA.INDICE.ref.label",
-        label_short: "REF",
-    },
     cacpsi : {
         id: "cacpsi",
         label: "MAGNA.INDICE.cacpsi.label",
         label_short: "CAC PSI",
     },
+    dist : {
+        id: "dist",
+        label: "MAGNA.INDICE.dist.label",
+        label_short: "DIST",
+    },
     distpsi : {
         id: "distpsi",
         label: "MAGNA.INDICE.distpsi.label",
         label_short: "DIST PSI",
+    },
+    ref : {
+        id: "ref",
+        label: "MAGNA.INDICE.ref.label",
+        label_short: "REF",
     },
     refpsi : {
         id: "refpsi",

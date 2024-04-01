@@ -246,7 +246,7 @@ export default class MagnaActor extends Actor {
   async getLabelShort(group, typecomp, field) {
     let label = "";
     if (group === "competences_spe") {
-      label = game.i18n.localize("MAGNA.COMPETENCE_SPE." + typecomp + ".label") + ": " + field.label;
+      label = field.label;
     } else if (group === "caracteristiques") {
       label = game.i18n.localize(SYSTEM.CARACTERISTIQUES[field].label_short);
     } else if (group === "indices") {

@@ -1,7 +1,7 @@
 <div class="grid_pouvoirs">
     {{#each listevoies as |voie|}}
     <div class="bloc-voie">
-        <h3>{{voie}}</h3>
+        <div class="titre_voie">{{voie}}</div>
         {{#each ../pouvoirs as |pouvoir id|}}
         {{#if (eq pouvoir.system.voie voie)}}
             <div class="item-contextmenu" data-item-id="{{pouvoir._id}}">
@@ -12,9 +12,6 @@
                         <div class="change-aura" title="{{localize 'MAGNA.LABEL.deployerAura'}}">
                             {{#if pouvoir.system.auraDeployee}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person"></i>{{/if}}
                         </div>
-                        <a class="icon_caracteristique">
-                        <i class="fas fa-dice roll-carac" data-group="pouvoir" data-field="{{pouvoir._id}}"></i>
-                        </a>
                         <div class="pouvoir-name">{{pouvoir.name}}</div>
                         <div class="pouvoir-value">{{pouvoir.system.resume}}</div>
                     </div>

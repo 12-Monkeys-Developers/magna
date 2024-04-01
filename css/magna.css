@@ -295,19 +295,22 @@
   margin-left: -23px;
 }
 .magna.sheet.actor.pj .grid_indices {
-  margin-top: 15px;
+  margin-top: -7px;
   margin-left: 47px;
   display: grid;
   align-items: center;
-  grid-template-columns: 120px 120px 120px;
-  grid-template-rows: 75px 70px;
+  grid-template-columns: 75px 70px 70px 70px 70px 70px;
+  grid-template-rows: 75px 50px;
 }
 .magna.sheet.actor.pj .grid_indices .margin_indices {
-  margin: 0px 0px 0px 5px;
+  margin: 4px 0px 0px -3px;
+}
+.magna.sheet.actor.pj .grid_indices .cac {
+  margin-left: -47px;
 }
 .magna.sheet.actor.pj .grid_indices .cacpsi {
-  margin-top: -59px;
-  margin-left: -57px;
+  margin-top: 71px;
+  margin-left: -64px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
 .magna.sheet.actor.pj .grid_indices .cacpsi .nom_caracteristique {
@@ -315,9 +318,12 @@
   width: 42px;
   margin: 10px 10px;
 }
+.magna.sheet.actor.pj .grid_indices .dist {
+  margin-left: -76px;
+}
 .magna.sheet.actor.pj .grid_indices .distpsi {
-  margin-top: -59px;
-  margin-left: -57px;
+  margin-top: 71px;
+  margin-left: -88px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
 .magna.sheet.actor.pj .grid_indices .distpsi .nom_caracteristique {
@@ -325,9 +331,12 @@
   width: 42px;
   margin: 10px 10px;
 }
+.magna.sheet.actor.pj .grid_indices .ref {
+  margin-left: -99px;
+}
 .magna.sheet.actor.pj .grid_indices .refpsi {
-  margin-top: -59px;
-  margin-left: -57px;
+  margin-top: 71px;
+  margin-left: -109px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
 .magna.sheet.actor.pj .grid_indices .refpsi .nom_caracteristique {
@@ -339,7 +348,7 @@
   background: no-repeat url("../assets/system/hexa.webp");
   display: grid;
   grid-template-columns: 20px 45px;
-  grid-template-rows: 20px 24px 20px;
+  grid-template-rows: 22px 24px 15px;
   padding-left: 6px;
   text-align: center;
 }
@@ -370,12 +379,14 @@
 .magna.sheet.actor.pj .grid_comp {
   display: grid;
   align-items: center;
+  background: no-repeat url("../assets/system/fond_comp.webp");
   grid-template-columns: 170px 170px 170px 170px;
   grid-template-rows: 25px;
 }
 .magna.sheet.actor.pj .grid_spe {
   display: grid;
   align-items: center;
+  background: no-repeat url("../assets/system/fond_compspe.webp");
   grid-template-columns: 170px 170px 170px 170px;
 }
 .magna.sheet.actor.pj .bloc_vertical {
@@ -395,16 +406,18 @@
 }
 .magna.sheet.actor.pj .bloc_comp {
   display: grid;
-  grid-template-columns: 130px 15px 20px;
-  background: #faf3f0;
+  grid-template-columns: 130px 35px;
   margin: 2px;
-  padding-left: 2px;
-  border-radius: 5px;
+  padding-left: 20px;
 }
 .magna.sheet.actor.pj .bloc_comp .nom_comp {
   align-self: center;
   font-size: 16px;
   color: black;
+}
+.magna.sheet.actor.pj .bloc_comp .nom_comp input {
+  font-size: 15px;
+  height: 18px;
 }
 .magna.sheet.actor.pj .bloc_comp .val_comp {
   color: #31191f;
@@ -413,6 +426,8 @@
 }
 .magna.sheet.actor.pj .bloc_comp .val_comp input {
   width: 2em;
+  font-size: 15px;
+  height: 18px;
 }
 .magna.sheet.actor.pj .bloc_comp .attribut-icon {
   font-size: 14px;
@@ -422,17 +437,18 @@
 .magna.sheet.actor.pj .grid_combat {
   display: grid;
   grid-template-columns: 190px 190px;
-  grid-template-rows: 30px 30px 30px;
+  grid-template-rows: 27px 27px 27px 27px;
 }
 .magna.sheet.actor.pj .bloc_arme {
   display: grid;
-  grid-template-columns: 100px 90px;
-  background: #faf3f0;
+  grid-template-columns: 110px 70px;
+  background: no-repeat url("../assets/system/cadrebiais.webp");
   margin: 2px;
   padding-left: 2px;
   border-radius: 5px;
 }
 .magna.sheet.actor.pj .bloc_arme .nom_comp {
+  margin-left: 15px;
   align-self: center;
   font-size: 16px;
   color: black;
@@ -449,6 +465,26 @@
   font-size: 14px;
   color: #31191f;
   margin: 5px 5px 3px 5px;
+}
+.magna.sheet.actor.pj .bloc-voie {
+  background: no-repeat url("../assets/system/fond_pouv.webp");
+}
+.magna.sheet.actor.pj .bloc-voie .titre_voie {
+  font-family: "codepro";
+  font-weight: bold;
+  font-size: 20px;
+  background: rgba(139, 68, 68, 0.315);
+  color: black;
+  text-align: center;
+  padding: 5px;
+  text-transform: uppercase;
+}
+.magna.sheet.actor.pj .bloc-voie .desc {
+  margin: 5px 10px;
+}
+.magna.sheet.actor.pj .bloc-voie .desc p {
+  font-weight: normal;
+  text-align: justify;
 }
 .magna.sheet.actor.pj .bloc-pouvoir {
   display: flex;
