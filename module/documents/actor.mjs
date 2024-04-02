@@ -92,7 +92,6 @@ export default class MagnaActor extends Actor {
         liste.push(element.system.voie);
       }
     });
-    console.log("liste", liste);
     return liste;
   }
 
@@ -230,17 +229,19 @@ export default class MagnaActor extends Actor {
     };
     return this.rollAction(data);
   }
-  
-  async getValeur(group, typecomp, field) {
-    let valeur = 0;
-    if (group === "competences_spe") {
-      valeur = field.valeur;
-    } else if (group === "indices") {
-      valeur = this[field];
-    } else {
-      valeur = this.system[group][field].valeur;
-    }
-    return valeur;
+
+  async getValeurs(data) {
+    let returnValeurs = [];
+    data.forEach(async (element) => {
+      if (element.group === "competences_spe") {
+        returnValeurs.push(element.field.valeur);
+      } else if (element.group === "indices") {
+        returnValeurs.push(this[element.field]);
+      } else {
+        returnValeurs.push(this.system[element.group][element.field].valeur);
+      }
+    });
+    return returnValeurs;
   }
 
   async getLabelShort(group, typecomp, field) {
@@ -255,5 +256,20 @@ export default class MagnaActor extends Actor {
       label = game.i18n.localize(this.system[group][field].label);
     }
     return label;
+  }
+  async getLabelsShort(data) {
+    let returnLabels = [];
+    data.forEach(async (element) => {
+      if (element.group === "competences_spe") {
+        returnLabels.push(element.field.label);
+      } else if (element.group === "caracteristiques") {
+        returnLabels.push(game.i18n.localize(SYSTEM.CARACTERISTIQUES[element.field].label_short));
+      } else if (element.group === "indices") {
+        returnLabels.push(game.i18n.localize(SYSTEM.INDICES[element.field].label_short));
+      } else {
+        returnLabels.push(game.i18n.localize(this.system[element.group][element.field].label));
+      }
+    });
+    return returnLabels;
   }
 }

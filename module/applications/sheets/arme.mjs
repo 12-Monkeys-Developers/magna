@@ -10,8 +10,8 @@ export default class ArmeSheet extends MagnaItemSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      height: 490,
-      width: 450,
+      height: 400,
+      width: 400,
       classes: [SYSTEM.id, "sheet", "item", this.itemType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
       resizable: true,

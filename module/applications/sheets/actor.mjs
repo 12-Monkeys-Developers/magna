@@ -34,6 +34,24 @@ export default class MagnaActorSheet extends ActorSheet {
         },
       },
       {
+        name: `Jet de Mental`,
+        icon: `<i class="fa-solid fa-head-side-medical"></i>`,
+        condition: (li) => {
+          return li.data("cond") === "mental";
+        },
+        callback: async (li) => {
+          let data = {
+            group1: "mental",
+            typecomp1: false,
+            field1: "mental",
+            group2: "mental",
+            field2: "mental",
+            askDialog: false,
+          };
+          return this.actor.rollAction(data);
+        },
+      },
+      {
         name: `Jet simple`,
         icon: `<i class="fa-solid fa-dice-d20"></i>`,
         condition: (li) => {
@@ -89,6 +107,18 @@ export default class MagnaActorSheet extends ActorSheet {
             data.field2 = compSpe.defaultCarac;
           }
           return this.actor.rollAction(data);
+        },
+      },
+      {
+        name: `Supprimer`,
+        icon: `<i class="fa-solid fa-trash"></i>`,
+        condition: (li) => {
+          return ["competences_spe"].includes(li.data("group"));
+        },
+        callback: async (li) => {
+          const compType = li.data("type");
+          const compIndex = li.data("id");
+          this.actor.supprimerCompSpe(compType, compIndex);
         },
       },
     ];

@@ -12,7 +12,10 @@
   </div>
     <div class="dice-result">
       <p class="dice-result">
-          Jet de {{data.label1}}{{#if data.part2}} + {{data.label2}}{{/if}}
+          Jet de 
+      <span class="formulatooltip">{{data.label1}}
+        <span class="tooltiptext">{{{data.valeur1}}}</span></span>
+       {{#if data.part2}} + <span class="formulatooltip">{{data.label2}}<span class="tooltiptext">{{{data.valeur2}}}</span></span>{{/if}}
       </p>
       {{#if data.modificateur}}
       <p class="dice-result">
@@ -27,11 +30,9 @@
       <p class="dice-result">
         SR : {{data.seuilReussite}}
       </p>
-      <div class="result-tooltip">
-        <span class="tooltiptext">{{{data.diceTooltip}}}</span>
-      </div>
-      <p class="finalText" data-tooltip="{{data.difficulteToolTip}}"></p>
+      <img src="systems/magna/assets/system/griffes.webp",/>
+        <div class="diceicon">{{rolleddice}}</div>
       <p>Marge du résultat : {{{data.result}}}</p>
-      <p>{{{data.finalText}}}</p>
+      <p class="finalText">{{{data.finalText}}}</p>
   </div>
 </div>

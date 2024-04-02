@@ -1,44 +1,73 @@
 .action-chat {
-    background-color: #394e55;
-    background: var(--background_chat);
+  background-color: #394e55;
+  background: var(--background_chat);
+  display: flex;
+  flex-direction: column;
+  img {
+    border: 0px;
+  }
+  .intro-chat {
+    border-radius: 20px;
     display: flex;
-    flex-direction: column;
-    img {
-      border: 0px;
+    flex-direction: row;
+    justify-content: center;
+    .intro-img {
+      padding: 5px;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      object-position: center;
+      align-self: center;
     }
-    .intro-chat {
-      border-radius: 20px;
+    .intro-right {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      .intro-img {
-        padding: 5px;
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        object-position: center;
-        align-self: center;
+      flex-direction: column;
+      .introText {
+        font-family: "alexbrush";
+        font-size: 1.8em;
+        width: 210px;
+        padding-top: 0.5em;
+        text-align: center;
       }
-      .intro-right {
-        display: flex;
-        flex-direction: column;
-        .introText {
-          font-family: "alexbrush";
-          font-size: 1.8em;
-          width: 210px;
-          padding-top: 0.5em;
-          text-align: center;
-        }
-      }
-    }
-    .resultText {
-      font-family: "alexbrush";
-      font-size: 2em;
-      text-align: center;
-    }
-    .dice-result {
-      font-family: "garamondpro";
-      font-size: 1.2em;
-      text-align: center;
     }
   }
+  .resultText {
+    font-family: "alexbrush";
+    font-size: 2em;
+    text-align: center;
+  }
+  .dice-result {
+    font-family: "garamondpro";
+    font-size: 1.2em;
+    text-align: center;
+  }
+  .diceicon {
+    min-width: 24px;
+    line-height: 24px;
+    background-image: url("/icons/svg/d20-grey.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: center;
+  }
+  .formulatooltip {
+    position: relative;
+    display: inline-block;
+    .tooltiptext {
+      visibility: hidden;
+      font-size:12px;
+      width: 30px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      z-index: 1;
+    }
+  }
+  .formulatooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+}

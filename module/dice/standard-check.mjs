@@ -31,15 +31,16 @@ export default class StandardCheck extends Roll {
     actorData: null,
     actingCharImg: null,
     actingCharName: null,
-    diceTooltip: "",
     introText: "",
     finalText: "",
     group1: "caracteristiques",
     field1: "hab",
+    valeur1: 0,
     typecomp1: null,
     part2: true,
     group2: "caracteristiques",
     field2: "hab",
+    valeur2: 0,
     typecomp2: null,
     modificateur: 0,
     diceformula: "1d20",
@@ -85,6 +86,7 @@ export default class StandardCheck extends Roll {
   static async #configureData(data) {
     const actingChar = game.actors.get(data.actorId);
     if (data.group1 === "mental") {
+      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", data);
       data.valeur1 = actingChar.system.mental.valeur;
       data.valeur2 = 0;
       data.label1 = "Mental";
@@ -94,26 +96,27 @@ export default class StandardCheck extends Roll {
     } else if (data.group1 === "pouvoir") {
       let pouvoir = actingChar.items.get(data.field1);
       data.valeur1 = pouvoir.system.rang;
-      data.valeur2 = actingChar.getValeur(data.group2, data.typecomp2, data.field2);
+      data.pouvName = pouvoir.name;
+      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", data);
+      const valeurs =  await actingChar.getValeurs([{group:data.group2, field:data.field2}]);
+      data.valeur2 = valeurs[0];
       data.label1 = "Rang " + pouvoir.name;
       data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
-      data.seuilReussite = actingChar.system.mental.valeur;
-      data.seuilReussite = pouvoir.system.rang + actingChar.getValeur(data.group2, data.typecomp2, data.field2) + parseInt(data.modificateur) - data.opposition;
+      data.seuilReussite = data.valeur1 + data.valeur2 + parseInt(data.modificateur) - data.opposition;
     } else {
-      data.valeur1 = actingChar.getValeur(data.group1, data.typecomp1, data.field1);
-      data.valeur2 = actingChar.getValeur(data.group2, data.typecomp2, data.field2);
-      data.label1 = await actingChar.getLabelShort(data.group1, data.typecomp1, data.field1);
-      data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
+      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
+      const valeurs = await actingChar.getValeurs([{group: data.group1, field: data.field1}, {group:data.group2, field:data.field2}]);
+      data.valeur1 = valeurs[0];
+      data.valeur2 = valeurs[1];
+      const labels = await actingChar.getLabelsShort([{group:data.group1, field:data.field1},{group:data.group2, field:data.field2}]);
+      data.label1 = labels[0];
+      data.label2 = labels[1];
       data.seuilReussite =
-      await actingChar.getValeur(data.group1, data.typecomp1, data.field1) +
-      await actingChar.getValeur(data.group2, data.typecomp2, data.field2) +
-        parseInt(data.modificateur) -
-        data.opposition;
+      valeurs[0] + valeurs[1] + parseInt(data.modificateur) - data.opposition;
     }
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
-    data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
-    return data;
+
   }
   /** @override */
   static parse(_, data) {
@@ -144,6 +147,7 @@ export default class StandardCheck extends Roll {
       isGM: game.user.isGM,
       formula: this.formula,
       total: this.total,
+      rolleddice: this._total,
     };
 
     cardData.cssClass = cardData.css.join(" ");
@@ -188,14 +192,12 @@ export default class StandardCheck extends Roll {
   /** @override */
   async evaluate({ minimize = false, maximize = false, async = true } = {}) {
     await super.evaluate({ minimize, maximize, async });
-    console.log(this.data);
     if (this._total - this.data.seuilReussite < -9) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.largereussite");
     else if (this._total - this.data.seuilReussite < -1) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.reussite");
     else if (this._total - this.data.seuilReussite < 1) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.justereussite");
     else if (this._total - this.data.seuilReussite < 3) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.justerate");
     else if (this._total - this.data.seuilReussite < 10) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.rate");
     else this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.completementrate");
-    this.data.diceTooltip = await this.getTooltip();
     this.data.result = this._total - this.data.seuilReussite;
     return this;
   }

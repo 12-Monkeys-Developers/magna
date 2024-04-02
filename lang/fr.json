@@ -12,6 +12,8 @@
   "MAGNA": {
     "CHATMESSAGE": {
       "introActionStd": "{actingCharName} agit.",
+      "introMental": "{actingCharName} utilise son Mental.",
+      "introPouvoir": "{actingCharName} utilise {pouvName}.",
       "largereussite": "Le test est largement réussi.",
       "reussite": "Le test est réussi.",
       "justereussite": "La réussite est limitée.",

@@ -29,7 +29,6 @@ export default class ActionDialog extends Dialog {
     const context = await super.getData(options);
     data.caracteristiques= SYSTEM.CARACTERISTIQUES;
     data.indices= SYSTEM.INDICES;
-    //data optionsBonus = [{ indice: index + 1, label: index + 1 }]Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
     if(data.group2==="caracteristiques") context.carac = data.field2;
     else if(data.group2==="indices") context.indice = data.field2;
     const actingChar = game.actors.get(data.actorId);
@@ -68,9 +67,6 @@ export default class ActionDialog extends Dialog {
       this.render(false, { height: "auto" });
     }
   }
-
-
-
 
 
   /*  Factory Methods                             */

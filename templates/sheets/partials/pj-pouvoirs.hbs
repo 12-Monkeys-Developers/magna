@@ -13,15 +13,17 @@
                             {{#if pouvoir.system.auraDeployee}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person"></i>{{/if}}
                         </div>
                         <div class="pouvoir-name">{{pouvoir.name}}</div>
-                        <div class="pouvoir-value">{{pouvoir.system.resume}}</div>
                     </div>
+                    <div class="ligne-pouvoir">
+                        <div class="field-name">{{pouvoir.system.resume}}</div>
+                    </div>
+                </summary>
                     <div class="ligne-pouvoir">
                         <div class="field-name">Portée: </div>
                         <div class="pouvoir-value">{{pouvoir.system.portee}}</div>
                         <div class="field-name">Cibles: </div>
                         <div class="pouvoir-value">{{pouvoir.system.cibles}}</div>
                     </div>
-                </summary>
                 <div class="desc">{{{pouvoir.system.descriptionhtml}}}</div>
             </details>
             </div>
