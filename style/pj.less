@@ -1,9 +1,10 @@
-.magna.sheet.actor.pj {
+.magna.sheet.actor {
   .window-content {
     background: no-repeat url("../assets/system/fond_fdp.webp") rgba(79.6, 20.4, 18, 0.8);
     font-family: "pillgothic";
-    font-weight: bold;
   }
+  .pnj{
+    background: no-repeat url("../assets/system/fond_pnj.webp") rgba(79.6, 20.4, 18, 0.8);}
   .editor {
     width: 100%;
     height: 100%;
@@ -29,6 +30,7 @@
     text-align: center;
     padding: 10px;
     text-transform: uppercase;
+    border: 0px;
   }
   .pj-sheet {
     display: grid;
@@ -252,11 +254,13 @@
     .val_caracteristique {
       color: #31191f;
       font-size: 21px;
+      font-weight: bold;
 
       input {
         width: 1.5em;
         margin: 0px;
         border: 0px;
+        font-weight: bold;
       }
     }
     .attribut-icon {
@@ -300,6 +304,7 @@
     padding-left: 20px;
     .nom_comp {
       align-self: center;
+      font-weight: bold;
       font-size: 16px;
       color: black;
       input {
@@ -309,6 +314,7 @@
     }
     .val_comp {
       color: #31191f;
+      font-weight: bold;
       align-self: center;
       font-size: 18px;
       input {
@@ -337,12 +343,14 @@
     border-radius: 5px;
     .nom_comp {
       margin-left: 15px;
+      font-weight: bold;
       align-self: center;
       font-size: 16px;
       color: black;
     }
     .val_comp {
       color: #31191f;
+      font-weight: bold;
       align-self: center;
       font-size: 18px;
       input {
@@ -407,6 +415,8 @@
     }
   }
   .description-bloc {
+    background: repeat url("../assets/system/fond_pouv.webp");
+
     .editor {
       width: 100%;
       height: 100%;

@@ -40,6 +40,11 @@ export default class MagnaActor extends Actor {
     return false;
   }
 
+  get sheetlight() {
+    if (this.getFlag(game.system.id, "sheetlight")) return true;
+    return false;
+  }
+  
   get nbAuraDeployees() {
     let auraDeployee = 0;
     const pouvoirs = this.items.filter((item) => item.type == "pouvoir");
@@ -53,35 +58,27 @@ export default class MagnaActor extends Actor {
    * Retourne les indices d'un PJ
    */
   get cac() {
-    if (this.type !== "pj") return undefined;
     return this.system.caracteristiques.vig.valeur + this.system.caracteristiques.agi.valeur;
   }
   get dist() {
-    if (this.type !== "pj") return undefined;
     return this.system.caracteristiques.ins.valeur + this.system.caracteristiques.per.valeur;
   }
   get ref() {
-    if (this.type !== "pj") return undefined;
     return Math.max(this.system.caracteristiques.ins.valeur + this.system.caracteristiques.agi.valeur - 10, 0);
   }
   get cacpsi() {
-    if (this.type !== "pj") return undefined;
     return this.system.caracteristiques.vig.valeur + this.system.caracteristiques.agi.valeur + this.system.caracteristiques.psi.valeur;
   }
   get distpsi() {
-    if (this.type !== "pj") return undefined;
     return this.system.caracteristiques.ins.valeur + this.system.caracteristiques.per.valeur + this.system.caracteristiques.psi.valeur;
   }
   get refpsi() {
-    if (this.type !== "pj") return undefined;
     return Math.max(this.system.caracteristiques.ins.valeur + this.system.caracteristiques.agi.valeur - 10, 0) + this.system.caracteristiques.psi.valeur;
   }
   get vitalite_max() {
-    if (this.type !== "pj") return undefined;
     return this.system.caracteristiques.vig.valeur + 10;
   }
   get mental_max() {
-    if (this.type !== "pj") return undefined;
     return this.system.caracteristiques.vol.valeur + this.system.caracteristiques.psi.valeur;
   }
   get listeVoies() {

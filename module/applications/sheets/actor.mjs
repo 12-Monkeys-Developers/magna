@@ -7,6 +7,9 @@ export default class MagnaActorSheet extends ActorSheet {
       template: `systems/${SYSTEM.id}/templates/sheets/${this.actorType}.hbs`,
       resizable: true,
       scrollY: [],
+      width: 720,
+      height: 900,
+      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "competences" }],
     });
   }
 
@@ -16,6 +19,68 @@ export default class MagnaActorSheet extends ActorSheet {
     context.editable = true;
     context.actor = this.document;
     context.system = this.document.system;
+
+    context.descriptionHTML = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.equipementHTML = await TextEditor.enrichHTML(this.actor.system.equipement, { async: false });
+    context.unlocked = this.actor.isUnlocked;
+    context.locked = !this.actor.isUnlocked;
+    context.sheetlight = this.actor.sheetlight;
+    context.nbAuraDeployees = this.actor.nbAuraDeployees;
+    context.indices = {
+      cac: {
+        valeur: this.actor.cac,
+        label_short: "MAGNA.INDICE.cac.label_short",
+        label: "MAGNA.INDICE.cac.label",
+      },
+      cacpsi: {
+        valeur: this.actor.cacpsi,
+        label_short: "MAGNA.INDICE.cacpsi.label_short",
+        label: "MAGNA.INDICE.cacpsi.label",
+      },
+      dist: {
+        valeur: this.actor.dist,
+        label_short: "MAGNA.INDICE.dist.label_short",
+        label: "MAGNA.INDICE.dist.label",
+      },
+      distpsi: {
+        valeur: this.actor.distpsi,
+        label_short: "MAGNA.INDICE.distpsi.label_short",
+        label: "MAGNA.INDICE.distpsi.label",
+      },
+      ref: {
+        valeur: this.actor.ref,
+        label_short: "MAGNA.INDICE.ref.label_short",
+        label: "MAGNA.INDICE.ref.label",
+      },
+      refpsi: {
+        valeur: this.actor.refpsi,
+        label_short: "MAGNA.INDICE.refpsi.label_short",
+        label: "MAGNA.INDICE.refpsi.label",
+      },
+    };
+    context.vitalite_max = this.actor.vitalite_max;
+    context.mental_max = this.actor.mental_max;
+
+    // Pouvoirs par ordre niveau et mise en forme de la description
+
+    context.listevoies = this.actor.listeVoies;
+
+    context.armes = this.actor.items
+      .filter((item) => item.type == "arme")
+      .sort(function (a, b) {
+        return a.name > b.name;
+      });
+    context.armes.forEach(async (element) => {
+      element.system.degatsmodifies = await this.actor.degatsmodifies(element._id);
+    });
+    context.pouvoirs = this.actor.items
+      .filter((item) => item.type == "pouvoir")
+      .sort(function (a, b) {
+        return a.system.rang > b.system.rang;
+      });
+    context.pouvoirs.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
+    });
 
     return context;
   }
@@ -236,6 +301,11 @@ export default class MagnaActorSheet extends ActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    // Traitement des compétences spécialisées
+    html.find(".new-comp").click(this._onNewComp.bind(this));
+    html.find(".compspe-edit").change(this._onCompSpeEdit.bind(this));
+    html.find(".compspe-delete").click(this._onCompSpeDelete.bind(this));
+
     // Lock/Unlock la fiche
     html.find(".change-lock").click(this._onSheetChangelock.bind(this));
 
@@ -277,5 +347,32 @@ export default class MagnaActorSheet extends ActorSheet {
     let flagData = await this.actor.getFlag(game.system.id, itemId);
     if (flagData) await this.actor.unsetFlag(game.system.id, itemId);
     await this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true });
+  }
+
+  /**
+   * Event handler for the new comp click event.
+   * @param {Event} event - The click event.
+   */
+  async _onNewComp(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    let compType = element.dataset.field;
+    this.actor.ajouterCompSpe(compType);
+  }
+  async _onCompSpeEdit(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    let compIndex = parseInt(element.dataset.id);
+    let compType = element.dataset.type;
+    let compField = element.dataset.field;
+    let newValue = element.valueAsNumber ? element.valueAsNumber : element.value;
+    this.actor.modifierCompSpe(compType, compIndex, compField, newValue);
+  }
+  async _onCompSpeDelete(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    let compIndex = parseInt(element.dataset.id);
+    let compType = element.dataset.type;
+    this.actor.supprimerCompSpe(compType, compIndex);
   }
 }
