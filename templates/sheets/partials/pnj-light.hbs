@@ -34,7 +34,7 @@
     {{/each}}
     </div>
     <div class="grid_combat">
-    <div class="bloc_arme std-contextmenu" data-cond="init">
+    <div class="bloc_arme std-contextmenu" data-group="init">
       <div class="nom_comp">
         Initiative
       </div>
@@ -44,7 +44,7 @@
     </div>
   {{#each system.competences as |competence id|}}
   {{#if (ne competence.valeur 0)}}
-    <div class="bloc_arme std-contextmenu" data-group="competences" data-compname="{{id}}">
+    <div class="bloc_comp std-contextmenu" data-group="competences" data-compname="{{id}}">
       <div class="nom_comp">
         {{localize competence.label}}
       </div>
@@ -56,7 +56,7 @@
   {{/each}}
   {{#each system.combat as |competence id|}}
   {{#if (ne competence.valeur 0)}}
-    <div class="bloc_arme std-contextmenu" data-group="combat" data-compname="{{id}}">
+    <div class="bloc_comp std-contextmenu" data-group="combat" data-compname="{{id}}">
       <div class="nom_comp">
         {{localize competence.label}}
       </div>
@@ -77,24 +77,16 @@
     </div>
     {{/each}}
     {{#each system.competences_spe.langues as |competence id|}}
-    <div class="bloc_arme">
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='langues' }}
-    </div>
     {{/each}}
     {{#each system.competences_spe.connaissances as |competence id|}}
-    <div class="bloc_arme">
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='connaissances' }}
-    </div>
     {{/each}}
     {{#each system.competences_spe.artisanats as |competence id|}}
-    <div class="bloc_arme">
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='artisanats' }}
-    </div>
     {{/each}}
     {{#each system.competences_spe.pilotage as |competence id|}}
-    <div class="bloc_arme">
       {{> "systems/magna/templates/sheets/partials/pj-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='pilotage' }}
-    </div>
     {{/each}}
     </div>
   </div>

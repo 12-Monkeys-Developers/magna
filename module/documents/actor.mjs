@@ -27,9 +27,6 @@ export default class MagnaActor extends Actor {
         comparray.push(nouvelleCompSpe);
         await this.update({ [`system.competences_spe.langues`]: comparray });
       }
-      //vitalité et mental au max
-      this.system.vitalite.valeur = this.vitalite_max;
-      this.system.mental.valeur = this.mental_max;
 
       return await super._onCreate(data, options, user);
     }
@@ -44,7 +41,7 @@ export default class MagnaActor extends Actor {
     if (this.getFlag(game.system.id, "sheetlight")) return true;
     return false;
   }
-  
+
   get nbAuraDeployees() {
     let auraDeployee = 0;
     const pouvoirs = this.items.filter((item) => item.type == "pouvoir");
@@ -216,6 +213,8 @@ export default class MagnaActor extends Actor {
   async utiliserArme(itemId) {
     const arme = this.items.get(itemId);
     if (!arme) return;
+    const armeName=arme.name;
+    const degats= await this.degatsmodifies(itemId);
     let data = {
       group1: "combat",
       typecomp1: false,
@@ -223,6 +222,9 @@ export default class MagnaActor extends Actor {
       group2: "indices",
       field2: SYSTEM.COMPETENCES_COMBAT[arme.system.competence].defaultIndice,
       askDialog: true,
+      armeId: itemId,
+      armeName: armeName,
+      degats: degats,
     };
     return this.rollAction(data);
   }
@@ -268,5 +270,22 @@ export default class MagnaActor extends Actor {
       }
     });
     return returnLabels;
+  }
+
+  /**
+   * mettre au maximum
+   * @param {string} caract caracteristique à maximiser
+   */
+  async setCaracToMax(caract) {
+    return await this.update({ [`system.caracteristiques.${caract}.valeur`]: this.system.caracteristiques[caract].max });
+  }
+
+  /**
+   * mettre au maximum
+   * @param {string} data - mental ou vitalite
+   */
+  async setToMax(data) {
+    const maxValue = this[data + "_max"];
+    return await this.update({ [`system.${data}.valeur`]: maxValue });
   }
 }

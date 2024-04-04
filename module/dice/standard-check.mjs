@@ -31,6 +31,10 @@ export default class StandardCheck extends Roll {
     actorData: null,
     actingCharImg: null,
     actingCharName: null,
+    armeId: null,
+    armeName:"",
+    degats:0,
+    diceformula: "1d20",
     introText: "",
     finalText: "",
     group1: "caracteristiques",
@@ -43,12 +47,11 @@ export default class StandardCheck extends Roll {
     valeur2: 0,
     typecomp2: null,
     modificateur: 0,
-    diceformula: "1d20",
+    opposition: 0,
     seuilReussite: 0,
     reussite: false,
-    opposition: 0,
     result: 0,
-    rollMode: "publicroll"
+    rollMode: "publicroll",
   };
 
   /**
@@ -85,6 +88,7 @@ export default class StandardCheck extends Roll {
    */
   static async #configureData(data) {
     const actingChar = game.actors.get(data.actorId);
+    console.log(data);
     if (data.group1 === "mental") {
       data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", data);
       data.valeur1 = actingChar.system.mental.valeur;
@@ -104,7 +108,9 @@ export default class StandardCheck extends Roll {
       data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
       data.seuilReussite = data.valeur1 + data.valeur2 + parseInt(data.modificateur) - data.opposition;
     } else {
-      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
+      if (data.armeId) {
+        data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", data);
+      } else data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
       const valeurs = await actingChar.getValeurs([
         { group: data.group1, field: data.field1 },
         { group: data.group2, field: data.field2 },

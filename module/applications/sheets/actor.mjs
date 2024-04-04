@@ -92,7 +92,7 @@ export default class MagnaActorSheet extends ActorSheet {
         name: `Jet d'Iniative`,
         icon: `<i class="fa-solid fa-hourglass-start"></i>`,
         condition: (li) => {
-          return li.data("cond") === "init";
+          return li.data("group") === "init";
         },
         callback: (li) => {
           return this.actor.rollInit();
@@ -102,7 +102,7 @@ export default class MagnaActorSheet extends ActorSheet {
         name: `Jet de Mental`,
         icon: `<i class="fa-solid fa-head-side-medical"></i>`,
         condition: (li) => {
-          return li.data("cond") === "mental";
+          return li.data("group") === "mental";
         },
         callback: async (li) => {
           let data = {
@@ -184,6 +184,21 @@ export default class MagnaActorSheet extends ActorSheet {
           const compType = li.data("type");
           const compIndex = li.data("id");
           this.actor.supprimerCompSpe(compType, compIndex);
+        },
+      },
+      {
+        name: `Remettre au max`,
+        icon: `<i class="fa-solid fa-gauge-max"></i>`,
+        condition: (li) => {
+          return ["mental", "vitalite", "caracteristiques"].includes(li.data("group"));
+        },
+        callback: async (li) => {
+          const group = li.data("group");
+          if (group === "caracteristiques") {
+            const compname = li.data("compname");
+            return this.actor.setCaracToMax(compname);
+          }
+          else return this.actor.setToMax(group);
         },
       },
     ];

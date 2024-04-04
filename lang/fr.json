@@ -14,6 +14,7 @@
       "introActionStd": "{actingCharName} agit.",
       "introMental": "{actingCharName} utilise son Mental.",
       "introPouvoir": "{actingCharName} utilise {pouvName}.",
+      "introArmeStd": "{actingCharName} utilise {armeName}.",
       "largereussite": "Le test est largement réussi.",
       "reussite": "Le test est réussi.",
       "justereussite": "La réussite est limitée.",

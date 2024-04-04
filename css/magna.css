@@ -515,6 +515,14 @@
   grid-template-columns: 190px 190px;
   grid-template-rows: 27px 27px 27px 27px;
 }
+.magna.sheet.actor .grid_combat .bloc_comp {
+  display: grid;
+  background: no-repeat url("../assets/system/cadrebiais.webp");
+  grid-template-columns: 130px 35px;
+  margin: 2px;
+  padding-left: 20px;
+  height: 22px;
+}
 .magna.sheet.actor .bloc_arme {
   display: grid;
   grid-template-columns: 110px 70px;
