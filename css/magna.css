@@ -23,6 +23,7 @@
 .arme-sheet .name-title input {
   font-family: "codepro";
   font-weight: bold;
+  border: 0px;
 }
 .arme-sheet .arme-content {
   display: grid;
@@ -418,7 +419,7 @@
   background: no-repeat url("../assets/system/hexa.webp");
   display: grid;
   grid-template-columns: 20px 45px;
-  grid-template-rows: 22px 24px 15px;
+  grid-template-rows: 24px 22px 15px;
   padding-left: 6px;
   text-align: center;
 }
@@ -439,7 +440,7 @@
 }
 .magna.sheet.actor .bloc_caracteristique .val_caracteristique input {
   width: 1.5em;
-  margin: 0px;
+  margin: -4px 0px 0px 0px;
   border: 0px;
   font-weight: bold;
 }
@@ -453,7 +454,7 @@
   align-items: center;
   background: no-repeat url("../assets/system/fond_comp.webp");
   grid-template-columns: 170px 170px 170px 170px;
-  grid-template-rows: 25px;
+  grid-auto-rows: 25px;
 }
 .magna.sheet.actor .grid_spe {
   display: grid;
@@ -481,6 +482,7 @@
   grid-template-columns: 130px 35px;
   margin: 2px;
   padding-left: 20px;
+  height: 22px;
 }
 .magna.sheet.actor .bloc_comp .nom_comp {
   align-self: center;
@@ -637,6 +639,7 @@
 .pouvoir-sheet .name-title input {
   font-family: "codepro";
   font-weight: bold;
+  border: 0px;
 }
 .pouvoir-sheet .pouvoir-content {
   display: grid;
@@ -727,12 +730,23 @@
 }
 @font-face {
   font-family: "pillgothic";
-  src: url("../assets/fonts/pillgothic_light.ttf") format("truetype");
+  src: url("../assets/fonts/pillgothic_regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "pillgothic";
   src: url("../assets/fonts/pillgothic_bold.ttf") format("truetype");
   font-weight: bold;
+}
+@font-face {
+  font-family: "pillgothic";
+  src: url("../assets/fonts/pillgothic_it.ttf") format("truetype");
+  font-style: italic;
+}
+@font-face {
+  font-family: "pillgothic";
+  src: url("../assets/fonts/pillgothic_bold_it.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
 :root {
   --font-pj-color: black;

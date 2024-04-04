@@ -7,8 +7,8 @@ export default class MagnaPNJ extends foundry.abstract.TypeDataModel {
     // Caractéristiques
     const caracteristiqueField = (label, label_short) =>
       new fields.SchemaField({
-        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 15 }),
-        max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+        max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         label: new fields.StringField({ initial: label }),
         label_short: new fields.StringField({ initial: label_short }),
       });
@@ -25,7 +25,7 @@ export default class MagnaPNJ extends foundry.abstract.TypeDataModel {
     // Compétences
     const competenceField = (label, defaultCarac) =>
       new fields.SchemaField({
-        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         defaultCarac: new fields.StringField({ initial: defaultCarac }),
         label: new fields.StringField({ initial: label }),
       });
@@ -40,7 +40,7 @@ export default class MagnaPNJ extends foundry.abstract.TypeDataModel {
     // Compétences
     const combatField = (label, defaultCarac) =>
       new fields.SchemaField({
-        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         defaultCarac: new fields.StringField({ initial: defaultCarac }),
         label: new fields.StringField({ initial: label }),
       });
@@ -57,28 +57,28 @@ export default class MagnaPNJ extends foundry.abstract.TypeDataModel {
         new fields.SchemaField({
           label: new fields.StringField({ required: true, initial: "" }),
           defaultCarac: new fields.StringField({ required: true, initial: "" }),
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         })
       ),
       connaissances: new fields.ArrayField(
         new fields.SchemaField({
           label: new fields.StringField({ required: true, initial: "" }),
           defaultCarac: new fields.StringField({ required: true, initial: "" }),
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         })
       ),
       langues: new fields.ArrayField(
         new fields.SchemaField({
           label: new fields.StringField({ required: true, initial: "" }),
           defaultCarac: new fields.StringField({ required: true, initial: "" }),
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         })
       ),
       pilotage: new fields.ArrayField(
         new fields.SchemaField({
           label: new fields.StringField({ required: true, initial: "" }),
           defaultCarac: new fields.StringField({ required: true, initial: "" }),
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0}),
         })
       ),
     })),
@@ -90,12 +90,6 @@ export default class MagnaPNJ extends foundry.abstract.TypeDataModel {
     // Mental
     schema.mental = new fields.SchemaField({
       valeur: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-    });
-
-    // pex
-    schema.pex = new fields.SchemaField({
-      valeur: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      total: new fields.NumberField({ ...requiredInteger, initial: 0 }),
     });
 
     // Capacité spéciale : Embedded Item ?

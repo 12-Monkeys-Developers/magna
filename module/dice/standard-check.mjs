@@ -48,7 +48,7 @@ export default class StandardCheck extends Roll {
     reussite: false,
     opposition: 0,
     result: 0,
-    rollMode: undefined,
+    rollMode: "publicroll"
   };
 
   /**
@@ -98,25 +98,29 @@ export default class StandardCheck extends Roll {
       data.valeur1 = pouvoir.system.rang;
       data.pouvName = pouvoir.name;
       data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", data);
-      const valeurs =  await actingChar.getValeurs([{group:data.group2, field:data.field2}]);
+      const valeurs = await actingChar.getValeurs([{ group: data.group2, field: data.field2 }]);
       data.valeur2 = valeurs[0];
       data.label1 = "Rang " + pouvoir.name;
       data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
       data.seuilReussite = data.valeur1 + data.valeur2 + parseInt(data.modificateur) - data.opposition;
     } else {
       data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
-      const valeurs = await actingChar.getValeurs([{group: data.group1, field: data.field1}, {group:data.group2, field:data.field2}]);
+      const valeurs = await actingChar.getValeurs([
+        { group: data.group1, field: data.field1 },
+        { group: data.group2, field: data.field2 },
+      ]);
       data.valeur1 = valeurs[0];
       data.valeur2 = valeurs[1];
-      const labels = await actingChar.getLabelsShort([{group:data.group1, field:data.field1},{group:data.group2, field:data.field2}]);
+      const labels = await actingChar.getLabelsShort([
+        { group: data.group1, field: data.field1 },
+        { group: data.group2, field: data.field2 },
+      ]);
       data.label1 = labels[0];
       data.label2 = labels[1];
-      data.seuilReussite =
-      valeurs[0] + valeurs[1] + parseInt(data.modificateur) - data.opposition;
+      data.seuilReussite = valeurs[0] + valeurs[1] + parseInt(data.modificateur) - data.opposition;
     }
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
-
   }
   /** @override */
   static parse(_, data) {
@@ -127,9 +131,6 @@ export default class StandardCheck extends Roll {
     return super.parse(formula, data);
   }
 
-  /* -------------------------------------------- */
-
-  /** @override */
   async render(chatOptions = {}) {
     if (chatOptions.isPrivate) return "";
     return renderTemplate(this.constructor.htmlTemplate, this._getChatCardData());
@@ -186,7 +187,15 @@ export default class StandardCheck extends Roll {
 
   /** @inheritdoc */
   async toMessage(messageData, options = {}) {
-    options.rollMode = options.rollMode || this.data.rollMode;
+    const actingChar = game.actors.get(this.data.actorId);
+
+    // par defaut la visibilité est indiquée par le chat
+    options.rollMode = game.settings.get("core", "rollMode");
+    /* -------------------------------------------- */
+    // Visibilité des jet des PNJs
+    if (actingChar.type === "pnj" && game.user.isGM) {
+      options.rollMode = "gmroll";
+    }
     return super.toMessage(messageData, options);
   }
   /** @override */
