@@ -189,10 +189,25 @@ export default class MagnaActor extends Actor {
     pouvoir.update({ ["system.auraDeployee"]: false });
     return true;
   }
-  async rollInit() {
-    let r = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
-    let options = { rollMode: "gmroll", user: game.user._id };
-    if (this.type === "pj") options.rollMode = r.toMessage({ speaker: ChatMessage.implementation.getSpeaker({ actor: this }), flavor: "Initiative de " + this.name });
+  async rollInit(options={}) {      // Produce an initiative roll for the Combatant
+    const roll = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
+    await roll.evaluate({async: true});
+    let rangaction = Math.floor(roll._total / 5);
+    // Visibilité des jet des PNJs
+    if (this.type === "pnj" && game.user.isGM) {
+      options.rollMode = "gmroll";
+    }
+
+    // Construct chat message data
+    let messageData = foundry.utils.mergeObject({
+      speaker: ChatMessage.getSpeaker({
+        actor: this,
+        token: this.token,
+        alias: this.name
+      }),
+      flavor: game.i18n.format("MAGNA.COMBAT.initiative", {name: this.name, rangaction:rangaction})
+    }, options);
+    const chatData = await roll.toMessage(messageData);
   }
 
   /**
@@ -213,8 +228,8 @@ export default class MagnaActor extends Actor {
   async utiliserArme(itemId) {
     const arme = this.items.get(itemId);
     if (!arme) return;
-    const armeName=arme.name;
-    const degats= await this.degatsmodifies(itemId);
+    const armeName = arme.name;
+    const degats = await this.degatsmodifies(itemId);
     let data = {
       group1: "combat",
       typecomp1: false,

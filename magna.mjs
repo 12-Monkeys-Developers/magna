@@ -25,6 +25,7 @@ Hooks.once("init", async function () {
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.MagnaItem;
+  CONFIG.Combat.documentClass = documents.MagnaCombat;
 
   CONFIG.Item.dataModels = {
     pouvoir: models.MagnaPouvoir,

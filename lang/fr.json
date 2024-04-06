@@ -69,6 +69,9 @@
         "description": "Se rapporte aux pouvoirs du personnage. Ce compteur peut évoluer pendant la partie, augmenter ou baisser selon les péripéties rencontrées et uniquement grâce à cela."
       }
     },
+    "COMBAT": {
+      "initiative": "{name} lance l'initiative !<br />Rang d'action : {rangaction}"
+    },
     "INDICE": {
       "cac": {
         "label": "Attaque au corps-à-corps",
