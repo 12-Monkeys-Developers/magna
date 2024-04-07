@@ -88,7 +88,7 @@ export default class StandardCheck extends Roll {
    */
   static async #configureData(data) {
     const actingChar = game.actors.get(data.actorId);
-    console.log(data);
+    
     if (data.group1 === "mental") {
       data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", data);
       data.valeur1 = actingChar.system.mental.valeur;

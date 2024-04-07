@@ -67,7 +67,7 @@
       </div>
       <div class="val_comp">
         {{#if ../unlocked}}
-        <input type="number" name="system.competences.{{id}}.valeur" value="{{getSystemProperty ../actor 'competences' id 'valeur'}}" placeholder="0" />
+        <input type="number" name="system.competences.{{id}}.valeur" value="{{getSystemProperty ../actor 'competences' id 'valeur'}}"  min="0" max="10" placeholder="0" />
         {{else}}
         {{competence.valeur}}
         {{/if}}
@@ -86,7 +86,7 @@
       </div>
       <div class="val_comp">
               {{#if ../unlocked}}
-              <input type="number" name="system.combat.{{id}}.valeur" value="{{getSystemProperty ../actor 'combat' id 'valeur'}}" placeholder="0" />
+              <input type="number" name="system.combat.{{id}}.valeur" value="{{getSystemProperty ../actor 'combat' id 'valeur'}}" min="0" max="10" placeholder="0" />
               {{else}}
               {{competence.valeur}}
             {{/if}}

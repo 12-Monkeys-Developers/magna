@@ -85,7 +85,7 @@ export default class MagnaActorSheet extends ActorSheet {
     return context;
   }
 
-  /* Context menu standar*/
+  /* Context menu standard*/
   _getStdContextOptions() {
     return [
       {
@@ -312,6 +312,22 @@ export default class MagnaActorSheet extends ActorSheet {
     ];
   }
 
+  /* Context menu Pex*/
+  _getPexContextOptions() {
+    return [
+      {
+        name: `Fixer les points de création`,
+        icon: `<i class="fa-solid fa-flag-checkered"></i>`,
+        condition: (li) => {
+          return game.user.isGM;
+        },
+        callback: async (li) => {
+          await this.askBasePex();
+          return this.actor.sheet.render(true);
+        },
+      },
+    ]
+  }
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
@@ -332,6 +348,7 @@ export default class MagnaActorSheet extends ActorSheet {
   _contextMenu(html) {
     ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
     ContextMenu.create(this, html, ".std-contextmenu", this._getStdContextOptions());
+    if(game.settings.get("magna", "calculPex") && this.actor.isUnlocked) ContextMenu.create(this, html, ".pex-contextmenu", this._getPexContextOptions());
   }
 
   /**
@@ -389,5 +406,31 @@ export default class MagnaActorSheet extends ActorSheet {
     let compIndex = parseInt(element.dataset.id);
     let compType = element.dataset.type;
     this.actor.supprimerCompSpe(compType, compIndex);
+  }
+  
+
+  async askBasePex() {
+    const coutactuel=await this.actor.pextotal();
+    const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`, {coutactuel:coutactuel});
+    let x = new Dialog({
+      content: dialog_content,
+      buttons: {
+        Ok: { label: `Ok`, callback: async (html) => await this.setBasePex(html.find("[name=pexbase]")[0].value) },
+        Cancel: { label: `Cancel` }
+      },
+      default: "Ok"
+    });
+
+    x.options.width = 400;
+    x.position.width = 400;
+
+    x.render(true);
+  }
+
+  async setBasePex(creationValue) {
+    const creationNumber=parseInt(creationValue);
+    //const pexTotal = await this.actor.pextotal();
+    await this.actor.update({ [`system.pex.creation`]: creationNumber });
+    return this.actor.sheet.render(true);
   }
 }

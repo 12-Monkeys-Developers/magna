@@ -189,9 +189,10 @@ export default class MagnaActor extends Actor {
     pouvoir.update({ ["system.auraDeployee"]: false });
     return true;
   }
-  async rollInit(options={}) {      // Produce an initiative roll for the Combatant
+  async rollInit(options = {}) {
+    // Produce an initiative roll for the Combatant
     const roll = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
-    await roll.evaluate({async: true});
+    await roll.evaluate({ async: true });
     let rangaction = Math.floor(roll._total / 5);
     // Visibilité des jet des PNJs
     if (this.type === "pnj" && game.user.isGM) {
@@ -199,14 +200,17 @@ export default class MagnaActor extends Actor {
     }
 
     // Construct chat message data
-    let messageData = foundry.utils.mergeObject({
-      speaker: ChatMessage.getSpeaker({
-        actor: this,
-        token: this.token,
-        alias: this.name
-      }),
-      flavor: game.i18n.format("MAGNA.COMBAT.initiative", {name: this.name, rangaction:rangaction})
-    }, options);
+    let messageData = foundry.utils.mergeObject(
+      {
+        speaker: ChatMessage.getSpeaker({
+          actor: this,
+          token: this.token,
+          alias: this.name,
+        }),
+        flavor: game.i18n.format("MAGNA.COMBAT.initiative", { name: this.name, rangaction: rangaction }),
+      },
+      options
+    );
     const chatData = await roll.toMessage(messageData);
   }
 
@@ -302,5 +306,39 @@ export default class MagnaActor extends Actor {
   async setToMax(data) {
     const maxValue = this[data + "_max"];
     return await this.update({ [`system.${data}.valeur`]: maxValue });
+  }
+
+  /**
+   * Calcul du nombre de Pex dépensés
+   */
+  async pextotal() {
+    async function pexvalue(value) {
+      return Math.min(3, value) + Math.min(3, Math.max(value - 3, 0)) * 2 + Math.min(1, Math.max(value - 6, 0)) * 3 + Math.min(1, Math.max(value - 7, 0)) * 4;
+    }
+    let pexTotal =0;
+    //let pexTotal = -690;
+
+    //caracteristiques
+    for (const element in this.system.caracteristiques) {
+      pexTotal += this.system.caracteristiques[element].max * 15;
+    }
+    //competences
+    for (const element in this.system.competences) {
+      pexTotal += await pexvalue(this.system.competences[element].valeur);
+    }
+    //competences de combat
+    for (const element in this.system.combat) {
+      pexTotal += await pexvalue(this.system.combat[element].valeur);
+    }
+    //competences spe
+    for (const compType in SYSTEM.COMPETENCES_SPE) {
+      let comparray = this.system.competences_spe[compType];
+      for (const element of comparray) {
+        pexTotal += await pexvalue(element.valeur);
+      }
+    }
+    pexTotal += this.items.filter((item) => item.type == "pouvoir").length * 10;
+
+    return pexTotal;
   }
 }

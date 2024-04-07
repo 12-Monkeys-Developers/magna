@@ -8,7 +8,7 @@
   </div>
   <div class="val_comp">
     {{#if unlocked}}
-      <input class="compspe-edit" data-id={{id}} data-type="{{typecomp}}" data-field="valeur" type="number" value="{{competence.valeur}}" placeholder="0" />
+      <input class="compspe-edit" min="0" max="10" data-id={{id}} data-type="{{typecomp}}" data-field="valeur" type="number" value="{{competence.valeur}}" placeholder="0" />
     {{else}}
       {{competence.valeur}}
     {{/if}}

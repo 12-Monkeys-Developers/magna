@@ -29,7 +29,7 @@
       Vitalité
     </div>
     <div class="val_stats">
-      <input type="number" name="system.vitalite.valeur" value="{{actor.system.vitalite.valeur}}" /> / 
+      <input type="number" name="system.vitalite.valeur" value="{{actor.system.vitalite.valeur}}" min="0" max="50" /> / 
     </div>
     <div class="val_stats">
       {{vitalite_max}}
@@ -40,21 +40,33 @@
       Mental
     </div>
     <div class="val_stats">
-      <input type="number" name="system.mental.valeur" value="{{actor.system.mental.valeur}}" /> / 
+      <input type="number" name="system.mental.valeur" value="{{actor.system.mental.valeur}}" min="0" max="50" /> / 
     </div>
     <div class="val_stats">
       {{mental_max}}
     </div>
   </div>
-  <div class="bloc_stats" style="grid-row: 3/4; grid-column:4/5">
+  <div class="bloc_stats pex-contextmenu" style="grid-row: 3/4; grid-column:4/5">
     <div class="nom_stat">
       PEX
     </div>
-    <div class="val_stats">
-      <input type="number" name="system.pex.valeur" value="{{actor.system.pex.valeur}}" /> / 
+    <div class="val_stats" title="Disponibles">
+      {{#if autopex}}
+        {{pexvalue}} /
+      {{else}}
+        {{#if unlocked}}
+          <input type="number" name="system.pex.valeur" value="{{actor.system.pex.valeur}}" /> / 
+        {{else}}
+        {{actor.system.pex.valeur}}
+        {{/if}}
+      {{/if}}
     </div>
-    <div class="val_stats">
-      <input type="number" name="system.pex.total" value="{{actor.system.pex.total}}" />
+    <div class="val_stats" title="Total acquis">
+        {{#if unlocked}}
+      <input type="number" name="system.pex.total" value="{{actor.system.pex.total}}" title="Total" />
+        {{else}}
+        {{actor.system.pex.total}}
+        {{/if}}
     </div>
   </div>
 </header>

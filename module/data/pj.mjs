@@ -7,8 +7,8 @@ export default class MagnaPJ extends foundry.abstract.TypeDataModel {
     // Caractéristiques
     const caracteristiqueField = (label, label_short) =>
       new fields.SchemaField({
-        valeur: new fields.NumberField({ ...requiredInteger, initial: 1, min: 0 }),
-        max: new fields.NumberField({ ...requiredInteger, initial: 1, min: 1, }),
+        valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+        max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, }),
         label: new fields.StringField({ initial: label }),
         label_short: new fields.StringField({ initial: label_short }),
       });
@@ -96,6 +96,7 @@ export default class MagnaPJ extends foundry.abstract.TypeDataModel {
     schema.pex = new fields.SchemaField({
       valeur: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       total: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      creation: new fields.NumberField({ ...requiredInteger, initial: 0 }),
     });
 
     // Capacité spéciale : Embedded Item ?

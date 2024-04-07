@@ -52,6 +52,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/pnj.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pouvoir.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`
   ]);
 
   // menu de gauche
@@ -59,6 +60,20 @@ Hooks.once("init", async function () {
 
   Handlebars.registerHelper("getSystemProperty", function (actor, group, nom_id, prop) {
     return actor.system[group][nom_id][prop];
+  });
+
+  game.settings.register("magna", "calculPex", {
+    name: "Calcul des Pex",
+    hint: "Calcul automatique des dépenses de points d'expérience.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    choices: {
+      true: "Automatique",
+      false: "Manuel"
+    },
+    requiresReload: true,
+    default: "false",
   });
 
 });
