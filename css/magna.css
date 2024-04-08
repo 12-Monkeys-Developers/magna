@@ -370,7 +370,7 @@
   margin-left: 47px;
   display: grid;
   align-items: center;
-  grid-template-columns: 75px 70px 70px 70px 70px 70px;
+  grid-template-columns: 75px 70px 70px 70px 70px 10px;
   grid-template-rows: 75px 50px;
 }
 .magna.sheet.actor .grid_indices .margin_indices {
@@ -605,6 +605,7 @@
 }
 .magna.sheet.actor .description-bloc {
   background: repeat url("../assets/system/fond_pouv.webp");
+  padding: 5px;
 }
 .magna.sheet.actor .description-bloc .editor {
   width: 100%;

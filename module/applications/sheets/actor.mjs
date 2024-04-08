@@ -316,7 +316,7 @@ export default class MagnaActorSheet extends ActorSheet {
   _getPexContextOptions() {
     return [
       {
-        name: `Fixer les points de création`,
+        name: `Fixer la valeur de création`,
         icon: `<i class="fa-solid fa-flag-checkered"></i>`,
         condition: (li) => {
           return game.user.isGM;
