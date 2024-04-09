@@ -10,16 +10,64 @@
   <p>Le système propose deux types de feuilles : PJ et PNJ. Les différences sont les suivantes :</p>
   <ul>
     <li>Les feuilles de PJs ont un champ PEX</li>
-    <li>Les feuilles de PNJs ont un format d'affichage plus simple lorsqu'elles sont verrouillées</li>
+    <li>Les feuilles de PNJs ont un format d’affichage plus simple lorsqu'elles sont verrouillées</li>
   </ul>
-  Caractéristiques et indices
-  Compétenes spécialisées
-  <h2>Jets de dés</h2>
+  <h3>Verrouillage de la feuille</h3>
+  <p>Une feuille de personnage peut être déverrouillée / verrouillée en cliquant sur l’icone
+    <i class="fas fa-lock"></i>, en haut et à gauche de la feuille. Déverrouiller la feuille pour modifier les valeurs lors de la création et l’évolution du personnage. Les autres
+    icônes vous permettent de naviguer dans les onglets.</p>
+  <h3>Caractéristiques et indices</h3>
+  <p>Pour chaque caractéristique (VIG, HAB, etc.) vous pouvez indiquer la valeur normale (maximum) du personnage, et sa valeur courante (modifiée par les circonstances ou
+    l’utilisation de pouvoirs). Pour modifier la valeur normale vous devez d’abord déverrouiller la feuille. Pour remettre facilement la valeur courante à son niveau normal, vous
+    pouvez sélectionner "remettre au max" en faisant un click droit.</p><p>Les indices (CAC, DIST, etc.) sont calculés automatiquement à partir des valeurs courantes des
+    caractéristiques.</p>
+  <p>Les valeurs standards de Mental et Vitalité sont également calculées automatiquement.</p>
+  <h3>Compétences</h3>
+  <p>Pour ajouter une compétence spécialisée, déverrouillez la feuille et cliquez sur l’icone
+    <i class="fas fa-plus"></i>
+    dans la colonne adéquate. Vous pourrez ensuite modifier son nom et sa valeur. Pour la supprimer, faites un click droit et sélectionnez l’option.
+  </p>
+  <h3>Armes</h3>
+  <p>Pour ajouter une arme au personnage, créez l’objet arme, puis glissez-déposez-le sur sa feuille. L’arme apparait sous les indices. Vous pouvez la modifier ou la supprimer par
+    un click droit.</p>
+  <p>Les dégâts de l’arme sont automatiquement augmentés selon la valeur de la compétence du personnage.</p>
   <h2>Pouvoirs</h2>
-  <h2>Combats</h2>
-  <h3>Initiative</h3>
-  <h3>Jets</h3>
-  <h3>Dégâts</h3>
-  
-
+  <p>Pour ajouter un pouvoir, créez l’objet Pouvoir correspondant et glissez-déposez-le sur sa feuille. Les pouvoirs sont affichés dans l’onglet
+    <i class="fa-solid fa-bolt"></i>.</p>
+  <p>Vous pouvez le modifier en choisissant "détails" dans le menu click-droit ou bien le supprimer.</p>
+  <h3>Auras</h3><p>Vous pouvez tenter de déployer l’aura d’un pouvoir en initiant un jet de mental dans le menu click droit. L’aura sera déployée si le jet de mental est réussi.
+    Vous pouvez aussi forcer l’aura dans le menu, auquel cas l’aura est déployée automatiquement mais 3 pts sont retirés au Mental.
+  </p>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 300px; border: 0px; margin: 10px;" src="/systems/magna/assets/system/user_guide/menu_pouvoirs.webp" />>
+  </div>
+  <p>L’icone <i class="fa-solid fa-person-rays"></i> indique que cette aura est déployée. Le compteur des aura actives augmente.</p>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 300px; border: 0px; margin: 10px;" src="/systems/magna/assets/system/user_guide/compteur_auras.webp" />>
+  </div>
+  Pour rétracter l’aura, selectionnez l’action dans le menu click-droit du pouvoir.
+  <h2>Jets de dés</h2>
+  <p>Pour initier un jet de dé, faites un click droit sur une caractéristique, un indice, une compétence, un pouvoir ou une arme.</p>
+  <p>Les jets simples de compétence se font directement avec sa caractéristique par défaut. Les jets modifiables ouvrent une fenêtre qui vous permet de modifier la caractéristique
+    ou l’indice, d’indiquer un modificateur et / ou une valeur d’opposition.
+    <br />La compétence utilisée par les jets d’arme est celle que vous avez attribuée à l’arme.
+    <br />Le résultat du jet est ensuite affiché dans le Tchat. Les jets des PNJs ne sont visibles que du MJ, sauf si le PNJ est contrôlé par un joueur ou une joueuse.</p>
+  <h2>Initiative</h2>
+  <p>Vous pouvez lancer un jet d’initiative par un click droit, ou bien avec le combat tracker de Foundry. Le classement des personnages s’y fait par rang d’action.</p>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 300px; border: 0px; margin: 10px;" src="/systems/magna/assets/system/user_guide/combat_tracker.webp" />>
+  </div>
+  <h2>Option "Calcul des Pex"</h2>
+  <p>Cette option est disponible dans les options du module. Une fois activée, l’augmentation des carctéristiques ou compétence, l’ajout d’un pouvoir, décompte son coût en PeX du
+    nombre de Pex disponbles.<br />
+    Pour ne pas décompter la création du personnage, une fois que les points initiaux ont été répartis, le MJ peut faire un click droit sur les Pex pour indiquer cette valeur du
+    personnage à sa création, de manière à ce les pex disponibles du personnage se retrouvent à 0. Ensuite, au cours des parties, lorsque le personnage gagne de l’experience il
+    suffit de l’ajouter dans la case "Expérience totale." Ces Pex apparaitront automatiquement dans "Expérience disponible". Lorsque la joueuse augmentera une de ces compétences ou
+    autre, le coput sera automatiquement calculé et soustrait aux Pex disponibles.</p>
 </div>

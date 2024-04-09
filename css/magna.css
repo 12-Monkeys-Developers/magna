@@ -179,6 +179,41 @@
   margin: 20px 0px 0px 10px;
   width: 170px;
 }
+.magna_journal {
+  background: var(--background_journaux);
+  font-family: "pillgothic";
+  text-align: justify;
+  font-size: 16px;
+}
+.magna_journal h1 {
+  font-family: "codepro";
+  font-weight: bold;
+  font-size: 30px;
+  color: black;
+  text-align: left;
+  padding: 20px 0px 10px 0px;
+  text-transform: uppercase;
+  border: 0px;
+}
+.magna_journal h2 {
+  font-family: "pillgothic";
+  font-weight: bold;
+  font-size: 22px;
+  color: black;
+  text-align: left;
+  padding-top: 10px;
+  text-transform: uppercase;
+  border-bottom: solid black 2px;
+}
+.magna_journal h3 {
+  font-family: "pillgothic";
+  font-size: 19px;
+  color: #97141c;
+  text-align: left;
+  padding-top: 10px;
+  text-transform: uppercase;
+  border: 0px;
+}
 .magna.sheet.actor .window-content {
   background: no-repeat url("../assets/system/fond_fdp.webp") rgba(80, 20, 18, 0.8);
   font-family: "pillgothic";
@@ -762,6 +797,7 @@
   --background_pj: no-repeat url("../assets/system/fond_fdp.webp") rgba(80, 20, 18, 0.8);
   --background_chat: repeat url("../assets/system/fond_chat.webp") white;
   --background_dialog: repeat url("../assets/system/fond_dialog.webp") white;
+  --background_journaux: repeat url("../assets/system/fond_journaux.webp") white;
   --font-pj-name: 30px "garamond";
   --font-pj-name-color: black;
   --font-pj-indications: 15px "garamond";
