@@ -33,7 +33,8 @@ export default class StandardCheck extends Roll {
     actingCharName: null,
     armeId: null,
     armeName:"",
-    degats:0,
+    lasttext:0,
+    lasttextsuccess:0,
     diceformula: "1d20",
     introText: "",
     finalText: "",
@@ -90,7 +91,6 @@ export default class StandardCheck extends Roll {
     const actingChar = game.actors.get(data.actorId);
     
     if (data.group1 === "mental") {
-      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", data);
       data.valeur1 = actingChar.system.mental.valeur;
       data.valeur2 = 0;
       data.label1 = "Mental";
@@ -101,16 +101,12 @@ export default class StandardCheck extends Roll {
       let pouvoir = actingChar.items.get(data.field1);
       data.valeur1 = pouvoir.system.rang;
       data.pouvName = pouvoir.name;
-      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", data);
       const valeurs = await actingChar.getValeurs([{ group: data.group2, field: data.field2 }]);
       data.valeur2 = valeurs[0];
       data.label1 = "Rang " + pouvoir.name;
       data.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
       data.seuilReussite = data.valeur1 + data.valeur2 + parseInt(data.modificateur) - data.opposition;
     } else {
-      if (data.armeId) {
-        data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", data);
-      } else data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
       const valeurs = await actingChar.getValeurs([
         { group: data.group1, field: data.field1 },
         { group: data.group2, field: data.field2 },
@@ -127,6 +123,9 @@ export default class StandardCheck extends Roll {
     }
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
+    if (!data.introText){
+      data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
+    }
   }
   /** @override */
   static parse(_, data) {
@@ -214,6 +213,7 @@ export default class StandardCheck extends Roll {
     else if (this._total - this.data.seuilReussite < 10) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.rate");
     else this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.completementrate");
     this.data.result = this._total - this.data.seuilReussite;
+    if(this.data.lasttextsuccess && (this.data.result <1)) {this.data.lasttext = this.data.lasttextsuccess}
     return this;
   }
 }

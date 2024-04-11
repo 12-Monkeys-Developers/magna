@@ -184,6 +184,7 @@
   font-family: "pillgothic";
   text-align: justify;
   font-size: 16px;
+  padding: 5px 5px 20px 5px;
 }
 .magna_journal h1 {
   font-family: "codepro";
@@ -213,6 +214,39 @@
   padding-top: 10px;
   text-transform: uppercase;
   border: 0px;
+}
+.magna_journal p {
+  text-indent: 1em;
+}
+.magna_journal .no-indent {
+  text-indent: 0px;
+}
+.magna_journal .far {
+  text-indent: 0em;
+}
+.magna_journal .fad {
+  text-indent: 0em;
+}
+.magna_journal .fas {
+  text-indent: 0em;
+}
+.magna_journal ul {
+  list-style-type: square;
+}
+.magna_journal li::marker {
+  color: #97141c;
+}
+.magna_journal th {
+  background-color: #97141c;
+  color: white;
+  text-align: center;
+  border: 1px solid black;
+}
+.magna_journal tr:nth-child(even) {
+  background-color: #faf3f0;
+}
+.magna_journal tr:nth-child(odd) {
+  background-color: #f4e6e2;
 }
 .magna.sheet.actor .window-content {
   background: no-repeat url("../assets/system/fond_fdp.webp") rgba(80, 20, 18, 0.8);

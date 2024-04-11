@@ -164,12 +164,16 @@ export default class MagnaActor extends Actor {
       if (!forceFree) this.update({ ["system.mental.valeur"]: this.system.mental.valeur - 3 });
       return true;
     }
+    let lasttextsuccess = game.i18n.format("MAGNA.CHATMESSAGE.textdeployeraura", {nompouvoir: pouvoir.name});
+    const introText = game.i18n.format("MAGNA.CHATMESSAGE.introDeployerAura", {actingCharName:this.name});
     let data = {
       group1: "caracteristiques",
       typecomp1: false,
       field1: "psi",
       group2: "caracteristiques",
       field2: "psi",
+      introText: introText,
+      lasttextsuccess: lasttextsuccess
     };
     let sc = await this.rollAction(data);
     if (sc._total - sc.data.seuilReussite < 1) {
@@ -234,6 +238,8 @@ export default class MagnaActor extends Actor {
     if (!arme) return;
     const armeName = arme.name;
     const degats = await this.degatsmodifies(itemId);
+    let lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textdegats", {degats: degats});
+    let introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", {actingCharName: this.name, armeName: armeName});
     let data = {
       group1: "combat",
       typecomp1: false,
@@ -243,7 +249,8 @@ export default class MagnaActor extends Actor {
       askDialog: true,
       armeId: itemId,
       armeName: armeName,
-      degats: degats,
+      introText: introText,
+      lasttext: lasttext,
     };
     return this.rollAction(data);
   }

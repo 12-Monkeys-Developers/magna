@@ -12,6 +12,7 @@
   "MAGNA": {
     "CHATMESSAGE": {
       "introActionStd": "{actingCharName} agit.",
+      "introDeployerAura": "{actingCharName} tente de déployer une aura.",
       "introMental": "{actingCharName} utilise son Mental.",
       "introPouvoir": "{actingCharName} utilise {pouvName}.",
       "introArmeStd": "{actingCharName} utilise {armeName}.",
@@ -20,7 +21,9 @@
       "justereussite": "La réussite est limitée.",
       "justerate": "Le test est raté de justesse, ou effet positif avec complications.",
       "rate": "Le test est raté.",
-      "completementrate": "Le test est complètement raté, effets contraires aux attendus."
+      "completementrate": "Le test est complètement raté, effets contraires aux attendus.",
+      "textdegats": "Dégâts de l'arme : {degats}",
+      "textdeployeraura": "L'aura du pouvoir {nompouvoir} se déploie."
     },
     "CARACTERISTIQUE": {
       "vig": {

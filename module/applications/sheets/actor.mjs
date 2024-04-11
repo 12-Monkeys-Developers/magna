@@ -105,6 +105,7 @@ export default class MagnaActorSheet extends ActorSheet {
           return li.data("group") === "mental";
         },
         callback: async (li) => {
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", {actingCharName: this.actor.name});
           let data = {
             group1: "mental",
             typecomp1: false,
@@ -112,6 +113,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "mental",
             field2: "mental",
             askDialog: false,
+            introText: introText
           };
           return this.actor.rollAction(data);
         },
@@ -125,6 +127,7 @@ export default class MagnaActorSheet extends ActorSheet {
         callback: async (li) => {
           const compname = li.data("compname");
           const group = li.data("group");
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", {actingCharName: this.actor.name});
           let data = {
             group1: group,
             typecomp1: false,
@@ -132,6 +135,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "caracteristiques",
             field2: "hab",
             askDialog: false,
+            introText: introText
           };
           if (group === "competences") {
             data.field2 = SYSTEM.COMPETENCES[compname].defaultCarac;
@@ -154,6 +158,7 @@ export default class MagnaActorSheet extends ActorSheet {
         callback: async (li) => {
           const compname = li.data("compname");
           const group = li.data("group");
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", {actingCharName: this.actor.name});
           let data = {
             group1: group,
             typecomp1: false,
@@ -161,6 +166,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "caracteristiques",
             field2: "hab",
             askDialog: true,
+            introText: introText
           };
           if (group === "competences") {
             data.field2 = SYSTEM.COMPETENCES[compname].defaultCarac;
@@ -221,6 +227,9 @@ export default class MagnaActorSheet extends ActorSheet {
         },
         callback: (li) => {
           const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", {pouvName: item.name, actingCharName: this.actor.name});
           let data = {
             group1: "pouvoir",
             typecomp1: false,
@@ -228,6 +237,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "indices",
             field2: "distpsi",
             askDialog: true,
+            introText: introText
           };
           return this.actor.rollAction(data);
         },

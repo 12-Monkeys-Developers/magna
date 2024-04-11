@@ -3,6 +3,7 @@
   font-family: "pillgothic";
   text-align: justify;
   font-size: 16px;
+  padding: 5px 5px 20px 5px;
   h1 {
     font-family: "codepro";
     font-weight: bold;
@@ -31,5 +32,38 @@
     padding-top: 10px;
     text-transform: uppercase;
     border: 0px;
+  }
+  p {
+    text-indent: 1em;
+  }
+  .no-indent {
+    text-indent: 0px;
+  }
+  .far {
+    text-indent: 0em;
+  }
+  .fad {
+    text-indent: 0em;
+  }
+  .fas {
+    text-indent: 0em;
+  }
+  ul {
+    list-style-type: square;
+  }
+  li::marker {
+    color: #97141c;
+  }
+  th {
+    background-color: #97141c;
+    color:white;
+    text-align: center;
+    border: 1px solid black;
+  }
+  tr:nth-child(even) {
+    background-color: #faf3f0;
+  }
+  tr:nth-child(odd) {
+    background-color: #f4e6e2;
   }
 }
