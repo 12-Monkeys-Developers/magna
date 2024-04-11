@@ -11,28 +11,30 @@
     </div>
   </div>
     <div class="dice-result">
-      <p class="dice-result">
-          Jet de 
-      <span class="formulatooltip">{{data.label1}}
-        <span class="tooltiptext">{{{data.valeur1}}}</span></span>
-       {{#if data.part2}} + <span class="formulatooltip">{{data.label2}}<span class="tooltiptext">{{{data.valeur2}}}</span></span>{{/if}}
-      </p>
-      {{#if data.modificateur}}
-      <p class="dice-result">
-        Modificateur : {{data.modificateur}}
-      </p>
+      {{#if data.doRoll}}
+        <p class="dice-result">
+            Jet de 
+        <span class="formulatooltip">{{data.label1}}
+          <span class="tooltiptext">{{{data.valeur1}}}</span></span>
+        {{#if data.part2}} + <span class="formulatooltip">{{data.label2}}<span class="tooltiptext">{{{data.valeur2}}}</span></span>{{/if}}
+        </p>
+        {{#if data.modificateur}}
+        <p class="dice-result">
+          Modificateur : {{data.modificateur}}
+        </p>
+        {{/if}}
+        {{#if data.opposition}}
+        <p class="dice-result">
+          Oposition : {{data.opposition}}
+        </p>
+        {{/if}}
+        <p class="dice-result">
+          SR : {{data.seuilReussite}}
+        </p>
+        <img src="systems/magna/assets/system/griffes.webp",/>
+          <div class="diceicon">{{rolleddice}}</div>
+        <p>Marge du résultat : {{{data.result}}}</p>
       {{/if}}
-      {{#if data.opposition}}
-      <p class="dice-result">
-        Oposition : {{data.opposition}}
-      </p>
-      {{/if}}
-      <p class="dice-result">
-        SR : {{data.seuilReussite}}
-      </p>
-      <img src="systems/magna/assets/system/griffes.webp",/>
-        <div class="diceicon">{{rolleddice}}</div>
-      <p>Marge du résultat : {{{data.result}}}</p>
       <p class="finalText">{{{data.finalText}}}</p>
       {{#if data.lasttext}}
       <p class="finalText">{{data.lasttext}}</p>

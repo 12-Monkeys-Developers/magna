@@ -130,6 +130,7 @@ export default class MagnaActor extends Actor {
     // Prepare check data
     compData.actorId = this.id;
     compData.actorData = this.system;
+    compData.doRoll = true;
 
     // Create the check roll
     let sc = new StandardCheck(compData);
@@ -162,10 +163,13 @@ export default class MagnaActor extends Actor {
     if (force) {
       pouvoir.update({ ["system.auraDeployee"]: true });
       if (!forceFree) this.update({ ["system.mental.valeur"]: this.system.mental.valeur - 3 });
-      return true;
+      const introText = game.i18n.format("MAGNA.CHATMESSAGE.introForcerAura", { actingCharName: this.name });
+      const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textForceraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
+  
+      return await this.chatMessage(introText, finalText);
     }
-    let lasttextsuccess = game.i18n.format("MAGNA.CHATMESSAGE.textdeployeraura", {nompouvoir: pouvoir.name});
-    const introText = game.i18n.format("MAGNA.CHATMESSAGE.introDeployerAura", {actingCharName:this.name});
+    let lasttextsuccess = game.i18n.format("MAGNA.CHATMESSAGE.textdeployeraura", { nompouvoir: pouvoir.name });
+    const introText = game.i18n.format("MAGNA.CHATMESSAGE.introDeployerAura", { actingCharName: this.name });
     let data = {
       group1: "caracteristiques",
       typecomp1: false,
@@ -173,7 +177,7 @@ export default class MagnaActor extends Actor {
       group2: "caracteristiques",
       field2: "psi",
       introText: introText,
-      lasttextsuccess: lasttextsuccess
+      lasttextsuccess: lasttextsuccess,
     };
     let sc = await this.rollAction(data);
     if (sc._total - sc.data.seuilReussite < 1) {
@@ -185,14 +189,17 @@ export default class MagnaActor extends Actor {
   /**
    * Rétracter
    * @param {string} id - L'id du pouvoir
-   * @returns {Promise<StandardCheck>} - A promise that resolves to the rolled check.
    */
   async retracterAura(itemId) {
     let pouvoir = this.items.get(itemId);
     if (!pouvoir) return;
     pouvoir.update({ ["system.auraDeployee"]: false });
-    return true;
+    const introText = game.i18n.format("MAGNA.CHATMESSAGE.introRetracterAura", { actingCharName: this.name });
+    const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
+
+    return await this.chatMessage(introText, finalText);
   }
+
   async rollInit(options = {}) {
     // Produce an initiative roll for the Combatant
     const roll = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
@@ -238,8 +245,8 @@ export default class MagnaActor extends Actor {
     if (!arme) return;
     const armeName = arme.name;
     const degats = await this.degatsmodifies(itemId);
-    let lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textdegats", {degats: degats});
-    let introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", {actingCharName: this.name, armeName: armeName});
+    let lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textdegats", { degats: degats });
+    let introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", { actingCharName: this.name, armeName: armeName });
     let data = {
       group1: "combat",
       typecomp1: false,
@@ -322,7 +329,7 @@ export default class MagnaActor extends Actor {
     async function pexvalue(value) {
       return Math.min(3, value) + Math.min(3, Math.max(value - 3, 0)) * 2 + Math.min(1, Math.max(value - 6, 0)) * 3 + Math.min(1, Math.max(value - 7, 0)) * 4;
     }
-    let pexTotal =0;
+    let pexTotal = 0;
     //let pexTotal = -690;
 
     //caracteristiques
@@ -347,5 +354,33 @@ export default class MagnaActor extends Actor {
     pexTotal += this.items.filter((item) => item.type == "pouvoir").length * 10;
 
     return pexTotal;
+  }
+
+  async chatMessage(introText, finalText) {
+    const data = {
+      data: {
+        actorId: this.id,
+        actingCharImg: this.img,
+        actingCharName: this.name,
+        doRoll: false,
+        finalText: finalText,
+        introText: introText,
+      },
+    };
+    // Create the chat content
+    let content = await renderTemplate("systems/magna/templates/dice/standard-check-roll.hbs", data);
+
+    // Create the chat data
+    const chatData = duplicate(data);
+    chatData.user = game.user.id;
+    chatData.content = content;
+    
+    /* -------------------------------------------- */
+    // Visibilité des jet des PNJs
+    if (this.type === "pnj" && game.user.isGM) {
+      chatData.whisper = ChatMessage.getWhisperRecipients("GM").map((u) => u.id);
+    }
+
+    return await ChatMessage.create(chatData);
   }
 }

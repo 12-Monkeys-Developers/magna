@@ -16,14 +16,18 @@
       "introMental": "{actingCharName} utilise son Mental.",
       "introPouvoir": "{actingCharName} utilise {pouvName}.",
       "introArmeStd": "{actingCharName} utilise {armeName}.",
+      "introRetracterAura": "{actingCharName} rétracte une aura.",
+      "introForcerAura": "{actingCharName} déploie une aura.",
+      "textForceraura": "{actingCharName} force le déploiement de l’aura du pouvoir : {nompouvoir}.",
+      "textRetracteraura": "{actingCharName} rétracte l’aura du pouvoir : {nompouvoir}.",
       "largereussite": "Le test est largement réussi.",
       "reussite": "Le test est réussi.",
       "justereussite": "La réussite est limitée.",
       "justerate": "Le test est raté de justesse, ou effet positif avec complications.",
       "rate": "Le test est raté.",
       "completementrate": "Le test est complètement raté, effets contraires aux attendus.",
-      "textdegats": "Dégâts de l'arme : {degats}",
-      "textdeployeraura": "L'aura du pouvoir {nompouvoir} se déploie."
+      "textdegats": "Dégâts de l’arme : {degats}",
+      "textdeployeraura": "L’aura du pouvoir {nompouvoir} se déploie."
     },
     "CARACTERISTIQUE": {
       "vig": {
@@ -73,7 +77,7 @@
       }
     },
     "COMBAT": {
-      "initiative": "{name} lance l'initiative !<br />Rang d'action : {rangaction}"
+      "initiative": "{name} lance l’initiative !<br />Rang d’action : {rangaction}"
     },
     "INDICE": {
       "cac": {

@@ -36,6 +36,7 @@ export default class StandardCheck extends Roll {
     lasttext:0,
     lasttextsuccess:0,
     diceformula: "1d20",
+    doRoll: true,
     introText: "",
     finalText: "",
     group1: "caracteristiques",
@@ -203,6 +204,7 @@ export default class StandardCheck extends Roll {
     }
     return super.toMessage(messageData, options);
   }
+
   /** @override */
   async evaluate({ minimize = false, maximize = false, async = true } = {}) {
     await super.evaluate({ minimize, maximize, async });
