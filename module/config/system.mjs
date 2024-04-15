@@ -262,21 +262,57 @@ export const COMPETENCES_SPE = Object.freeze({
 });
 
 export const DOMAINES = Object.freeze({
-    "vie" : {
-        id: "vie",
-      "label" : "La Vie"
+    "amplification" :{
+        id: "amplification",
+      "label" : "L’Amplification"
     },
-    "lumiere" : {
-        id: "lumiere",
-      "label" : "La Lumière"
+    "celerite" :{
+        id: "celerite",
+      "label" : "La Célérité"
+    },
+    "comunication" :{
+        id: "comunication",
+      "label" : "La Communication"
+    },
+    "connaissance" :{
+        id: "connaissance",
+      "label" : "La Connaissance"
+    },
+    "destin" :{
+     id: "destin",
+       "label" : "Le Destin"
+     },
+    "elements" :{
+        id: "elements",
+      "label" : "Les Éléments"
     },
     "force" :{
         id: "force",
       "label" : "La Force"
     },
-    "elements" :{
-        id: "elements",
-      "label" : "Les Éléments"
+    "gravite" :{
+        id: "gravite",
+      "label" : "La Gravité"
+    },
+    "infections" :{
+        id: "infections",
+      "label" : "Les Infections"
+    },
+    "invisible" :{
+        id: "invisible",
+      "label" : "L’Invisible"
+    },
+    "langage" :{
+        id: "langage",
+      "label" : "Le Langage"
+    },
+    "lumiere" : {
+        id: "lumiere",
+      "label" : "La Lumière"
+    },
+    "magnetisme" :{
+        id: "magnetisme",
+      "label" : "Le Magnétisme"
     },
     "matiere" :{
         id: "matiere",
@@ -286,82 +322,6 @@ export const DOMAINES = Object.freeze({
         id: "memoire",
       "label" : "La Mémoire"
     },
-    "precognition" :{
-        id: "precognition",
-      "label" : "La Précognition"
-    },
-    "amplification" :{
-        id: "amplification",
-      "label" : "L’Amplification"
-    },
-    "magnetisme" :{
-        id: "magnetisme",
-      "label" : "Le Magnétisme"
-    },
-    "temps" :{
-        id: "temps",
-      "label" : "Le Temps"
-    },
-    "technologies" :{
-        id: "technologies",
-      "label" : "Les Technologies"
-    },
-    "technologies" :{
-        id: "technologies",
-      "label" : "Les Sens"
-    },
-    "connaissance" :{
-        id: "connaissance",
-      "label" : "La Connaissance"
-    },
-    "transformation" :{
-        id: "transformation",
-      "label" : "La Transformation"
-    },
-    "vide" :{
-        id: "vide",
-      "label" : "Le Vide"
-    },
-    "langage" :{
-        id: "langage",
-      "label" : "Le Langage"
-    },
-    "invisible" :{
-        id: "invisible",
-      "label" : "L’Invisible"
-    },
-    "sceaux" :{
-        id: "sceaux",
-      "label" : "Les Sceaux"
-    },
-   "destin" :{
-    id: "destin",
-      "label" : "Le Destin"
-    },
-    "infections" :{
-        id: "infections",
-      "label" : "Les Infections"
-    },
-    "ubiquite" :{
-        id: "ubiquite",
-      "label" : "L’Ubiquité"
-    },
-    "comunication" :{
-        id: "comunication",
-      "label" : "Communication"
-    },
-    "celerite" :{
-        id: "celerite",
-      "label" : "La Célérité"
-    },
-    "gravite" :{
-        id: "gravite",
-      "label" : "La Gravité"
-    },
-    "ombre" :{
-        id: "ombre",
-      "label" : "L’Ombre "
-    },
     "mimetisme" :{
         id: "mimetisme",
       "label" : "Le Mimétisme"
@@ -369,6 +329,46 @@ export const DOMAINES = Object.freeze({
     "mort" :{
         id: "mort",
       "label" : "La Mort "
+    },
+    "ombre" :{
+        id: "ombre",
+      "label" : "L’Ombre "
+    },
+    "precognition" :{
+        id: "precognition",
+      "label" : "La Précognition"
+    },
+    "sceaux" :{
+        id: "sceaux",
+      "label" : "Les Sceaux"
+    },
+    "sens" :{
+        id: "sens",
+      "label" : "Les Sens"
+    },
+    "technologies" :{
+        id: "technologies",
+      "label" : "Les Technologies"
+    },
+    "temps" :{
+        id: "temps",
+      "label" : "Le Temps"
+    },
+    "transformation" :{
+        id: "transformation",
+      "label" : "La Transformation"
+    },
+    "ubiquite" :{
+        id: "ubiquite",
+      "label" : "L’Ubiquité"
+    },
+    "vide" :{
+        id: "vide",
+      "label" : "Le Vide"
+    },
+    "vie" : {
+        id: "vie",
+      "label" : "La Vie"
     },
     "vivant" :{
         id: "vivant",
