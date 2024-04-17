@@ -32,13 +32,16 @@ export default class StandardCheck extends Roll {
     actingCharImg: null,
     actingCharName: null,
     armeId: null,
-    armeName:"",
-    lasttext:0,
-    lasttextsuccess:0,
+    armeName: "",
     diceformula: "1d20",
     doRoll: true,
     introText: "",
     finalText: "",
+    lasttextsuccess: "",
+    lasttext: "",
+    lasttext_degatsdoubles: "",
+    lasttext_degatstriples: "",
+    showlasttext: false,
     group1: "caracteristiques",
     field1: "hab",
     valeur1: 0,
@@ -90,7 +93,7 @@ export default class StandardCheck extends Roll {
    */
   static async #configureData(data) {
     const actingChar = game.actors.get(data.actorId);
-    
+
     if (data.group1 === "mental") {
       data.valeur1 = actingChar.system.mental.valeur;
       data.valeur2 = 0;
@@ -124,7 +127,7 @@ export default class StandardCheck extends Roll {
     }
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
-    if (!data.introText){
+    if (!data.introText) {
       data.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", data);
     }
   }
@@ -215,7 +218,14 @@ export default class StandardCheck extends Roll {
     else if (this._total - this.data.seuilReussite < 10) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.rate");
     else this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.completementrate");
     this.data.result = this._total - this.data.seuilReussite;
-    if(this.data.lasttextsuccess && (this.data.result <1)) {this.data.lasttext = this.data.lasttextsuccess}
+    if (this.data.lasttextsuccess && this.data.result < 1) {
+      this.data.showlasttext = true;
+      this.data.lasttext = this.data.lasttextsuccess;
+    }
+
+    if (this.data.armeId && (this.data.seuilReussite > 19)) this.data.lasttext = this.data.lasttext_degatstriples;
+    else if (this.data.armeId && this._total - this.data.seuilReussite < -9 && this.data.seuilReussite > 0) this.data.lasttext = this.data.lasttext_degatsdoubles;
+    console.log(this.data);
     return this;
   }
 }

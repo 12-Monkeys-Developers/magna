@@ -25,6 +25,7 @@
     <h2>Indices</h2>
     <div class="grid_indices">
     {{#each indices as |indice id|}}
+    {{#if indice.showIndice}}
       <div class="bloc_caracteristique {{id}} std-contextmenu" data-group="indices" data-compname="{{id}}">
         <div class="nom_caracteristique" title="{{localize indice.label}}">
           {{localize indice.label_short}}
@@ -33,6 +34,9 @@
           {{indice.valeur}}
         </div>
       </div>
+      {{else}}
+      <div></div>
+      {{/if}}
     {{/each}}
     </div>
     <div class="grid_combat">
@@ -77,7 +81,7 @@
   </div>
 </div>
 <div class="zone_compcombat">
-  <h2>Compétences de combat</h2>
+  <img style="width: 400px; margin-left: 140px;" src="systems/magna/assets/system/griffes_long.webp",/>
   <div class="grid_comp">
   {{#each system.combat as |competence id|}}
     <div class="bloc_comp std-contextmenu" data-group="combat" data-compname="{{id}}">
@@ -96,7 +100,7 @@
   </div>
 </div>
 <div class="zone_compcombat">  
-  <h2>Compétences spécialisées</h2>
+  <img style="width: 400px; margin-left: 140px;" src="systems/magna/assets/system/griffes_long.webp",/>
   <div class="grid_spe">
     <div class="bloc_vertical">
       <div class="titre_compspe">Langues</div>

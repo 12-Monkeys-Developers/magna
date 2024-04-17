@@ -19,6 +19,7 @@ export default class MagnaActorSheet extends ActorSheet {
     context.editable = true;
     context.actor = this.document;
     context.system = this.document.system;
+    const showIndicePsi = (this.document.system.caracteristiques.psi.max !== 0);
 
     context.descriptionHTML = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
     context.equipementHTML = await TextEditor.enrichHTML(this.actor.system.equipement, { async: false });
@@ -31,31 +32,37 @@ export default class MagnaActorSheet extends ActorSheet {
         valeur: this.actor.cac,
         label_short: "MAGNA.INDICE.cac.label_short",
         label: "MAGNA.INDICE.cac.label",
+        showIndice: true,
       },
       cacpsi: {
         valeur: this.actor.cacpsi,
         label_short: "MAGNA.INDICE.cacpsi.label_short",
         label: "MAGNA.INDICE.cacpsi.label",
+        showIndice: showIndicePsi,
       },
       dist: {
         valeur: this.actor.dist,
         label_short: "MAGNA.INDICE.dist.label_short",
         label: "MAGNA.INDICE.dist.label",
+        showIndice: true,
       },
       distpsi: {
         valeur: this.actor.distpsi,
         label_short: "MAGNA.INDICE.distpsi.label_short",
         label: "MAGNA.INDICE.distpsi.label",
+        showIndice: showIndicePsi,
       },
       ref: {
         valeur: this.actor.ref,
         label_short: "MAGNA.INDICE.ref.label_short",
         label: "MAGNA.INDICE.ref.label",
+        showIndice: true,
       },
       refpsi: {
         valeur: this.actor.refpsi,
         label_short: "MAGNA.INDICE.refpsi.label_short",
         label: "MAGNA.INDICE.refpsi.label",
+        showIndice: showIndicePsi,
       },
     };
     context.vitalite_max = this.actor.vitalite_max;
@@ -105,7 +112,7 @@ export default class MagnaActorSheet extends ActorSheet {
           return li.data("group") === "mental";
         },
         callback: async (li) => {
-          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", {actingCharName: this.actor.name});
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", { actingCharName: this.actor.name });
           let data = {
             group1: "mental",
             typecomp1: false,
@@ -113,7 +120,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "mental",
             field2: "mental",
             askDialog: false,
-            introText: introText
+            introText: introText,
           };
           return this.actor.rollAction(data);
         },
@@ -127,7 +134,7 @@ export default class MagnaActorSheet extends ActorSheet {
         callback: async (li) => {
           const compname = li.data("compname");
           const group = li.data("group");
-          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", {actingCharName: this.actor.name});
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", { actingCharName: this.actor.name });
           let data = {
             group1: group,
             typecomp1: false,
@@ -135,7 +142,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "caracteristiques",
             field2: "hab",
             askDialog: false,
-            introText: introText
+            introText: introText,
           };
           if (group === "competences") {
             data.field2 = SYSTEM.COMPETENCES[compname].defaultCarac;
@@ -158,7 +165,7 @@ export default class MagnaActorSheet extends ActorSheet {
         callback: async (li) => {
           const compname = li.data("compname");
           const group = li.data("group");
-          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", {actingCharName: this.actor.name});
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", { actingCharName: this.actor.name });
           let data = {
             group1: group,
             typecomp1: false,
@@ -166,7 +173,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "caracteristiques",
             field2: "hab",
             askDialog: true,
-            introText: introText
+            introText: introText,
           };
           if (group === "competences") {
             data.field2 = SYSTEM.COMPETENCES[compname].defaultCarac;
@@ -203,8 +210,7 @@ export default class MagnaActorSheet extends ActorSheet {
           if (group === "caracteristiques") {
             const compname = li.data("compname");
             return this.actor.setCaracToMax(compname);
-          }
-          else return this.actor.setToMax(group);
+          } else return this.actor.setToMax(group);
         },
       },
     ];
@@ -229,7 +235,7 @@ export default class MagnaActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", {pouvName: item.name, actingCharName: this.actor.name});
+          const introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", { pouvName: item.name, actingCharName: this.actor.name });
           let data = {
             group1: "pouvoir",
             typecomp1: false,
@@ -237,7 +243,7 @@ export default class MagnaActorSheet extends ActorSheet {
             group2: "indices",
             field2: "distpsi",
             askDialog: true,
-            introText: introText
+            introText: introText,
           };
           return this.actor.rollAction(data);
         },
@@ -336,7 +342,7 @@ export default class MagnaActorSheet extends ActorSheet {
           return this.actor.sheet.render(true);
         },
       },
-    ]
+    ];
   }
   /** @override */
   activateListeners(html) {
@@ -358,7 +364,7 @@ export default class MagnaActorSheet extends ActorSheet {
   _contextMenu(html) {
     ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
     ContextMenu.create(this, html, ".std-contextmenu", this._getStdContextOptions());
-    if(game.settings.get("magna", "calculPex") && this.actor.isUnlocked) ContextMenu.create(this, html, ".pex-contextmenu", this._getPexContextOptions());
+    if (game.settings.get("magna", "calculPex") && this.actor.isUnlocked) ContextMenu.create(this, html, ".pex-contextmenu", this._getPexContextOptions());
   }
 
   /**
@@ -417,18 +423,17 @@ export default class MagnaActorSheet extends ActorSheet {
     let compType = element.dataset.type;
     this.actor.supprimerCompSpe(compType, compIndex);
   }
-  
 
   async askBasePex() {
-    const coutactuel=await this.actor.pextotal();
-    const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`, {coutactuel:coutactuel});
+    const coutactuel = await this.actor.pextotal();
+    const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`, { coutactuel: coutactuel });
     let x = new Dialog({
       content: dialog_content,
       buttons: {
         Ok: { label: `Ok`, callback: async (html) => await this.setBasePex(html.find("[name=pexbase]")[0].value) },
-        Cancel: { label: `Cancel` }
+        Cancel: { label: `Cancel` },
       },
-      default: "Ok"
+      default: "Ok",
     });
 
     x.options.width = 400;
@@ -438,7 +443,7 @@ export default class MagnaActorSheet extends ActorSheet {
   }
 
   async setBasePex(creationValue) {
-    const creationNumber=parseInt(creationValue);
+    const creationNumber = parseInt(creationValue);
     //const pexTotal = await this.actor.pextotal();
     await this.actor.update({ [`system.pex.creation`]: creationNumber });
     return this.actor.sheet.render(true);

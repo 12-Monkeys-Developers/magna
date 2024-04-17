@@ -24,6 +24,8 @@ export default class PouvoirSheet extends MagnaItemSheet {
 
     context.domaines = SYSTEM.DOMAINES;
     context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
+    context.aff_domaines = game.user.isGM || game.settings.get("magna", "aff_domaines");
+    
     return context;
   }
 }

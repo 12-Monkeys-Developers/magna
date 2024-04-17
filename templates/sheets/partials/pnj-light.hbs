@@ -23,6 +23,7 @@
   <div class="zone_indices">
     <div class="grid_indices">
     {{#each indices as |indice id|}}
+    {{#if indice.showIndice}}
       <div class="bloc_caracteristique {{id}} std-contextmenu" data-group="indices" data-compname="{{id}}">
         <div class="nom_caracteristique" title="{{localize indice.label}}">
           {{localize indice.label_short}}
@@ -31,6 +32,9 @@
           {{indice.valeur}}
         </div>
       </div>
+      {{else}}
+      <div></div>
+      {{/if}}
     {{/each}}
     </div>
     <div class="grid_combat">

@@ -7,30 +7,40 @@ export default function initControlButtons() {
   Hooks.on("getSceneControlButtons", (btns) => {
     let menu = [];
 
-    menu.push(
-      {
-        name: "presentation",
-        title: "Présentation du système",
-        icon: "fas fa-question",
-        button: true,
-        onClick: () => {
-          new PresentationForm().render(true);
-        },
-      }
-    );
-    // ******  CODE FOR SEARCH 
+    menu.push();
     if (game.user.isGM) {
-      menu.push({
-        name: "search",
-        title: "Recherche",
-        icon: "fas fa-magnifying-glass",
-        button: true,
-        onClick: async () => {
-          let searchDialog = await new SearchDialog().render(true);
+      menu.push(
+        {
+          name: "presentation",
+          title: "Présentation du système",
+          icon: "fas fa-question",
+          button: true,
+          onClick: () => {
+            new PresentationForm().render(true);
+          },
         },
-      });
+        {
+          name: "aides",
+          title: "Règles",
+          icon: "fas fa-book-reader",
+          button: true,
+          onClick: () => {
+            let journal = game.journal.get("dXJJuGB0cr1kzOgT");
+            if (journal) journal.sheet.render(true, { pageId: "LpNxJ7anNICSRT8U", sheetMode: "text" });
+          },
+        },
+        {
+          name: "search",
+          title: "Recherche",
+          icon: "fas fa-magnifying-glass",
+          button: true,
+          onClick: async () => {
+            let searchDialog = await new SearchDialog().render(true);
+          },
+        }
+      );
     }
-    // ******  END OF CODE FOR SEARCH 
+    // ******  END OF CODE FOR SEARCH
     btns.push({
       name: "magna_menu",
       title: "Magna",

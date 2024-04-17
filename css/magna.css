@@ -274,11 +274,11 @@
 .magna.sheet.actor h2 {
   font-family: "codepro";
   font-weight: bold;
-  font-size: 22px;
+  font-size: 18px;
   background: black;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 5px 10px;
   text-transform: uppercase;
   border: 0px;
 }
@@ -525,6 +525,9 @@
   grid-template-columns: 170px 170px 170px 170px;
   grid-auto-rows: 25px;
 }
+.magna.sheet.actor .zone_compcombat img {
+  border: 0px;
+}
 .magna.sheet.actor .grid_spe {
   display: grid;
   align-items: center;
@@ -558,6 +561,9 @@
   font-weight: bold;
   font-size: 16px;
   color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .magna.sheet.actor .bloc_comp .nom_comp input {
   font-size: 15px;
@@ -606,6 +612,9 @@
   align-self: center;
   font-size: 16px;
   color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .magna.sheet.actor .bloc_arme .val_comp {
   color: #31191f;
@@ -623,6 +632,7 @@
 }
 .magna.sheet.actor .bloc-voie {
   background: no-repeat url("../assets/system/fond_pouv.webp");
+  border: solid 3px #316967;
 }
 .magna.sheet.actor .bloc-voie .titre_voie {
   font-family: "codepro";
@@ -675,6 +685,7 @@
 .magna.sheet.actor .description-bloc {
   background: repeat url("../assets/system/fond_pouv.webp");
   padding: 5px;
+  border: solid 3px #316967;
 }
 .magna.sheet.actor .description-bloc .editor {
   width: 100%;
@@ -718,6 +729,7 @@
   font-family: "codepro";
   font-weight: bold;
   border: 0px;
+  width: 20em;
 }
 .pouvoir-sheet .pouvoir-content {
   display: grid;

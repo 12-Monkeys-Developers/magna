@@ -6,12 +6,14 @@
       <input name="name" type="text" value="{{item.name}}" />
     </div>
     <div class="pouvoir-content">
+      {{#if aff_domaines}}
       <div class="domaine-name">Domaine</div>
       <div class="domaine-val">
         <select name="system.domaine">
           {{selectOptions domaines selected=system.domaine labelAttr="label"}}
         </select>
       </div>
+      {{/if}}
       <div class="field-name">Voie</div>
       <input name="system.voie" class="input-large"  type="text" value="{{item.system.voie}}" />
       <div class="field-name">Résumé</div>

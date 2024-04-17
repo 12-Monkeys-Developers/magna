@@ -246,6 +246,9 @@ export default class MagnaActor extends Actor {
     const armeName = arme.name;
     const degats = await this.degatsmodifies(itemId);
     let lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textdegats", { degats: degats });
+    let lasttext_degatsdoubles = game.i18n.format("MAGNA.CHATMESSAGE.textdegats_doubles", { degats: degats*2 });
+    let lasttext_degatstriples = game.i18n.format("MAGNA.CHATMESSAGE.textdegats_triples", { degats: degats*3 });
+
     let introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", { actingCharName: this.name, armeName: armeName });
     let data = {
       group1: "combat",
@@ -257,7 +260,9 @@ export default class MagnaActor extends Actor {
       armeId: itemId,
       armeName: armeName,
       introText: introText,
-      lasttext: lasttext,
+      lasttextsuccess: lasttext,
+      lasttext_degatsdoubles: lasttext_degatsdoubles,
+      lasttext_degatstriples: lasttext_degatstriples
     };
     return this.rollAction(data);
   }

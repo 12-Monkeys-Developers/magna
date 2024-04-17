@@ -76,6 +76,16 @@ Hooks.once("init", async function () {
     default: "false",
   });
 
+  game.settings.register("magna", "aff_domaines", {
+    name: "Affichage des domaines",
+    hint: "Permet aux joueurs de voir le domaine auquel est rattaché un pouvoir.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    requiresReload: false,
+    default: "false",
+  });
+
 });
 
 Hooks.once("ready", async function () {

@@ -27,6 +27,8 @@
       "rate": "Le test est raté.",
       "completementrate": "Le test est complètement raté, effets contraires aux attendus.",
       "textdegats": "Dégâts de l’arme : {degats}",
+      "textdegats_doubles": "Dégâts de l’arme (doublés) : {degats}",
+      "textdegats_triples": "Dégâts de l’arme (triplés) : {degats}",
       "textdeployeraura": "L’aura du pouvoir {nompouvoir} se déploie."
     },
     "CARACTERISTIQUE": {
