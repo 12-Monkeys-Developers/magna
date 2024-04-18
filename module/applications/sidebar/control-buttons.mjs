@@ -43,7 +43,7 @@ export default function initControlButtons() {
     // ******  END OF CODE FOR SEARCH
     btns.push({
       name: "magna_menu",
-      title: "Magna",
+      title: "MAGNA",
       icon: "fab fa-wolf-pack-battalion",
       layer: "magna",
       tools: menu,

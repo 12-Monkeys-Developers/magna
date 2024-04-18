@@ -229,7 +229,7 @@ export default class MagnaActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return item.type === "pouvoir";
+          return item.type === "pouvoir" && item.system.auraDeployee;
         },
         callback: (li) => {
           const itemId = li.data("itemId");
@@ -288,7 +288,7 @@ export default class MagnaActorSheet extends ActorSheet {
         },
         callback: async (li) => {
           const itemId = li.data("itemId");
-          if (this.actor.retracterAura(itemId)) this.actor.sheet.render(true);
+          this.actor.retracterAura(itemId);
           return;
         },
       },
@@ -339,7 +339,7 @@ export default class MagnaActorSheet extends ActorSheet {
         },
         callback: async (li) => {
           await this.askBasePex();
-          return this.actor.sheet.render(true);
+          return;
         },
       },
     ];

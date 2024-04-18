@@ -165,8 +165,8 @@ export default class MagnaActor extends Actor {
       if (!forceFree) this.update({ ["system.mental.valeur"]: this.system.mental.valeur - 3 });
       const introText = game.i18n.format("MAGNA.CHATMESSAGE.introForcerAura", { actingCharName: this.name });
       const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textForceraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
-  
-      return await this.chatMessage(introText, finalText);
+
+      return await this.chatMessage(introText, finalText, false);
     }
     let lasttextsuccess = game.i18n.format("MAGNA.CHATMESSAGE.textdeployeraura", { nompouvoir: pouvoir.name });
     const introText = game.i18n.format("MAGNA.CHATMESSAGE.introDeployerAura", { actingCharName: this.name });
@@ -185,7 +185,6 @@ export default class MagnaActor extends Actor {
       return true;
     } else return false;
   }
-
   /**
    * Rétracter
    * @param {string} id - L'id du pouvoir
@@ -193,11 +192,51 @@ export default class MagnaActor extends Actor {
   async retracterAura(itemId) {
     let pouvoir = this.items.get(itemId);
     if (!pouvoir) return;
-    pouvoir.update({ ["system.auraDeployee"]: false });
-    const introText = game.i18n.format("MAGNA.CHATMESSAGE.introRetracterAura", { actingCharName: this.name });
-    const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
 
-    return await this.chatMessage(introText, finalText);
+    const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/contrecoup-dialog.hbs`, { contrecoups: SYSTEM.CONTRECOUPS });
+    let dialog = new Dialog({
+      title: "Contrecoup",
+      content: dialog_content,
+      buttons: {
+        confirm: {
+					icon: '<i class="fas fa-face-head-bandage"></i>',
+          label: `Ok`,
+          callback: async (html) => {
+            const valDuree = html.find("[name=contrecoup]")[0].value;
+            const pouvoirs = this.items.filter((item) => item.type == "pouvoir");
+            let degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv3;
+            if (pouvoirs.length < 6) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv1;
+            else if (pouvoirs.length < 11) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv2;
+
+            const introText = game.i18n.format("MAGNA.CHATMESSAGE.introRetracterAura", { actingCharName: this.name });
+            const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
+
+            let data = {
+              group1: "mental",
+              typecomp1: false,
+              field1: "mental",
+              group2: "mental",
+              field2: "mental",
+              askDialog: false,
+              introText: introText,
+              finalText: finalText,
+              degatsMentaux: degatsMentaux,
+              retracte: itemId,
+              valDuree: SYSTEM.CONTRECOUPS[valDuree].label,
+            };
+            return this.rollAction(data);
+          },
+        },
+        cancel: {
+          label: `Pas de Contrecoup`,
+          callback: async (html) => {
+            pouvoir.update({ ["system.auraDeployee"]: false });
+          },
+        },
+      },
+      default: "confirm",
+    });
+    dialog.render(true);
   }
 
   async rollInit(options = {}) {
@@ -246,8 +285,8 @@ export default class MagnaActor extends Actor {
     const armeName = arme.name;
     const degats = await this.degatsmodifies(itemId);
     let lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textdegats", { degats: degats });
-    let lasttext_degatsdoubles = game.i18n.format("MAGNA.CHATMESSAGE.textdegats_doubles", { degats: degats*2 });
-    let lasttext_degatstriples = game.i18n.format("MAGNA.CHATMESSAGE.textdegats_triples", { degats: degats*3 });
+    let lasttext_degatsdoubles = game.i18n.format("MAGNA.CHATMESSAGE.textdegats_doubles", { degats: degats * 2 });
+    let lasttext_degatstriples = game.i18n.format("MAGNA.CHATMESSAGE.textdegats_triples", { degats: degats * 3 });
 
     let introText = game.i18n.format("MAGNA.CHATMESSAGE.introArmeStd", { actingCharName: this.name, armeName: armeName });
     let data = {
@@ -262,7 +301,7 @@ export default class MagnaActor extends Actor {
       introText: introText,
       lasttextsuccess: lasttext,
       lasttext_degatsdoubles: lasttext_degatsdoubles,
-      lasttext_degatstriples: lasttext_degatstriples
+      lasttext_degatstriples: lasttext_degatstriples,
     };
     return this.rollAction(data);
   }
@@ -361,7 +400,7 @@ export default class MagnaActor extends Actor {
     return pexTotal;
   }
 
-  async chatMessage(introText, finalText) {
+  async chatMessage(introText, finalText, retracte, flags) {
     const data = {
       data: {
         actorId: this.id,
@@ -370,6 +409,7 @@ export default class MagnaActor extends Actor {
         doRoll: false,
         finalText: finalText,
         introText: introText,
+        retracte: retracte,
       },
     };
     // Create the chat content
@@ -379,7 +419,8 @@ export default class MagnaActor extends Actor {
     const chatData = duplicate(data);
     chatData.user = game.user.id;
     chatData.content = content;
-    
+    chatData.flags = flags;
+
     /* -------------------------------------------- */
     // Visibilité des jet des PNJs
     if (this.type === "pnj" && game.user.isGM) {
@@ -388,4 +429,12 @@ export default class MagnaActor extends Actor {
 
     return await ChatMessage.create(chatData);
   }
+}
+
+/**
+ * Prompt the user to perform a search.
+ * @extends {Dialog}
+ */
+export class ContrecoupDialog extends Dialog {
+  /** @override */
 }

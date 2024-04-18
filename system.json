@@ -1,7 +1,7 @@
 {
     "id": "magna",
-    "title": "Magna",
-    "description": "Magna",
+    "title": "MAGNA",
+    "description": "Système pour le jeu MAGNA",
     "version": "#{VERSION}#",
     "compatibility": {
       "minimum": "11",

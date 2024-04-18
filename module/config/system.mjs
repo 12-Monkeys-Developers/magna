@@ -214,7 +214,7 @@ export const COMPETENCES_COMBAT = {
         id: "armeblanche",
         label: "MAGNA.COMPETENCE_COMBAT.armeblanche.label",
         defaultCarac:"hab",
-        defaultIndice:"dist"
+        defaultIndice:"cac"
     },
     armefeu : {
         id: "armefeu",
@@ -394,6 +394,65 @@ export const DIFFICULTES = Object.freeze({
     }
 });
 
+export const CONTRECOUPS = Object.freeze({
+    duree1 : {
+        id: "duree1",
+        label: "Quelques secondes",
+        couppouv1 : 1,
+        couppouv2 : 1,
+        couppouv3 : 0,
+    },
+    duree2 : {
+        id: "duree2",
+        label: "Environ 1 minute",
+        couppouv1 : 2,
+        couppouv2 : 1,
+        couppouv3 : 1,
+    },
+    duree3 : {
+        id: "duree3",
+        label: "Environ 3 minutes",
+        couppouv1 : 3,
+        couppouv2 : 2,
+        couppouv3 : 1,
+    },
+    duree4 : {
+        id: "duree4",
+        label: "Environ 5 minutes",
+        couppouv1 : 4,
+        couppouv2 : 3,
+        couppouv3 : 2,
+    },
+    duree5 : {
+        id: "duree5",
+        label: "Environ 10 minutes",
+        couppouv1 : 8,
+        couppouv2 : 6,
+        couppouv3 : 4,
+    },
+    duree6 : {
+        id: "duree6",
+        label: "Environ 15 minutes",
+        couppouv1 : 12,
+        couppouv2 : 9,
+        couppouv3 : 6,
+    },
+    duree7 : {
+        id: "duree7",
+        label: "Environ 20 minutes",
+        couppouv1 : 16,
+        couppouv2 : 12,
+        couppouv3 : 9,
+    },
+    duree8 : {
+        id: "duree8",
+        label: "Environ 25 minutes",
+        couppouv1 : 20,
+        couppouv2 : 15,
+        couppouv3 : 11,
+    }
+});
+
 /**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
@@ -406,5 +465,6 @@ export const SYSTEM = {
   COMPETENCES,
   COMPETENCES_COMBAT,
   COMPETENCES_SPE,
-  INDICES
+  INDICES,
+  CONTRECOUPS
 };

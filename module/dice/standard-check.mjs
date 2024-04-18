@@ -33,6 +33,7 @@ export default class StandardCheck extends Roll {
     actingCharName: null,
     armeId: null,
     armeName: "",
+    degatsMentaux: 0,
     diceformula: "1d20",
     doRoll: true,
     introText: "",
@@ -56,7 +57,9 @@ export default class StandardCheck extends Roll {
     seuilReussite: 0,
     reussite: false,
     result: 0,
+    retracte: false,
     rollMode: "publicroll",
+    valDuree: ""
   };
 
   /**
@@ -223,9 +226,18 @@ export default class StandardCheck extends Roll {
       this.data.lasttext = this.data.lasttextsuccess;
     }
 
-    if (this.data.armeId && (this.data.seuilReussite > 19)) this.data.lasttext = this.data.lasttext_degatstriples;
+    if (this.data.armeId && this.data.seuilReussite > 19) this.data.lasttext = this.data.lasttext_degatstriples;
     else if (this.data.armeId && this._total - this.data.seuilReussite < -9 && this.data.seuilReussite > 0) this.data.lasttext = this.data.lasttext_degatsdoubles;
-    console.log(this.data);
+
+    //cas retraction aura
+    if (this.data.retracte) {
+      let actor = game.actors.get(this.data.actorId);
+      let pouvoir = actor.items.get(this.data.retracte);
+      if (this.data.result < -9) await actor.update({ ["system.mental.valeur"]: Math.min((actor.system.mental.valeur + 1), actor.mental_max) });
+      else if (this.data.result > 9) await actor.update({ ["system.mental.valeur"]: actor.system.mental.valeur - this.data.degatsMentaux * 2 });
+      else if (this.data.result > 0) await actor.update({ ["system.mental.valeur"]: actor.system.mental.valeur - this.data.degatsMentaux });
+      pouvoir.update({ ["system.auraDeployee"]: false });
+    }
     return this;
   }
 }

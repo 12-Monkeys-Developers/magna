@@ -18,6 +18,7 @@
       "introArmeStd": "{actingCharName} utilise {armeName}.",
       "introRetracterAura": "{actingCharName} rétracte une aura.",
       "introForcerAura": "{actingCharName} déploie une aura.",
+      "introContrecoup": "{actingCharName} subit un contrecoup.",
       "textForceraura": "{actingCharName} force le déploiement de l’aura du pouvoir : {nompouvoir}.",
       "textRetracteraura": "{actingCharName} rétracte l’aura du pouvoir : {nompouvoir}.",
       "largereussite": "Le test est largement réussi.",
@@ -29,7 +30,13 @@
       "textdegats": "Dégâts de l’arme : {degats}",
       "textdegats_doubles": "Dégâts de l’arme (doublés) : {degats}",
       "textdegats_triples": "Dégâts de l’arme (triplés) : {degats}",
-      "textdeployeraura": "L’aura du pouvoir {nompouvoir} se déploie."
+      "textdeployeraura": "L’aura du pouvoir {nompouvoir} se déploie.",
+      "contrecoup": {
+        "reussite" : "{actingCharName} a une simple sensation de tournis.",
+        "largereussite" : "La douleur disparaît d’un coup, {actingCharName} récupère 1 point de Mental.",
+        "rate" : "Ressentant une vive douleur, {actingCharName} doit interrompre ses actions pendant un tour de jeu ({degatsMentaux} points de dégâts au Mental).",
+        "completementrate" : "{actingCharName} subit une douleur très forte et doit interrompre ses actions pendant deux tours de jeu ({degatsMentaux} points de dégâts au Mental)."
+      }
     },
     "CARACTERISTIQUE": {
       "vig": {

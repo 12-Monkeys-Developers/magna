@@ -39,5 +39,14 @@
       {{#if data.showlasttext}}
       <p class="finalText">{{{data.lasttext}}}</p>
       {{/if}}
+    {{#if data.retracte}}
+        <img src="systems/magna/assets/system/griffes.webp",/>
+      <div class="retracte">
+        
+      <p class="finalText"> Durée de l'aura : {{ data.valDuree }}</p> 
+      <p class="finalText"> {{ getContrecoupText data.actingCharName data.result data.degatsMentaux }}</p> 
+
+      </div>
+    {{/if}}
   </div>
 </div>

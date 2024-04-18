@@ -9,18 +9,18 @@
 
 </div>
 
-<p>This is a game system to run games based upon the "<em>magna</em>" RPG system on the game platform Foundry Virtual Tabletop.</p>
+<p>This is a game system to run games based upon the "<em>MAGNA</em>" RPG system on the game platform Foundry Virtual Tabletop.</p>
 
-<p>Ceci est un programme qui permet de jouer au jeu de rôle "<em>Magna</em>" sur la plateforme de jeu Foundry Virtual Tabletop.</p>
+<p>Ceci est un programme qui permet de jouer au jeu de rôle "<em>MAGNA</em>" sur la plateforme de jeu Foundry Virtual Tabletop.</p>
 
 <p style="margin-left: 10%;"> <img src="/assets/system-exemple1.webp" /></p>
 
 <h2>Disclaimer</h2>
-<p>"<em>Magna</em>" is a role-playing game made by Les XII Singes.</p>
+<p>"<em>MAGNA</em>" is a role-playing game made by Les XII Singes.</p>
 
 <p>Every label, design and other assets are trademarks of ReSpell SAS. and used with their authorization.</p>
 
-<p>"<em>Magna</em>" est un jeu de rôle conçu par Les XII Singes.</p>
+<p>"<em>MAGNA</em>" est un jeu de rôle conçu par Les XII Singes.</p>
 
 <p>Toutes les marques, logo et illustrations utilisés sont la propriété de ReSpell SAS et utilisés avec autorisation.</p>
 

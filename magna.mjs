@@ -1,6 +1,7 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
 import { SearchChat } from "./module/applications/search/research.mjs";
+import { registerHandlebarsHelpers } from "./module/helpers.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -11,7 +12,7 @@ import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
 
 Hooks.once("init", async function () {
-  console.log(`magna - Initialisation du système...`);
+  console.log(`MAGNA - Initialisation du système...`);
   game.system.CONST = SYSTEM;
 
   CONFIG.Actor.documentClass = documents.MagnaActor;
@@ -52,15 +53,15 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/pnj.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pouvoir.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`
+    `systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/contrecoup-dialog.hbs`
   ]);
 
   // menu de gauche
   initControlButtons();
 
-  Handlebars.registerHelper("getSystemProperty", function (actor, group, nom_id, prop) {
-    return actor.system[group][nom_id][prop];
-  });
+  //configuration Handlebars
+  registerHandlebarsHelpers();
 
   game.settings.register("magna", "calculPex", {
     name: "Calcul des Pex",
@@ -78,7 +79,7 @@ Hooks.once("init", async function () {
 
   game.settings.register("magna", "aff_domaines", {
     name: "Affichage des domaines",
-    hint: "Permet aux joueurs de voir le domaine auquel est rattaché un pouvoir.",
+    hint: "Permet aux joueurs et joueuses de voir le domaine auquel est rattaché un pouvoir.",
     scope: "world",
     config: true,
     type: Boolean,
@@ -89,7 +90,7 @@ Hooks.once("init", async function () {
 });
 
 Hooks.once("ready", async function () {
-  console.log("Magna - Initialisation du système finie");
+  console.log("MAGNA - Initialisation du système finie");
 
 });
 
@@ -119,6 +120,19 @@ Hooks.on("renderChatMessage", (message, html, data) => {
   console.debug("renderChatMessage", message, html, data);
 
   const typeMessage = data.message.flags.world?.type;
+
+  // Bouton calcul Contrecoup
+  if (typeMessage === "retractationAura") {
+    if (game.user.isGM) {
+      html.find("#calculer-retractation-aura").click((event) => {
+        const actor = game.actors.get(data.message.flags.world.userId)
+        actor.calculerContrecoup();
+      });
+    } else {
+      const chatActions = html.find(".retractation-aura");
+      chatActions[0].style.display = "none";
+    }
+  }
   // ******  CODE FOR SEARCH 
   if (typeMessage === "searchPage") {
     html.find("#ouvrirpage").click((event) => SearchChat.onOpenJournalPage(event, data.message.flags.world?.searchPattern));
