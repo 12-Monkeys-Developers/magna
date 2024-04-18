@@ -7,7 +7,6 @@ export const registerHandlebarsHelpers = function () {
   });
   
   Handlebars.registerHelper("getContrecoupText", function (actingCharName, result, degatsMentaux) {
-    console.log(actingCharName, result, degatsMentaux);
     let contrecoupText = "";
     if (result < -9) contrecoupText = game.i18n.format("MAGNA.CHATMESSAGE.contrecoup.largereussite", { actingCharName: actingCharName, degatsMentaux: degatsMentaux });
     else if (result < 1) contrecoupText = game.i18n.format("MAGNA.CHATMESSAGE.contrecoup.reussite", { actingCharName: actingCharName, degatsMentaux: degatsMentaux });

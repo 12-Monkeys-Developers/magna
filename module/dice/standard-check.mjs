@@ -38,7 +38,7 @@ export default class StandardCheck extends Roll {
     doRoll: true,
     introText: "",
     finalText: "",
-    lasttextsuccess: "",
+    lasttextsuccess: null,
     lasttext: "",
     lasttext_degatsdoubles: "",
     lasttext_degatstriples: "",

@@ -199,7 +199,7 @@ export default class MagnaActor extends Actor {
       content: dialog_content,
       buttons: {
         confirm: {
-					icon: '<i class="fas fa-face-head-bandage"></i>',
+          icon: '<i class="fas fa-face-head-bandage"></i>',
           label: `Ok`,
           callback: async (html) => {
             const valDuree = html.find("[name=contrecoup]")[0].value;
@@ -209,7 +209,7 @@ export default class MagnaActor extends Actor {
             else if (pouvoirs.length < 11) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv2;
 
             const introText = game.i18n.format("MAGNA.CHATMESSAGE.introRetracterAura", { actingCharName: this.name });
-            const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
+            const lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
 
             let data = {
               group1: "mental",
@@ -219,9 +219,10 @@ export default class MagnaActor extends Actor {
               field2: "mental",
               askDialog: false,
               introText: introText,
-              finalText: finalText,
+              lasttext: lasttext,
               degatsMentaux: degatsMentaux,
               retracte: itemId,
+              showlasttext: true,
               valDuree: SYSTEM.CONTRECOUPS[valDuree].label,
             };
             return this.rollAction(data);
