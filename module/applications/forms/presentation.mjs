@@ -9,9 +9,7 @@ export class PresentationForm extends FormApplication {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: "Présentation du système",
       id: "guide-systeme",
-      template: "systems/magna/templates/forms/guide-systeme.hbs",
       width: 800,
-      height: 700,
       resizable: true,
       closeOnSubmit: false,
     });

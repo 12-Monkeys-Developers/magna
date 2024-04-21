@@ -1,5 +1,5 @@
 
-<h2>System <em>magna</em> for Foundry Virtual Tabletop</h2>
+<h2>System <em>MAGNA</em> for Foundry Virtual Tabletop</h2>
 
 <div align="center">
 

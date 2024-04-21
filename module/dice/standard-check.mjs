@@ -212,8 +212,8 @@ export default class StandardCheck extends Roll {
   }
 
   /** @override */
-  async evaluate({ minimize = false, maximize = false, async = true } = {}) {
-    await super.evaluate({ minimize, maximize, async });
+  async evaluate({ minimize = false, maximize = false } = {}) {
+    await super.evaluate({ minimize, maximize });
     if (this._total - this.data.seuilReussite < -9) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.largereussite");
     else if (this._total - this.data.seuilReussite < -1) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.reussite");
     else if (this._total - this.data.seuilReussite < 1) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.justereussite");

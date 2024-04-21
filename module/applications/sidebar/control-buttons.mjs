@@ -16,17 +16,25 @@ export default function initControlButtons() {
           icon: "fas fa-question",
           button: true,
           onClick: () => {
-            new PresentationForm().render(true);
+            new PresentationForm(null, { template: `systems/magna/templates/forms/guide-systeme.hbs`, height: 700 }).render(true);
           },
         },
         {
-          name: "aides",
-          title: "Règles",
-          icon: "fas fa-book-reader",
+          name: "perception_auras",
+          title: "Perception des auras",
+          icon: "fas fa-eye",
           button: true,
           onClick: () => {
-            let journal = game.journal.get("dXJJuGB0cr1kzOgT");
-            if (journal) journal.sheet.render(true, { pageId: "LpNxJ7anNICSRT8U", sheetMode: "text" });
+            new PresentationForm(null, { template: `systems/magna/templates/forms/aide-perception.hbs`, height: 400 }).render(true);
+          },
+        },
+        {
+          name: "contrecoup",
+          title: "Contrecoup",
+          icon: "far fa-head-side-medical",
+          button: true,
+          onClick: () => {
+            new PresentationForm(null, { template: `systems/magna/templates/forms/aide-contrecoup.hbs`, height: 700 }).render(true);
           },
         },
         {
