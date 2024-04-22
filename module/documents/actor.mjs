@@ -161,7 +161,13 @@ export default class MagnaActor extends Actor {
     let pouvoir = this.items.get(itemId);
     if (!pouvoir) return;
     if (force) {
-      pouvoir.update({ ["system.auraDeployee"]: true });
+      await this.updateEmbeddedDocuments("Item", [
+        {
+          _id: pouvoir.id,
+          "system.auraDeployee": true,
+        },
+      ]);
+      this.setTokenAura();
       if (!forceFree) this.update({ ["system.mental.valeur"]: this.system.mental.valeur - 3 });
       const introText = game.i18n.format("MAGNA.CHATMESSAGE.introForcerAura", { actingCharName: this.name });
       const finalText = game.i18n.format("MAGNA.CHATMESSAGE.textForceraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
@@ -181,7 +187,13 @@ export default class MagnaActor extends Actor {
     };
     let sc = await this.rollAction(data);
     if (sc._total - sc.data.seuilReussite < 1) {
-      pouvoir.update({ ["system.auraDeployee"]: true });
+      await this.updateEmbeddedDocuments("Item", [
+        {
+          _id: pouvoir.id,
+          "system.auraDeployee": true,
+        },
+      ]);
+      this.setTokenAura();
       return true;
     } else return false;
   }
@@ -231,7 +243,13 @@ export default class MagnaActor extends Actor {
         cancel: {
           label: `Pas de Contrecoup`,
           callback: async (html) => {
-            pouvoir.update({ ["system.auraDeployee"]: false });
+            await this.updateEmbeddedDocuments("Item", [
+              {
+                _id: pouvoir.id,
+                "system.auraDeployee": false,
+              },
+            ]);
+            if (!this.nbAuraDeployees) this.unSetTokenAura();
           },
         },
       },
@@ -429,6 +447,42 @@ export default class MagnaActor extends Actor {
     }
 
     return await ChatMessage.create(chatData);
+  }
+
+  async setTokenAura() {
+    for (const scene of game.scenes) {
+      let updates = [];
+      for (const token of scene.tokens) {
+        if (token.actorId === this._id) {
+          updates.push({
+            _id: token.id,
+            light: SYSTEM.PSIAURA_LIGHTING,
+          });
+        }
+      }
+      scene.updateEmbeddedDocuments("Token", updates);
+    }
+    return await this.update({
+      [`prototypeToken.light`]: SYSTEM.PSIAURA_LIGHTING,
+    });
+  }
+
+  async unSetTokenAura() {
+    for (const scene of game.scenes) {
+      let updates = [];
+      for (const token of scene.tokens) {
+        if (token.actorId === this._id) {
+          updates.push({
+            _id: token.id,
+            light: SYSTEM.NOAURA_LIGHTING,
+          });
+        }
+      }
+      scene.updateEmbeddedDocuments("Token", updates);
+    }
+    return await this.update({
+      [`prototypeToken.light`]: SYSTEM.NOAURA_LIGHTING,
+    });
   }
 }
 

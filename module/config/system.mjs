@@ -439,19 +439,51 @@ export const CONTRECOUPS = Object.freeze({
     },
     duree7 : {
         id: "duree7",
-        label: "Environ 20 minutes",
-        couppouv1 : 16,
-        couppouv2 : 12,
-        couppouv3 : 9,
+        label: "Environ 30 minutes",
+        couppouv1 : 24,
+        couppouv2 : 18,
+        couppouv3 : 12,
     },
     duree8 : {
         id: "duree8",
-        label: "Environ 25 minutes",
-        couppouv1 : 20,
-        couppouv2 : 15,
-        couppouv3 : 11,
+        label: "Environ 1 heure",
+        couppouv1 : 48,
+        couppouv2 : 36,
+        couppouv3 : 24,
     }
 });
+
+export const NOAURA_LIGHTING = Object.freeze({
+    alpha: 0.5,
+    angle: 360,
+    animation: { speed: 5, intensity: 5, reverse: false, type: null },
+    attenuation: 0.5,
+    bright: 0,
+    color: null,
+    coloration: 1,
+    contrast: 0,
+    darkness: { min: 0, max: 1 },
+    dim: 0,
+    luminosity: 0.5,
+    saturation: 0,
+    shadows: 0,
+  });
+
+  export const PSIAURA_LIGHTING = Object.freeze({
+    alpha: 0.5,
+    angle: 360,
+    animation: { type: "emanation", speed: 7, intensity: 3, reverse: false },
+    attenuation: 0.5,
+    bright: 1,
+    color: "#c0c0c0",
+    coloration: 9,
+    contrast: 0,
+    darkness: { min: 0, max: 1 },
+    dim: 0.5,
+    luminosity: 0.6,
+    saturation: 0,
+    shadows: 0,
+  });
 
 /**
  * Include all constant definitions within the SYSTEM global export
@@ -466,5 +498,7 @@ export const SYSTEM = {
   COMPETENCES_COMBAT,
   COMPETENCES_SPE,
   INDICES,
-  CONTRECOUPS
+  CONTRECOUPS,
+  NOAURA_LIGHTING,
+  PSIAURA_LIGHTING
 };

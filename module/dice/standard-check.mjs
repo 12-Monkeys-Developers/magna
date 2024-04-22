@@ -59,7 +59,7 @@ export default class StandardCheck extends Roll {
     result: 0,
     retracte: false,
     rollMode: "publicroll",
-    valDuree: ""
+    valDuree: "",
   };
 
   /**
@@ -233,10 +233,16 @@ export default class StandardCheck extends Roll {
     if (this.data.retracte) {
       let actor = game.actors.get(this.data.actorId);
       let pouvoir = actor.items.get(this.data.retracte);
-      if (this.data.result < -9) await actor.update({ ["system.mental.valeur"]: Math.min((actor.system.mental.valeur + 1), actor.mental_max) });
+      if (this.data.result < -9) await actor.update({ ["system.mental.valeur"]: Math.min(actor.system.mental.valeur + 1, actor.mental_max) });
       else if (this.data.result > 9) await actor.update({ ["system.mental.valeur"]: actor.system.mental.valeur - this.data.degatsMentaux * 2 });
       else if (this.data.result > 0) await actor.update({ ["system.mental.valeur"]: actor.system.mental.valeur - this.data.degatsMentaux });
-      pouvoir.update({ ["system.auraDeployee"]: false });
+      await actor.updateEmbeddedDocuments("Item", [
+        {
+          _id: pouvoir.id,
+          "system.auraDeployee": false,
+        },
+      ]);
+      if (!actor.nbAuraDeployees) actor.unSetTokenAura();
     }
     return this;
   }
