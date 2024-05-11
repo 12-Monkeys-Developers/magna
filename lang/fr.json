@@ -397,9 +397,10 @@
       "deployerAura": "Deployer / Rétracter l’aura"
     },
     "DIFFICULTE": {
-      "facile": "Facile",
+      "facile": "Facile  +5",
       "normale": "Normale",
-      "difficile": "Difficile"
+      "difficile": "Difficile  -5",
+      "tresdifficile": "Très difficile  -10"
     },
     "SEARCHTOOL": {
       "window_title": "Rechercher",

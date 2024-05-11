@@ -53,6 +53,7 @@ export default class StandardCheck extends Roll {
     valeur2: 0,
     typecomp2: null,
     modificateur: 0,
+    modificateurLab: "normale",
     opposition: 0,
     seuilReussite: 0,
     reussite: false,

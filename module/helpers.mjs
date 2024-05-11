@@ -14,4 +14,8 @@ export const registerHandlebarsHelpers = function () {
     else contrecoupText = game.i18n.format("MAGNA.CHATMESSAGE.contrecoup.completementrate", { actingCharName: actingCharName, degatsMentaux: degatsMentaux*2 });
     return contrecoupText;
   });
+
+  Handlebars.registerHelper("getModText", function (modlab) {
+    return game.i18n.localize(SYSTEM.DIFFICULTES[modlab].label);
+  });
 };

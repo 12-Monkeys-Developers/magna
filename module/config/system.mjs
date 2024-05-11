@@ -377,10 +377,15 @@ export const DOMAINES = Object.freeze({
 });
 
 export const DIFFICULTES = Object.freeze({
+    tresdifficile : {
+        id: "difficile",
+        label: "MAGNA.DIFFICULTE.tresdifficile",
+        modificateur: -10
+    },
     difficile : {
         id: "difficile",
         label: "MAGNA.DIFFICULTE.difficile",
-        modificateur: 5
+        modificateur: -5
     },
     normale : {
         id: "normale",
@@ -390,7 +395,7 @@ export const DIFFICULTES = Object.freeze({
     facile : {
         id: "facile",
         label: "MAGNA.DIFFICULTE.facile",
-        modificateur: -5
+        modificateur: 5
     }
 });
 

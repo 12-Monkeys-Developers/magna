@@ -27,10 +27,11 @@ export default class ActionDialog extends Dialog {
   async getData(options = {}) {
     const data = this.roll.data;
     const context = await super.getData(options);
-    data.caracteristiques= SYSTEM.CARACTERISTIQUES;
-    data.indices= SYSTEM.INDICES;
-    if(data.group2==="caracteristiques") context.carac = data.field2;
-    else if(data.group2==="indices") context.indice = data.field2;
+    data.caracteristiques = SYSTEM.CARACTERISTIQUES;
+    data.indices = SYSTEM.INDICES;
+    data.difficultes = SYSTEM.DIFFICULTES;
+    if (data.group2 === "caracteristiques") context.carac = data.field2;
+    else if (data.group2 === "indices") context.indice = data.field2;
     const actingChar = game.actors.get(data.actorId);
     context.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
     context.rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
@@ -45,7 +46,6 @@ export default class ActionDialog extends Dialog {
     super.activateListeners(html);
   }
 
-
   /**
    * Handle execution of one of the dialog roll actions
    * @private
@@ -57,17 +57,16 @@ export default class ActionDialog extends Dialog {
     const actionMap = {
       "caracteristique-change": () => ({ group2: "caracteristiques", field2: newValue }),
       "indice-change": () => ({ group2: "indices", field2: newValue }),
-      "modificateur-change": () => ({ modificateur: parseInt(newValue)}),
-      "opposition-change": () => ({ opposition: parseInt(newValue)}),
+      "modificateur-change": () => ({ modificateurLab: newValue, modificateur: parseInt(SYSTEM.DIFFICULTES[newValue].modificateur) }),
+      "opposition-change": () => ({ opposition: parseInt(newValue) }),
       "rollMode-change": () => ({ rollMode: newValue }),
     };
-  
+
     if (actionMap[action]) {
       this.roll.initialize(actionMap[action]());
       this.render(false, { height: "auto" });
     }
   }
-
 
   /*  Factory Methods                             */
 
