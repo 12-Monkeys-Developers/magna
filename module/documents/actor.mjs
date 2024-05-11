@@ -261,7 +261,7 @@ export default class MagnaActor extends Actor {
   async rollInit(options = {}) {
     // Produce an initiative roll for the Combatant
     const roll = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
-    await roll.evaluate({ async: true });
+    await roll.evaluate();
     let rangaction = Math.floor(roll._total / 5);
     // Visibilité des jet des PNJs
     if (this.type === "pnj" && game.user.isGM) {

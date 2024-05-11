@@ -31,7 +31,7 @@ export default class MagnaCombat extends Combat {
 
       // Produce an initiative roll for the Combatant
       const roll = new Roll("1d20 + @agi", { agi: combatant.actor.system.caracteristiques.agi.valeur });
-      await roll.evaluate({async: true});
+      await roll.evaluate();
       let rangaction = Math.floor(roll._total / 5);
       updates.push({_id: id, initiative: rangaction});
 
