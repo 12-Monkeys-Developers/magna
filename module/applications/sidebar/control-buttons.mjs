@@ -25,7 +25,7 @@ export default function initControlButtons() {
           icon: "fas fa-eye",
           button: true,
           onClick: () => {
-            new PresentationForm(null, { template: `systems/magna/templates/forms/aide-perception.hbs`, height: 400 }).render(true);
+            new PresentationForm(null, { template: `systems/magna/templates/forms/aide-perception.hbs`, height: 640 }).render(true);
           },
         },
         {
