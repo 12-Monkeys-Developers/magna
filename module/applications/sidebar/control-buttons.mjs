@@ -1,5 +1,4 @@
 import { PresentationForm } from "../forms/presentation.mjs";
-import { SearchDialog } from "../search/research.mjs";
 
 export default function initControlButtons() {
   CONFIG.Canvas.layers.magna = { layerClass: ControlsLayer, group: "primary" };
@@ -36,19 +35,9 @@ export default function initControlButtons() {
           onClick: () => {
             new PresentationForm(null, { template: `systems/magna/templates/forms/aide-contrecoup.hbs`, height: 700 }).render(true);
           },
-        },
-        {
-          name: "search",
-          title: "Recherche",
-          icon: "fas fa-magnifying-glass",
-          button: true,
-          onClick: async () => {
-            let searchDialog = await new SearchDialog().render(true);
-          },
         }
       );
     }
-    // ******  END OF CODE FOR SEARCH
     btns.push({
       name: "magna_menu",
       title: "MAGNA",
