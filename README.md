@@ -13,7 +13,7 @@
 
 <p>Ceci est un programme qui permet de jouer au jeu de rôle "<em>MAGNA</em>" sur la plateforme de jeu Foundry Virtual Tabletop.</p>
 
-<p style="margin-left: 10%;"> <img src="/assets/system-exemple1.webp" /></p>
+<p style="margin-left: 10%;"> <img src="/assets/system/system-exemple1.webp" /></p>
 
 <h2>Disclaimer</h2>
 <p>"<em>MAGNA</em>" is a role-playing game made by Les XII Singes.</p>
