@@ -368,7 +368,7 @@ export const DOMAINES = Object.freeze({
     },
     "vie" : {
         id: "vie",
-      "label" : "La Vie"
+      "label" : "La Vitalité"
     },
     "vivant" :{
         id: "vivant",

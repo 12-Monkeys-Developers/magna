@@ -10,7 +10,7 @@
     <div class="change-lock" title="{{localize 'MAGNA.LABEL.unlockSheet'}}">
       <a>{{#if unlocked}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
   </div>
-  <div class="pj-portrait">
+  <div class="pj-portrait std-contextmenu" data-group="portrait">
   {{#if unlocked}}
       <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
   {{else if (ne actor.img "icons/svg/mystery-man.svg")}}

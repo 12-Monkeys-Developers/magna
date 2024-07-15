@@ -257,6 +257,33 @@ export default class MagnaActor extends Actor {
     });
     dialog.render(true);
   }
+  
+  /*Affiche le portrait du personnage aux joueurs et joueuses connectés*/
+  async showPortrait(options = {}) {
+
+    let htmlTemplate = `
+    <h3>Portrait</h3>`;
+    new Dialog({
+      title: "Portrait",
+      content: htmlTemplate,
+      buttons: {
+        validate: {
+          label: "Afficher le portrait de " + this.name + " à tous les joueurs et joueuses connectés.",
+          callback: () => {
+            let print = new ImagePopout(this.img, {
+              title: this.name,
+              shareable: true,
+              uuid: this.uuid,
+            }).render(true);
+            print.shareImage();
+          },
+        },
+        close: {
+          label: "annuler",
+        },
+      },
+    }).render(true);
+  }
 
   async rollInit(options = {}) {
     // Produce an initiative roll for the Combatant

@@ -96,6 +96,16 @@ export default class MagnaActorSheet extends ActorSheet {
   _getStdContextOptions() {
     return [
       {
+        name: `Afficher`,
+        icon: `<i class="fa-regular fa-image-portrait"></i>`,
+        condition: (li) => {
+          return li.data("group") === "portrait";
+        },
+        callback: (li) => {
+          return this.actor.showPortrait();
+        },
+      },
+      {
         name: `Jet d'Iniative`,
         icon: `<i class="fa-solid fa-hourglass-start"></i>`,
         condition: (li) => {
