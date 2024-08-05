@@ -78,18 +78,24 @@ export default class MagnaPNJ extends foundry.abstract.TypeDataModel {
         new fields.SchemaField({
           label: new fields.StringField({ required: true, initial: "" }),
           defaultCarac: new fields.StringField({ required: true, initial: "" }),
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0}),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         })
       ),
     })),
       // Vitalité
+      //provisoire, supprimier valeur a terme qui doit etre remplacé par value
       (schema.vitalite = new fields.SchemaField({
         valeur: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        value: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        max: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       }));
 
     // Mental
+    //provisoire, supprimier valeur a terme qui doit etre remplacé par value
     schema.mental = new fields.SchemaField({
       valeur: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      value: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 0 }),
     });
 
     // Capacité spéciale : Embedded Item ?

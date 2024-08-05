@@ -19,6 +19,8 @@ export default class MagnaActorSheet extends ActorSheet {
     context.editable = true;
     context.actor = this.document;
     context.system = this.document.system;
+
+    // pour afficher les indices PSI uniquement si le personnage a une valeur en PSI
     const showIndicePsi = (this.document.system.caracteristiques.psi.max !== 0);
 
     context.descriptionHTML = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
@@ -65,8 +67,6 @@ export default class MagnaActorSheet extends ActorSheet {
         showIndice: showIndicePsi,
       },
     };
-    context.vitalite_max = this.actor.vitalite_max;
-    context.mental_max = this.actor.mental_max;
 
     // Pouvoirs par ordre niveau et mise en forme de la description
 

@@ -10,7 +10,12 @@ export default class MagnaActor extends Actor {
         actorLink: true,
         disposition: 1, // Friendly
       };
-      this.updateSource({ prototypeToken });
+      //      this.updateSource({ prototypeToken });
+      this.updateSource({
+        "prototypeToken.vision": true,
+        "prototypeToken.actorLink": true,
+        "prototypeToken.disposition": 1, // Friendly
+      });
     }
   }
   async _onCreate(data, options, user) {
@@ -30,6 +35,15 @@ export default class MagnaActor extends Actor {
 
       return await super._onCreate(data, options, user);
     }
+  }
+
+  /** @override */
+  async prepareBaseData() {
+    await super.prepareBaseData();
+      this.system.vitalite.max =this.system.caracteristiques.vig.valeur + 10;
+      this.system.mental.max= this.system.caracteristiques.vol.valeur + this.system.caracteristiques.psi.valeur;
+      this.system.vitalite.value= this.system.vitalite.valeur;
+      this.system.mental.value= this.system.mental.valeur;
   }
 
   get isUnlocked() {
@@ -71,12 +85,6 @@ export default class MagnaActor extends Actor {
   }
   get refpsi() {
     return Math.max(this.system.caracteristiques.ins.valeur + this.system.caracteristiques.agi.valeur - 10, 0) + this.system.caracteristiques.psi.valeur;
-  }
-  get vitalite_max() {
-    return this.system.caracteristiques.vig.valeur + 10;
-  }
-  get mental_max() {
-    return this.system.caracteristiques.vol.valeur + this.system.caracteristiques.psi.valeur;
   }
   get listeVoies() {
     const pouvoirs = this.items.filter((item) => item.type == "pouvoir");
@@ -257,10 +265,9 @@ export default class MagnaActor extends Actor {
     });
     dialog.render(true);
   }
-  
+
   /*Affiche le portrait du personnage aux joueurs et joueuses connectés*/
   async showPortrait(options = {}) {
-
     let htmlTemplate = `
     <h3>Portrait</h3>`;
     new Dialog({
@@ -408,7 +415,7 @@ export default class MagnaActor extends Actor {
    * @param {string} data - mental ou vitalite
    */
   async setToMax(data) {
-    const maxValue = this[data + "_max"];
+    const maxValue = this.system[data].max;
     return await this.update({ [`system.${data}.valeur`]: maxValue });
   }
 

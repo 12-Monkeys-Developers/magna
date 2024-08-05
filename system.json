@@ -63,7 +63,8 @@
       "type": 0
     },
     "background":"systems/magna/assets/logo_magna.webp",
-    "primaryTokenAttribute": "",
+    "primaryTokenAttribute": "vitalite",
+    "secondaryTokenAttribute": "mental",
     "initiative": "1d20 + @caracteristiques.agi.valeur",
     "url": "#{URL}#",
     "manifest": "#{MANIFEST}#",
