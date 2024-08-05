@@ -76,6 +76,20 @@ Hooks.once("init", async function () {
     default: "false",
   });
 
+  game.settings.register("magna", "excludePsi", {
+    name: "Exclure PSI du calcul des Pex",
+    hint: "La valeur de PSI n'est pas décomptée du calcul des points d'expérience.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    choices: {
+      true: "Exclure",
+      false: "Inclure"
+    },
+    requiresReload: true,
+    default: "false",
+  });
+
   game.settings.register("magna", "aff_domaines", {
     name: "Affichage des domaines",
     hint: "Permet aux joueurs et joueuses de voir le domaine auquel est rattaché un pouvoir.",

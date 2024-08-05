@@ -40,10 +40,10 @@ export default class MagnaActor extends Actor {
   /** @override */
   async prepareBaseData() {
     await super.prepareBaseData();
-      this.system.vitalite.max =this.system.caracteristiques.vig.valeur + 10;
-      this.system.mental.max= this.system.caracteristiques.vol.valeur + this.system.caracteristiques.psi.valeur;
-      this.system.vitalite.value= this.system.vitalite.valeur;
-      this.system.mental.value= this.system.mental.valeur;
+    this.system.vitalite.max = this.system.caracteristiques.vig.valeur + 10;
+    this.system.mental.max = this.system.caracteristiques.vol.valeur + this.system.caracteristiques.psi.valeur;
+    this.system.vitalite.value = this.system.vitalite.valeur;
+    this.system.mental.value = this.system.mental.valeur;
   }
 
   get isUnlocked() {
@@ -426,12 +426,16 @@ export default class MagnaActor extends Actor {
     async function pexvalue(value) {
       return Math.min(3, value) + Math.min(3, Math.max(value - 3, 0)) * 2 + Math.min(1, Math.max(value - 6, 0)) * 3 + Math.min(1, Math.max(value - 7, 0)) * 4;
     }
+
+    let excludePsi = game.settings.get("magna", "excludePsi");
     let pexTotal = 0;
     //let pexTotal = -690;
 
     //caracteristiques
     for (const element in this.system.caracteristiques) {
-      pexTotal += this.system.caracteristiques[element].max * 15;
+      if (element != "psi" || !excludePsi) {
+        pexTotal += this.system.caracteristiques[element].max * 15;
+      }
     }
     //competences
     for (const element in this.system.competences) {
