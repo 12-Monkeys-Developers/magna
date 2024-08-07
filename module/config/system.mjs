@@ -490,6 +490,9 @@ export const NOAURA_LIGHTING = Object.freeze({
     shadows: 0,
   });
 
+  export const CAR_IND_MERGE = foundry.utils.deepClone(CARACTERISTIQUES);
+  mergeObject(CAR_IND_MERGE, INDICES, {insertKeys: true});
+
 /**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
@@ -505,5 +508,6 @@ export const SYSTEM = {
   INDICES,
   CONTRECOUPS,
   NOAURA_LIGHTING,
-  PSIAURA_LIGHTING
+  PSIAURA_LIGHTING,
+  CAR_IND_MERGE
 };

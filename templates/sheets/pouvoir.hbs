@@ -28,6 +28,12 @@
       <select name="system.rang_min">
         {{selectOptions selectRang_min selected=system.rang_min}}
       </select>
+      <div class="field-name">Attribut par défaut</div>
+      <div class="domaine-val">
+        <select name="system.defaultAtt">
+          {{selectOptions car_ind_merge selected=system.defaultAtt labelAttr="label_short"}}
+        </select>
+      </div>
     </div>
     <div class="field-name">Description</div>
     {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}

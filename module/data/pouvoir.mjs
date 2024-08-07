@@ -13,6 +13,7 @@ export default class MagnaPouvoir extends foundry.abstract.TypeDataModel {
     schema.rang = new fields.NumberField({ required: true, initial: 1 });
     schema.rang_min = new fields.NumberField({ required: true, initial: 0 });
     schema.auraDeployee = new fields.BooleanField({ required: true, initial: false });
+    schema.defaultAtt = new fields.StringField({ required: true, choices: SYSTEM.CAR_IND_MERGE, initial: "distpsi" });
 
     return schema;
   }

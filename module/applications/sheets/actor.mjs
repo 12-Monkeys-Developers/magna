@@ -246,12 +246,14 @@ export default class MagnaActorSheet extends ActorSheet {
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           const introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", { pouvName: item.name, actingCharName: this.actor.name });
+          const defaultAtt = item.system.defaultAtt;
+          let group2 = SYSTEM.INDICES[defaultAtt] ? "indices" : "caracteristiques";
           let data = {
             group1: "pouvoir",
             typecomp1: false,
             field1: itemId,
-            group2: "indices",
-            field2: "distpsi",
+            group2: group2,
+            field2: defaultAtt,
             askDialog: true,
             introText: introText,
           };

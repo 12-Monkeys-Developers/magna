@@ -473,7 +473,7 @@ export default class MagnaActor extends Actor {
     let content = await renderTemplate("systems/magna/templates/dice/standard-check-roll.hbs", data);
 
     // Create the chat data
-    const chatData = duplicate(data);
+    const chatData = foundry.utils.duplicate(data);
     chatData.user = game.user.id;
     chatData.content = content;
     chatData.flags = flags;

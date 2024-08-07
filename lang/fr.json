@@ -90,32 +90,32 @@
     },
     "INDICE": {
       "cac": {
-        "label": "Attaque au corps-à-corps",
+        "label": "Attaque au corps-à-corps (VIG+AGI)",
         "label_short": "CAC",
         "description": "L’indice de corps-à-corps se calcule en additionnant VIG et AGI."
       },
       "dist": {
-        "label": "Attaque à distance",
+        "label": "Attaque à distance (INS+PER)",
         "label_short": "DIST",
         "description": "L’indice d’attaque à distance se calcule en additionnant INS et PER."
       },
       "ref": {
-        "label": "Réflexes",
+        "label": "Réflexes (INS+AGI-10)",
         "label_short": "REF",
         "description": "L’indice de réflexes permet de calculer la défense passive en additionnant INS et AGI et en retranchant 10 (la valeur de REF ne peut pas être inférieure à 0 ; dans ce cas, elle est fixée à 0)."
       },
       "cacpsi": {
-        "label": "Attaque au corps-à-corps psi",
+        "label": "Attaque au corps-à-corps psi (CAC+PSI)",
         "label_short": "CAC PSI",
         "description": "L’indice de corps-à-corps psi se calcule en additionnant CAC et PSI."
       },
       "distpsi": {
-        "label": "Attaque à distance psi",
+        "label": "Attaque à distance psi (DIST+PSI)",
         "label_short": "DIST PSI",
         "description": "L’indice d’attaque à distance psi se calcule en additionnant DIST et PSI."
       },
       "refpsi": {
-        "label": "Réflexes psi",
+        "label": "Réflexes psi (REF+PSI)",
         "label_short": "REF PSI",
         "description": "L’indice de réflexes psi se calcule en additionnant REF et PSI."
       }
