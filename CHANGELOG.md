@@ -1,3 +1,5 @@
+# Version 1.2.2
+- Bug description des pouvoirs PNJ
 # Version 1.2.1
 - Pop-ups avec les formules des indices
 - possibilité de définir un attribut/indice par défaut pour chaque pouvoir

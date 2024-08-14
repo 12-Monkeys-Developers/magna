@@ -218,7 +218,7 @@ attributePattern = /Séduction ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.competences.seduction.valeur", parseInt(resultPattern));
 
-attributePattern = /Self Control ([0-9]+)/;
+attributePattern = /Self-control ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.competences.selfcontrol.valeur", parseInt(resultPattern));
 
@@ -226,11 +226,11 @@ attributePattern = /Se renseigner ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.competences.serenseigner.valeur", parseInt(resultPattern));
 
-attributePattern = /S’informe ([0-9]+)/;
+attributePattern = /S’informer ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.competences.sinformer.valeur", parseInt(resultPattern));
 
-attributePattern = /Soins ([0-9]+)/;
+attributePattern = /Premiers soins ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.competences.soins.valeur", parseInt(resultPattern));
 
@@ -253,13 +253,34 @@ attributePattern = /Parade ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.combat.survie.valeur", parseInt(resultPattern));
 
-attributePattern = /Arme[s] blanche[s] ([0-9]+)/;
+attributePattern = /Arme blanche ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.combat.armeblanche.valeur", parseInt(resultPattern));
 attributePattern = /Arme à feu légère ([0-9]+)/;
 resultPattern = extractData(expectedData, attributePattern);
 if(resultPattern) foundry.utils.setProperty(newValues, "system.combat.armefeu.valeur", parseInt(resultPattern));
 attributePattern = /Arme lourde ([0-9]+)/;
+
+
+    //description
+    let description = "";
+    attributePattern = /Allure : (.+) Attitude/;
+    let allureStr = extractData(expectedData, attributePattern);
+    if (allureStr.length) allureStr = "<p><strong>Allure :</strong> ".concat(allureStr, "</p>");
+    attributePattern = /Attitude : (.+) Ce qu’[iel]+ sait :/;
+    let attitudeStr = extractData(expectedData, attributePattern);
+    if (attitudeStr.length) attitudeStr = "<p><strong>Attitude :</strong> ".concat(attitudeStr, "</p>");
+    attributePattern = /Ce qu’[iel]+ sait : (.+) Ce qu’[iel]+ peut dire :/;
+    let ilsaitStr = extractData(expectedData, attributePattern);
+    if (ilsaitStr.length) ilsaitStr = "<p><strong>Ce qu’il sait :</strong> ".concat(ilsaitStr, "</p>");
+    attributePattern = /Ce qu’[iel]+ peut dire : (.+) Compétences :/;
+    let ilpeutStr = extractData(expectedData, attributePattern);
+    if (ilpeutStr.length) ilpeutStr = "<p><strong>Ce qu’il peut dire :</strong> ".concat(ilpeutStr, "</p>");
+    attributePattern = /Capacités spéciales : (.+)/;
+    let capacitestStr = extractData(expectedData, attributePattern);
+    if (capacitestStr.length) capacitestStr = "<p><strong>Ce qu’il peut dire :</strong> ".concat(capacitestStr, "</p>");
+
+    foundry.utils.setProperty(newValues, "system.description", allureStr.concat(attitudeStr, ilsaitStr, ilpeutStr, capacitestStr));
 
 
 
@@ -280,4 +301,34 @@ attributePattern = /Arme lourde ([0-9]+)/;
     actor.setToMax("vitalite");
     console.log(filename)
   });
+
+  //pouvoirs
+  let listePouvoirs = [];
+        
+
+  let extractPouvoir = function (pouvoirsBlob) {
+    let nomPouvoirPattern = /(.*) [0-9]+/;
+    let nomPouvoir = extractData(pouvoirsBlob, nomPouvoirPattern);
+    let valeurPouvoir = extractData(pouvoirsBlob, /.* ([0-9]+)/);
+    let descriptionPouvoir = extractData(pouvoirsBlob, /.* [0-9]+ \((.*)\)/);
+    
+    if(nomPouvoir) return({
+        name: nomPouvoir,
+        type: 'pouvoir',
+        system: {
+            rang: valeurPouvoir,
+            description: descriptionPouvoir
+        }
+    });
+    else return;
+  }
+
+  attributePattern = /Pouvoirs : ([.]+) Capacités spéciales/;
+  let pouvoirsBlob = extractData(expectedData, attributePattern);
+  listePouvoirs.push(extractPouvoir(pouvoirsBlob));
+  pouvoirBlob = extractData(pouvoirsBlob, /[.]* [0-9]+ \([.]*\), ([.]*)/);
+ // if(pouvoirBlob.length > 5)
+      
+    controlDoc = await actor.createEmbeddedDocuments("Item", listePouvoirs);
+
 }

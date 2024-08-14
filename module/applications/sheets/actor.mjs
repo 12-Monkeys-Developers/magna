@@ -21,7 +21,7 @@ export default class MagnaActorSheet extends ActorSheet {
     context.system = this.document.system;
 
     // pour afficher les indices PSI uniquement si le personnage a une valeur en PSI
-    const showIndicePsi = (this.document.system.caracteristiques.psi.max !== 0);
+    const showIndicePsi = this.document.system.caracteristiques.psi.max !== 0;
 
     context.descriptionHTML = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
     context.equipementHTML = await TextEditor.enrichHTML(this.actor.system.equipement, { async: false });
@@ -85,9 +85,9 @@ export default class MagnaActorSheet extends ActorSheet {
       .sort(function (a, b) {
         return a.system.rang > b.system.rang;
       });
-    context.pouvoirs.forEach(async (element) => {
+    for (let element of context.pouvoirs) {
       element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
-    });
+    }
 
     return context;
   }
