@@ -1,3 +1,5 @@
+# Version 1.2.3
+- Bug sur certains jets critiques
 # Version 1.2.2
 - Bug description des pouvoirs PNJ
 # Version 1.2.1
