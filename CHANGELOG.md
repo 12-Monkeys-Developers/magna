@@ -1,3 +1,5 @@
+# Version 1.3.0
+- Option calcul du coût en pex des pouvoirs
 # Version 1.2.3
 - Bug sur certains jets critiques
 # Version 1.2.2

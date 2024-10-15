@@ -142,18 +142,21 @@ export default class MagnaActor extends Actor {
 
     // Create the check roll
     let sc = new StandardCheck(compData);
-
+    console.log("creationsc");
     if (compData.askDialog) {
       // Prompt the user with a roll dialog
       const flavor = compData.flavor ?? "Réaliser une action";
       const title = compData.title ?? "Réaliser une action";
       const response = await sc.dialog({ title, flavor });
+      console.log("response", response);
       if (response === null) return null;
     }
 
-    sc = await sc.roll();
+    //sc = await sc.roll();
+    console.log("sc1", sc);
     // Execute the roll to chat
     await sc.toMessage();
+    console.log("sc2", sc);
     return sc;
   }
 
@@ -452,8 +455,14 @@ export default class MagnaActor extends Actor {
         pexTotal += await pexvalue(element.valeur);
       }
     }
-    pexTotal += this.items.filter((item) => item.type == "pouvoir").length * 10;
-
+    if (game.settings.get("magna", "coutParRang")) {
+      const listePouvoirs = this.items.filter((item) => item.type === "pouvoir");
+      for (const element of listePouvoirs) {
+        pexTotal += element.system.rang * 10;
+      }
+    } else {
+      pexTotal += this.items.filter((item) => item.type == "pouvoir").length * 10;
+    }
     return pexTotal;
   }
 

@@ -90,6 +90,20 @@ Hooks.once("init", async function () {
     default: "false",
   });
 
+  game.settings.register("magna", "coutParRang", {
+    name: "Coût des pouvoirs",
+    hint: "Mettre le coût en points d'expérience des pouvoirs à 10 points par rang plutôt que 10 points par pouvoir.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    choices: {
+      true: "10 points par pouvoir",
+      false: "10*Rang points par pouvoir"
+    },
+    requiresReload: true,
+    default: "false",
+  });
+
   game.settings.register("magna", "aff_domaines", {
     name: "Affichage des domaines",
     hint: "Permet aux joueurs et joueuses de voir le domaine auquel est rattaché un pouvoir.",
