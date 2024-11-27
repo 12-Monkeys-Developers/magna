@@ -305,7 +305,7 @@ export default class MagnaActorSheet extends ActorSheet {
         },
       },
       {
-        name: `Forcer l'aura`,
+        name: `Forcer l'aura (3 pts mental)`,
         icon: `<i class="fa-regular fa-person-rays"></i>`,
         condition: (li) => {
           const itemId = li.data("itemId");
@@ -316,6 +316,21 @@ export default class MagnaActorSheet extends ActorSheet {
         callback: (li) => {
           const itemId = li.data("itemId");
           if (this.actor.deployerAura(itemId, true, false)) this.actor.sheet.render(true);
+          return;
+        },
+      },
+      {
+        name: `Déployer l'aura sans jet ni coût`,
+        icon: `<i class="fa-regular fa-person-rays"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return item.type === "pouvoir" && !item.system.auraDeployee;
+        },
+        callback: (li) => {
+          const itemId = li.data("itemId");
+          if (this.actor.deployerAura(itemId, true, true)) this.actor.sheet.render(true);
           return;
         },
       },

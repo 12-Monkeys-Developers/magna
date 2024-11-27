@@ -142,21 +142,16 @@ export default class MagnaActor extends Actor {
 
     // Create the check roll
     let sc = new StandardCheck(compData);
-    console.log("creationsc");
     if (compData.askDialog) {
       // Prompt the user with a roll dialog
       const flavor = compData.flavor ?? "Réaliser une action";
       const title = compData.title ?? "Réaliser une action";
       const response = await sc.dialog({ title, flavor });
-      console.log("response", response);
       if (response === null) return null;
     }
 
-    //sc = await sc.roll();
-    console.log("sc1", sc);
     // Execute the roll to chat
     await sc.toMessage();
-    console.log("sc2", sc);
     return sc;
   }
 
@@ -228,8 +223,19 @@ export default class MagnaActor extends Actor {
             const valDuree = html.find("[name=contrecoup]")[0].value;
             const pouvoirs = this.items.filter((item) => item.type == "pouvoir");
             let degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv3;
-            if (pouvoirs.length < 6) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv1;
-            else if (pouvoirs.length < 11) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv2;
+
+            let valeurPouv = 0;
+
+            if (game.settings.get("magna", "coutParRang")) {
+              for (const element of pouvoirs) {
+                valeurPouv += element.system.rang;
+              }
+            } else {
+              valeurPouv += pouvoirs.length;
+            }
+
+            if (valeurPouv < 6) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv1;
+            else if (valeurPouv < 11) degatsMentaux = SYSTEM.CONTRECOUPS[valDuree].couppouv2;
 
             const introText = game.i18n.format("MAGNA.CHATMESSAGE.introRetracterAura", { actingCharName: this.name });
             const lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });

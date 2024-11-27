@@ -1,3 +1,7 @@
+# Version 1.3.1
+- ajout d'une entrée dans le menu des auras pour déployer une aura sans jet ni coût
+- nettoyage du code
+- Bugs mineurs
 # Version 1.3.0
 - Option calcul du coût en pex des pouvoirs
 # Version 1.2.3

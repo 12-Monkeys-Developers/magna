@@ -81,7 +81,7 @@ export default class StandardCheck extends Roll {
 
   /** @override */
   _prepareData(data = {}) {
-    console.log("_prepareData : ",this);
+    //console.log("_prepareData : ",this);
     const current = this.data || foundry.utils.deepClone(this.constructor.defaultData);
     for (let [k, v] of Object.entries(data)) {
       if (v === undefined) delete data[k];
@@ -97,7 +97,7 @@ export default class StandardCheck extends Roll {
    * @returns {object}        The configured data object
    */
   static async #configureData(data) {
-    console.log("configureData : ",this);
+    //console.log("configureData : ",this);
     const actingChar = game.actors.get(data.actorId);
 
     if (data.group1 === "mental") {
@@ -177,7 +177,7 @@ export default class StandardCheck extends Roll {
   initialize(data) {
     this.data = this._prepareData(data);
     this.terms = this.constructor.parse("", this.data);
-    console.log("initialize : ",this);
+    //console.log("initialize : ",this);
   }
 
   /**
@@ -188,14 +188,12 @@ export default class StandardCheck extends Roll {
    * @returns {Promise<StandardCheck|null>}   The resolved check, or null if the dialog was closed
    */
   async dialog({ title, flavor, rollMode } = {}) {
-    console.log("dialog : ",this);
     const options = { title, flavor, rollMode, roll: this };
     return this.constructor.dialogClass.prompt({ title, options });
   }
 
   /** @inheritdoc */
   toJSON() {
-    console.log("toJSON : ",this);
     const data = super.toJSON();
     data.data = foundry.utils.deepClone(this.data);
     return data;
@@ -219,8 +217,6 @@ export default class StandardCheck extends Roll {
 
   /** @override */
   async evaluate(allowInteractive) {
-    console.log("evaluate : ",this);
-    console.log("allowInteractive : ",allowInteractive);
     await super.evaluate(allowInteractive);
     if (this._total - this.data.seuilReussite < -9) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.largereussite");
     else if (this._total - this.data.seuilReussite < -1) this.data.finalText = game.i18n.localize("MAGNA.CHATMESSAGE.reussite");
@@ -252,7 +248,6 @@ export default class StandardCheck extends Roll {
       ]);
       if (!actor.nbAuraDeployees) actor.unSetTokenAura();
     }
-    console.log("fin_evaluate : ",this);
     return this;
   }
 }

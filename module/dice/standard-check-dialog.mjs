@@ -35,8 +35,6 @@ export default class ActionDialog extends Dialog {
     const actingChar = game.actors.get(data.actorId);
     context.label2 = await actingChar.getLabelShort(data.group2, data.typecomp2, data.field2);
     context.rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
-    console.log("data : ",data);
-    console.log("context : ",context);
     return foundry.utils.mergeObject(context, data);
   }
 
