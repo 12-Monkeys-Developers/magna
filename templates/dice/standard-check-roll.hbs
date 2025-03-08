@@ -31,8 +31,10 @@
         <p class="dice-result">
           SR : {{data.seuilReussite}}
         </p>
-        <img src="systems/magna/assets/system/griffes.webp",/>
-          <div class="diceicon">{{rolleddice}}</div>
+        <div class="centerimg">
+          <img src="systems/magna/assets/system/griffes.webp"/>
+        </div>
+        <div class="diceicon">{{rolleddice}}</div>
         <p>Marge du résultat : {{{data.result}}}</p>
       {{/if}}
       <p class="finalText">{{{data.finalText}}}</p>
@@ -40,12 +42,12 @@
       <p class="finalText">{{{data.lasttext}}}</p>
       {{/if}}
     {{#if data.retracte}}
-        <img src="systems/magna/assets/system/griffes.webp",/>
+      <div class="centerimg">
+        <img src="systems/magna/assets/system/griffes.webp"/>
+      </div>
       <div class="retracte">
-        
-      <p class="finalText"> Durée de l'aura : {{ data.valDuree }}</p> 
-      <p class="finalText"> {{ getContrecoupText data.actingCharName data.result data.degatsMentaux }}</p> 
-
+        <p class="finalText"> Durée de l'aura : {{ data.valDuree }}</p> 
+        <p class="finalText"> {{ getContrecoupText data.actingCharName data.result data.degatsMentaux }}</p> 
       </div>
     {{/if}}
   </div>

@@ -56,7 +56,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/contrecoup-dialog.hbs`
   ]);
 
-  // menu de gauche
+  // left menu
   initControlButtons();
 
   //configuration Handlebars
@@ -142,22 +142,3 @@ function preLocalizeConfig() {
   localizeConfigObject(SYSTEM.DOMAINES, ["label"]);
   localizeConfigObject(SYSTEM.DIFFICULTES, ["label"]);
 }
-
-Hooks.on("renderChatMessage", (message, html, data) => {
-  console.debug("renderChatMessage", message, html, data);
-
-  const typeMessage = data.message.flags.world?.type;
-
-  // Bouton calcul Contrecoup
-  if (typeMessage === "retractationAura") {
-    if (game.user.isGM) {
-      html.find("#calculer-retractation-aura").click((event) => {
-        const actor = game.actors.get(data.message.flags.world.userId)
-        actor.calculerContrecoup();
-      });
-    } else {
-      const chatActions = html.find(".retractation-aura");
-      chatActions[0].style.display = "none";
-    }
-  }
-});

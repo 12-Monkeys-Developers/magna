@@ -61,6 +61,10 @@
 .action-chat img {
   border: 0px;
 }
+.action-chat .centerimg {
+  display: flex;
+  justify-content: center;
+}
 .action-chat .intro-chat {
   border-radius: 20px;
   display: flex;
@@ -103,6 +107,7 @@
   background-repeat: no-repeat;
   background-size: 24px 24px;
   background-position: center;
+  margin-top: 10px;
 }
 .action-chat .formulatooltip {
   position: relative;

@@ -389,9 +389,9 @@ export default class MagnaActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   _contextMenu(html) {
-    ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
-    ContextMenu.create(this, html, ".std-contextmenu", this._getStdContextOptions());
-    if (game.settings.get("magna", "calculPex") && this.actor.isUnlocked) ContextMenu.create(this, html, ".pex-contextmenu", this._getPexContextOptions());
+    foundry.applications.ui.ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
+    foundry.applications.ui.ContextMenu.create(this, html, ".std-contextmenu", this._getStdContextOptions());
+    if (game.settings.get("magna", "calculPex") && this.actor.isUnlocked) foundry.applications.ui.ContextMenu.create(this, html, ".pex-contextmenu", this._getPexContextOptions());
   }
 
   /**
