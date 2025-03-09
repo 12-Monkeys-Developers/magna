@@ -1,0 +1,5 @@
+<div class="item-description">
+  {{#if unlocked}}{{formInput systemFields.description enriched=descriptionhtml value=system.description}}
+  {{else}}{{{descriptionhtml}}}
+  {{/if}}
+</div>

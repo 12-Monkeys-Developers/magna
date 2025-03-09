@@ -1,56 +1,89 @@
-.arme-sheet {
+.item-sheet {
   background: var(--background_dialog);
   font-family: "pillgothic";
   font-weight: bold;
+  color: black;
 }
-.arme-sheet input {
-  width: 15em;
-  color: white;
-}
-.arme-sheet .name-title {
-  display: flex;
-  font-size: 22px;
+.item-sheet .item-header .name-title {
+  display: grid;
+  grid-template-columns: 60px 1fr ;
+  font-size: 20px;
   background: #97141c;
   border: solid 2px black;
   text-align: center;
   padding: 10px;
-  text-transform: uppercase;
+  color: white;
 }
-.arme-sheet .name-title img {
+.item-sheet .item-header .name-title img {
   border: 0px;
   max-height: 50px;
+  grid-row: 1/3;
 }
-.arme-sheet .name-title input {
+.item-sheet .item-header .name-title input {
   font-family: "codepro";
   font-weight: bold;
   border: 0px;
+  background: #97141c;
+  width: 15em;
 }
-.arme-sheet .arme-content {
-  display: grid;
-  grid-template-columns: 150px 50px;
-  margin-bottom: 20px;
+.item-sheet .item-header .change-lock {
+  width: 20px;
+  grid-row: 2/3;
+  grid-column: 2/3;
 }
-.arme-sheet .arme-content .domaine-name {
-  margin: 5px;
+.item-sheet .item-header .change-lock i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
-.arme-sheet .arme-content .field-name {
-  margin: 5px;
-}
-.arme-sheet .arme-content input {
-  width: 2em;
+.item-sheet input {
+  width: 3em;
   color: black;
+  background: rgba(0, 0, 0, 0.05);
 }
-.arme-sheet .arme-content select {
+.item-sheet select {
   width: 10em;
+  color: black;
+  background: rgba(0, 0, 0, 0.05);
 }
-.arme-sheet .editor {
+.item-sheet .input-large input {
+  width: 15em;
+}
+.item-sheet .input-large select {
+  width: 15em;
+}
+.item-sheet .form-group {
+  display: flex;
+  align-items: center;
+}
+.item-sheet .form-group label {
+  width: 150px;
+}
+.item-sheet .form-group .form-fields {
+  margin: 3px;
+}
+.item-sheet .item-description {
+  font-family: "pillgothic";
+  font-weight: normal;
+}
+.item-sheet .item-description .editor {
   min-height: 235px;
 }
-.arme-sheet .editor-content {
+.item-sheet .item-description .editor-content {
   min-height: 235px;
   font-weight: normal;
   margin: 0px 5px;
   background: rgba(0, 0, 0, 0.05);
+}
+.item-sheet .item-description .editor-menu {
+  color: black;
+  background: rgba(0, 0, 0, 0.6);
 }
 .action-chat {
   background-color: #394e55;
@@ -708,67 +741,18 @@
   min-height: 40em;
   margin: 0px 5px 0px 5px;
 }
-.pouvoir-sheet {
-  background: var(--background_dialog);
-  font-family: "pillgothic";
-  font-weight: bold;
-}
-.pouvoir-sheet input {
-  width: 15em;
-  color: white;
-}
-.pouvoir-sheet .name-title {
-  display: flex;
-  font-size: 22px;
-  background: #97141c;
-  border: solid 2px black;
-  text-align: center;
-  padding: 10px;
-  text-transform: uppercase;
-}
-.pouvoir-sheet .name-title img {
-  border: 0px;
-  max-height: 50px;
-}
-.pouvoir-sheet .name-title input {
-  font-family: "codepro";
-  font-weight: bold;
-  border: 0px;
-  width: 20em;
-}
-.pouvoir-sheet .pouvoir-content {
-  display: grid;
-  grid-template-columns: 150px 50px;
-  margin-bottom: 20px;
-}
-.pouvoir-sheet .pouvoir-content .domaine-name {
-  margin: 5px;
-}
-.pouvoir-sheet .pouvoir-content .field-name {
-  margin: 5px;
-}
-.pouvoir-sheet .pouvoir-content input {
-  width: 2em;
-  color: black;
-}
-.pouvoir-sheet .pouvoir-content .input-large {
-  width: 15em;
-  color: black;
-}
-.pouvoir-sheet .editor {
-  min-height: 235px;
-}
-.pouvoir-sheet .editor-content {
-  min-height: 235px;
-  font-weight: normal;
-  margin: 0px 5px;
-  background: rgba(0, 0, 0, 0.05);
-}
 .prosemirror menu {
   font-size: 0.8em;
 }
 .prosemirror menu li {
   margin: 0px 0px;
+}
+.scrollable {
+  padding-right: initial;
+  scrollbar-gutter: auto;
+}
+.scrollable .window-content {
+  overflow-y: scroll;
 }
 @font-face {
   font-family: "codepro";

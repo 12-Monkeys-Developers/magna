@@ -1,41 +1,12 @@
-<form class="{{cssClass}}" autocomplete="off">
-  {{!log "pouvoir" this}}
-  <div class="pouvoir-sheet">
-    <div class="name-title">
-      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-      <input name="name" type="text" value="{{item.name}}" />
-    </div>
-    <div class="pouvoir-content">
-      {{#if aff_domaines}}
-      <div class="domaine-name">Domaine</div>
-      <div class="domaine-val">
-        <select name="system.domaine">
-          {{selectOptions domaines selected=system.domaine labelAttr="label"}}
-        </select>
-      </div>
-      {{/if}}
-      <div class="field-name">Voie</div>
-      <input name="system.voie" class="input-large"  type="text" value="{{item.system.voie}}" />
-      <div class="field-name">Résumé</div>
-      <input class="input-large"  name="system.resume" type="text" value="{{item.system.resume}}" />
-      <div class="field-name">Portée</div>
-      <input class="input-large"  name="system.portee" type="text" value="{{item.system.portee}}" />
-      <div class="field-name">Cibles</div>
-      <input class="input-large" name="system.cibles" type="text" value="{{item.system.cibles}}" />
-      <div class="field-name">Rang</div>
-      <input name="system.rang" min="1" max="20" type="number" value="{{item.system.rang}}" />
-      <div class="field-name">Rang minimum</div>
-      <select name="system.rang_min">
-        {{selectOptions selectRang_min selected=system.rang_min}}
-      </select>
-      <div class="field-name">Attribut par défaut</div>
-      <div class="domaine-val">
-        <select name="system.defaultAtt">
-          {{selectOptions car_ind_merge selected=system.defaultAtt labelAttr="label_short"}}
-        </select>
-      </div>
-    </div>
-    <div class="field-name">Description</div>
-    {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
-  </div>
-</form>
+<div class="pouvoir-content">
+  {{#if aff_domaines}}
+    {{formGroup systemFields.domaines value=system.competence localize=true disabled=locked}}
+  {{/if}}
+  {{formGroup systemFields.voie value=system.voie classes="input-large" disabled=locked}}
+  {{formGroup systemFields.resume value=system.resume classes="input-large" disabled=locked}}
+  {{formGroup systemFields.portee value=system.portee classes="input-large" disabled=locked}}
+  {{formGroup systemFields.cibles value=system.cibles classes="input-large" disabled=locked}}
+  {{formGroup systemFields.rang value=system.rang disabled=locked}}
+  {{formGroup systemFields.rang_min value=system.rang_min disabled=locked}}
+  {{formGroup systemFields.defaultAtt value=system.defaultAtt classes="input-large" localize=true disabled=locked}}
+</div>

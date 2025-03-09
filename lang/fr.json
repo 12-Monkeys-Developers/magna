@@ -10,6 +10,45 @@
     }
   },
   "MAGNA": {
+    "Source": {
+      "FIELDS": {
+        "auraDeployee": {
+          "label": "Aura Déployée"
+        },
+        "cibles": {
+          "label": "Cibles"
+        },
+        "competence": {
+          "label": "Compétence utilisée"
+        },
+        "defaultAtt": {
+          "label": "Attribut par défaut"
+        },
+        "degats": {
+          "label": "Dégats"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "portee": {
+          "label": "portee"
+        },
+        "rang": {
+          "label": "Rang"
+        },
+        "rang_min": {
+          "label": "Rang minimum"
+        },
+        "resume": {
+          "label": "Résumé"
+        },
+        "voie": {
+          "label": "Voie"
+        }
+
+
+      }
+    },
     "CHATMESSAGE": {
       "introActionStd": "{actingCharName}",
       "introDeployerAura": "{actingCharName} tente de déployer une aura.",

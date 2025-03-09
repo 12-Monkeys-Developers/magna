@@ -48,6 +48,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/pj-pouvoirs.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-header.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-light.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/parts/unlock-icon.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pj.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pnj.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
