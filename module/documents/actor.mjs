@@ -51,11 +51,6 @@ export default class MagnaActor extends Actor {
     return false;
   }
 
-  get sheetlight() {
-    if (this.getFlag(game.system.id, "sheetlight")) return true;
-    return false;
-  }
-
   get nbAuraDeployees() {
     let auraDeployee = 0;
     const pouvoirs = this.items.filter((item) => item.type == "pouvoir");

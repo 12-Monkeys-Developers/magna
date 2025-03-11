@@ -41,16 +41,12 @@ Hooks.once("init", async function () {
   CONFIG.Dice.rolls.push(dice.StandardCheck);
 
   loadTemplates([
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-competences.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-competences-spe.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-description.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-header.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-pouvoirs.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pnj-header.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pnj-light.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-header.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-competences.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-competences-spe.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-pouvoirs.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-description.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/parts/unlock-icon.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/pj.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/pnj.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pouvoir.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`,

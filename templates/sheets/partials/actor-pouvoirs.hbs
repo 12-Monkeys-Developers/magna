@@ -1,3 +1,5 @@
+{{#if tabMode}}
+<section class="tab pouvoirs {{tab.cssClass}}" data-group="primary" data-tab="pouvoirs">
 <div class="grid_pouvoirs">
     {{#each listevoies as |voie|}}
     <div class="bloc-voie">
@@ -32,3 +34,27 @@
     </div>
     {{/each}}
 </div>
+</section>
+{{else}}
+<div class="bloc-voie">
+  {{#each pouvoirs as |pouvoir id|}}
+      <div class="item-contextmenu" data-item-id="{{pouvoir._id}}">
+      <details>
+          <summary class="bloc-pouvoir">
+              <div class="ligne-pouvoir">
+                  <div class="pouvoir-rang">{{pouvoir.system.rang}}</div>
+                  <div class="change-aura" title="{{localize 'MAGNA.LABEL.deployerAura'}}">
+                      {{#if pouvoir.system.auraDeployee}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person"></i>{{/if}}
+                  </div>
+                  <div class="pouvoir-name">{{pouvoir.name}}</div>
+              </div>
+              <div class="ligne-pouvoir">
+                  <div class="field-name">{{pouvoir.system.resume}}</div>
+              </div>
+          </summary>
+          <div class="desc">{{{pouvoir.system.descriptionhtml}}}</div>
+      </details>
+      </div>
+  {{/each}}
+</div>
+{{/if}}
