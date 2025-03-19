@@ -39,7 +39,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
       template: `systems/${SYSTEM.id}/templates/sheets/partials/actor-description.hbs`,
     },
   };
-  
+
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     // Add the item document.
@@ -213,10 +213,29 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
    */
   async _onFirstRender(context, options) {
     await super._onFirstRender(context, options);
-    foundry.applications.ui.ContextMenu.create(this, this.element, ".item-contextmenu", { hookName: "ItemEntryContext", jQuery: false, fixed: true });
-    foundry.applications.ui.ContextMenu.create(this, this.element, ".std-contextmenu", { hookName: "StdContext", jQuery: false, fixed: true });
-    if (game.settings.get("magna", "calculPex") && this.actor.isUnlocked)
-      foundry.applications.ui.ContextMenu.create(this, this.element, ".pex-contextmenu", { hookName: "PexContext", jQuery: false, fixed: true });
+    this._createContextMenus();
+  }
+
+  /* right-click context menus */
+  _createContextMenus() {
+    /** @fires {hookEvents:_getItemEntryContextOptions} */
+    this._createContextMenu(this._getItemEntryContextOptions, ".item-contextmenu", {
+      fixed: true,
+      hookName: "ItemEntryContext",
+      parentClassHooks: false,
+    });
+    this._createContextMenu(this._getStdContextOptions, ".std-contextmenu", {
+      fixed: true,
+      hookName: "StdContext",
+      parentClassHooks: false,
+    });
+    if (game.settings.get("magna", "calculPex") && this.actor.isUnlocked) {
+      this._createContextMenu(this._getPexContextOptions, ".pex-contextmenu", {
+        fixed: true,
+        hookName: "PexContext",
+        parentClassHooks: false,
+      });
+    }
   }
 
   /**

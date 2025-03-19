@@ -148,7 +148,7 @@ export default class StandardCheck extends Roll {
 
   async render(chatOptions = {}) {
     if (chatOptions.isPrivate) return "";
-    return renderTemplate(this.constructor.htmlTemplate, this._getChatCardData());
+    return foundry.applications.handlebars.renderTemplate(this.constructor.htmlTemplate, this._getChatCardData());
   }
 
   /**
