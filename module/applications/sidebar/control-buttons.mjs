@@ -1,4 +1,4 @@
-import { PresentationForm } from "../forms/presentation.mjs";
+import { GuideSystPresentationForm, AidePerceptionPresentationForm, ContrecoupPresentationForm } from "../forms/presentation.mjs";
 
 export default function initControlButtons() {
   Hooks.on("getSceneControlButtons", (controls) => {
@@ -13,7 +13,7 @@ export default function initControlButtons() {
             title: "Présentation du système",
             icon: "fas fa-question",
             onChange: (event, active) => {
-              new PresentationForm(null, { template: `systems/magna/templates/forms/guide-systeme.hbs`, height: 700 }).render(true);
+              new GuideSystPresentationForm().render(true);
             },
             button: true,
           },
@@ -23,7 +23,7 @@ export default function initControlButtons() {
             icon: "fas fa-eye",
             button: true,
             onChange: (event, active) => {
-              new PresentationForm(null, { template: `systems/magna/templates/forms/aide-perception.hbs`, height: 640 }).render(true);
+              new AidePerceptionPresentationForm().render(true);
             },
           },
           contrecoup: {
@@ -32,7 +32,7 @@ export default function initControlButtons() {
             icon: "far fa-head-side-medical",
             button: true,
             onChange: (event, active) => {
-              new PresentationForm(null, { template: `systems/magna/templates/forms/aide-contrecoup.hbs`, height: 700 }).render(true);
+              new ContrecoupPresentationForm().render(true);
             },
           },
         },

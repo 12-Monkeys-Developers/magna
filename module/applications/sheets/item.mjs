@@ -11,10 +11,10 @@ export default class MagnaItemSheet extends api.HandlebarsApplicationMixin(sheet
     form: {
       submitOnChange: true,
     },
-    tag: "form", // The default is "div"
+    tag: "form",
     window: {
       resizable: true,
-      icon: "fas fa-gear", // You can now add an icon to the header
+      icon: "fas fa-gear",
     },
   };
   get title() {
