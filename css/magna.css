@@ -163,15 +163,22 @@
 .action-chat .formulatooltip:hover .tooltiptext {
   visibility: visible;
 }
-.dialog-jet-action {
+.dialog-action {
   background: var(--background_dialog);
   font-family: "pillgothic";
   font-weight: bold;
 }
-.dialog-jet-action input {
-  width: 4em;
+.dialog-action h3 {
+  font-family: "pillgothic";
+  font-size: 17px;
+  color: #97141c;
+  text-align: center;
+  padding-top: 10px;
+  text-transform: uppercase;
+  border: 0px;
+  margin: 0px;
 }
-.dialog-jet-action .dialog-intro {
+.dialog-action .dialog-intro {
   font-family: "codepro";
   font-weight: bold;
   font-size: 22px;
@@ -182,36 +189,51 @@
   padding: 10px;
   text-transform: uppercase;
 }
-.dialog-jet-action .dialog-grid {
+.dialog-action .dialog-grid {
+  color: black;
   grid-template-columns: 235px 235px;
   margin: 15px 10px 10px 10px;
   display: grid;
 }
-.dialog-jet-action .left_col {
+.dialog-action .dialog-grid input {
+  width: 3em;
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
+}
+.dialog-action .dialog-grid select {
+  color: black;
+  background: rgba(0, 0, 0, 0.1);
+}
+.dialog-action .left_col {
   display: flex;
   flex-direction: column;
   margin: 0px 10px;
   border: solid black;
   padding: 5px;
 }
-.dialog-jet-action .right_col {
+.dialog-action .right_col {
   display: flex;
   flex-direction: column;
   margin: 0px 10px;
   padding-left: 40px;
 }
-.dialog-jet-action .dialog-colgrid {
+.dialog-action .dialog-colgrid {
   display: grid;
   grid-template-columns: 110px 80px;
   grid-template-rows: 40px;
   margin-top: 10px;
 }
-.dialog-jet-action .comp-titre {
+.dialog-action .comp-titre {
   margin-top: 10px;
   align-self: center;
 }
-.dialog-jet-action .dialog-button {
+.dialog-action .form-footer {
+  display: flex;
+  justify-content: center;
+}
+.dialog-action .dialog-button {
   padding: 10px;
+  color: white;
   border: solid 2px black;
   border-radius: 20px;
   margin: 20px 0px 0px 10px;
@@ -422,7 +444,7 @@
   display: grid;
   margin-left: 10px;
   align-items: center;
-  grid-template-columns: 85px 50px 20px;
+  grid-template-columns: 85px 60px 20px;
   grid-template-rows: 35px;
 }
 .magna.sheet.actor .actor-header .bloc_stats .nom_stat {

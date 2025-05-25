@@ -4,6 +4,7 @@ export default function initControlButtons() {
   Hooks.on("getSceneControlButtons", (controls) => {
     if (game.user.isGM) {
       controls.magna = {
+        activeTool: "presentation",
         name: "magna",
         title: "MAGNA",
         icon: "fas fa-claw-marks",
@@ -15,7 +16,7 @@ export default function initControlButtons() {
             onChange: (event, active) => {
               new GuideSystPresentationForm().render(true);
             },
-            button: true,
+            button: true
           },
           perception_auras: {
             name: "perception_auras",

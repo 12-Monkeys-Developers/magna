@@ -6,9 +6,9 @@ globalThis.SYSTEM = SYSTEM;
 
 // Import modules
 import * as applications from "./module/applications/_module.mjs";
-import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
+import * as rolls from "./module/applications/rolls/_module.mjs";
 
 Hooks.once("init", async function () {
   console.log(`MAGNA - Initialisation du système...`);
@@ -38,9 +38,9 @@ Hooks.once("init", async function () {
 
   
   // Dice system configuration
-  CONFIG.Dice.rolls.push(dice.StandardCheck);
+  CONFIG.Dice.rolls.push(rolls.ActionRoll);
 
-  loadTemplates([
+  foundry.applications.handlebars.loadTemplates([
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-header.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-competences.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-competences-spe.hbs`,

@@ -10,7 +10,7 @@ export default class MagnaPouvoir extends foundry.abstract.TypeDataModel {
     const requiredNullableInteger = { required: true, nullable: true, integer: true, initial: null };
     const schema = {};
 
-    schema.domaine = new fields.StringField({ required: true, nullable: false, initial: "vie" });
+    schema.domaine = new fields.StringField({ required: true, nullable: false, choices: SYSTEM.DOMAINES, initial: "vie" });
     schema.voie = new fields.StringField({ required: true, nullable: false, initial: "Voie des soins" });
     schema.portee = new fields.StringField({ required: true, nullable: false, initial: "Toucher" });
     schema.cibles = new fields.StringField({ required: true, nullable: false, initial: "" });

@@ -50,7 +50,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
     context.systemFields = this.document.system.schema.fields;
     context.unlocked = this.actor.isUnlocked;
     context.locked = !this.actor.isUnlocked;
-    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.description, { async: false });
     context.nbAuraDeployees = this.actor.nbAuraDeployees;
 
     context.tabs = this._getTabs(["competences", "pouvoirs", "description"]);
@@ -114,7 +114,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         return a.system.rang > b.system.rang;
       });
     for (let element of context.pouvoirs) {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false });
     }
     return context;
   }
@@ -245,7 +245,8 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
    * @param {RenderOptions} options                 Provided render options
    * @protected
    */
-  _onRender(context, options) {
+  async _onRender(context, options) {
+  await super._onRender(context, options);
     // Inputs with on class `compSpeEdit`
     const compSpe = this.element.querySelectorAll(".compSpeEdit");
     for (const input of compSpe) {
@@ -278,7 +279,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         },
       },
       {
-        name: `Jet d'Iniative`,
+        name: `Jet d'Initiative`,
         icon: `<i class="fa-solid fa-hourglass-start"></i>`,
         condition: (li) => {
           return li.dataset.group === "init";
@@ -561,7 +562,6 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
   }
 
   static async _onNewComp(event, target) {
-    console.log("target", target);
     let compType = target.dataset.field;
     this.actor.ajouterCompSpe(compType);
     this.render();
@@ -591,4 +591,6 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
     await this.actor.update({ [`system.pex.creation`]: creationNumber });
     return this.actor.sheet.render(true);
   }
+
+
 }

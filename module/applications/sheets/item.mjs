@@ -32,7 +32,7 @@ export default class MagnaItemSheet extends api.HandlebarsApplicationMixin(sheet
     context.systemFields = this.document.system.schema.fields;
     context.unlocked = this.item.isUnlocked;
     context.locked = !this.item.isUnlocked;
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false });
     return context;
   }
     /* -------------------------------------------------- */

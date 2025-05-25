@@ -1,4 +1,4 @@
-import StandardCheck from "../dice/standard-check.mjs";
+import ActionRoll from "../applications/rolls/action-roll.mjs";
 export default class MagnaActor extends Actor {
   /** @inheritdoc */
   async _preCreate(data, options, user) {
@@ -128,26 +128,58 @@ export default class MagnaActor extends Actor {
    * @param {string} moyen - The means of the action.
    * @returns {Promise<StandardCheck>} - A promise that resolves to the rolled check.
    */
-  async rollAction(compData) {
-    //{group1: group, field1:field, askDialog:true});
-    // Prepare check data
-    compData.actorId = this.id;
-    compData.actorData = this.system;
-    compData.doRoll = true;
+  async rollAction(context) {
+    context.doRoll = true;
+    context.actorId = this.id;
+    context.actingCharImg = this.img;
+    context.actingCharName = this.name;
 
-    // Create the check roll
-    let sc = new StandardCheck(compData);
-    if (compData.askDialog) {
-      // Prompt the user with a roll dialog
-      const flavor = compData.flavor ?? "Réaliser une action";
-      const title = compData.title ?? "Réaliser une action";
-      const response = await sc.dialog({ title, flavor });
-      if (response === null) return null;
+    if (context.group1 === "mental") {
+      context.valeur1 = this.system.mental.valeur;
+      context.valeur2 = 0;
+      context.label1 = "Mental";
+      context.part2 = false;
+      context.label2 = "";
+      context.seuilReussite = this.system.mental.valeur;
+    } else if (context.group1 === "pouvoir") {
+      let pouvoir = this.items.get(context.field1);
+      context.itemId = context.field1,
+      context.valeur1 = pouvoir.system.rang;
+      context.pouvName = pouvoir.name;
+      const valeurs = await this.getValeurs([{ group: context.group2, field: context.field2 }]);
+      context.valeur2 = valeurs[0];
+      context.label1 = "Rang " + pouvoir.name;
+      context.label2 = await this.getLabelShort(context.group2, context.typecomp2, context.field2);
+      context.seuilReussite = context.valeur1 + context.valeur2 + parseInt(context.modificateur) - context.opposition;
+    } else {
+      const valeurs = await this.getValeurs([
+        { group: context.group1, field: context.field1 },
+        { group: context.group2, field: context.field2 },
+      ]);
+      context.valeur1 = valeurs[0];
+      context.valeur2 = valeurs[1];
+      const labels = await this.getLabelsShort([
+        { group: context.group1, field: context.field1 },
+        { group: context.group2, field: context.field2 },
+      ]);
+      context.label1 = labels[0];
+      context.label2 = labels[1];
+      context.seuilReussite = valeurs[0] + valeurs[1] + parseInt(context.modificateur) - context.opposition;
     }
+    if (!context.introText) {
+      context.introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", context);
+    }
+    // Create the check roll
+    const action_roll = new ActionRoll("1d20", {}, context);
 
-    // Execute the roll to chat
-    await sc.toMessage();
-    return sc;
+    if (context.askDialog) {
+      // Prompt the user with a roll dialog
+      const promptValue = await action_roll.prompt(context);
+    }
+    const evaluatedRoll = await action_roll.evaluate();
+    const resultRoll = await action_roll.render();
+    const messtRoll = await action_roll.toMessage();
+    return action_roll;
   }
 
   /**
@@ -177,26 +209,19 @@ export default class MagnaActor extends Actor {
     }
     let lasttextsuccess = game.i18n.format("MAGNA.CHATMESSAGE.textdeployeraura", { nompouvoir: pouvoir.name });
     const introText = game.i18n.format("MAGNA.CHATMESSAGE.introDeployerAura", { actingCharName: this.name });
-    let data = {
+    let context = {
+      rollType: SYSTEM.ROLLTYPE.deployer,
+      askDialog: false,
       group1: "caracteristiques",
       typecomp1: false,
       field1: "psi",
       group2: "caracteristiques",
       field2: "psi",
       introText: introText,
+      itemId: itemId,
       lasttextsuccess: lasttextsuccess,
     };
-    let sc = await this.rollAction(data);
-    if (sc._total - sc.data.seuilReussite < 1) {
-      await this.updateEmbeddedDocuments("Item", [
-        {
-          _id: pouvoir.id,
-          "system.auraDeployee": true,
-        },
-      ]);
-      this.setTokenAura();
-      return true;
-    } else return false;
+    return await this.rollAction(context);
   }
   /**
    * Rétracter
@@ -206,7 +231,7 @@ export default class MagnaActor extends Actor {
     let pouvoir = this.items.get(itemId);
     if (!pouvoir) return;
 
-    const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/contrecoup-dialog.hbs`, { contrecoups: SYSTEM.CONTRECOUPS });
+    const dialog_content = await foundry.applications.handlebars.renderTemplate(`systems/${SYSTEM.id}/templates/sheets/contrecoup-dialog.hbs`, { contrecoups: SYSTEM.CONTRECOUPS });
     let dialog = new Dialog({
       title: "Contrecoup",
       content: dialog_content,
@@ -236,6 +261,7 @@ export default class MagnaActor extends Actor {
             const lasttext = game.i18n.format("MAGNA.CHATMESSAGE.textRetracteraura", { actingCharName: this.name, nompouvoir: pouvoir.name });
 
             let data = {
+              rollType: SYSTEM.ROLLTYPE.retracter,
               group1: "mental",
               typecomp1: false,
               field1: "mental",
@@ -245,7 +271,8 @@ export default class MagnaActor extends Actor {
               introText: introText,
               lasttext: lasttext,
               degatsMentaux: degatsMentaux,
-              retracte: itemId,
+              itemId: itemId,
+              retracte: true,
               showlasttext: true,
               valDuree: SYSTEM.CONTRECOUPS[valDuree].label,
             };
@@ -353,7 +380,8 @@ export default class MagnaActor extends Actor {
       group2: "indices",
       field2: SYSTEM.COMPETENCES_COMBAT[arme.system.competence].defaultIndice,
       askDialog: true,
-      armeId: itemId,
+      itemId: itemId,
+      rollType: SYSTEM.ROLLTYPE.arme,
       armeName: armeName,
       introText: introText,
       lasttextsuccess: lasttext,
@@ -469,7 +497,6 @@ export default class MagnaActor extends Actor {
 
   async chatMessage(introText, finalText, retracte, flags) {
     const data = {
-      data: {
         actorId: this.id,
         actingCharImg: this.img,
         actingCharName: this.name,
@@ -477,10 +504,9 @@ export default class MagnaActor extends Actor {
         finalText: finalText,
         introText: introText,
         retracte: retracte,
-      },
     };
     // Create the chat content
-    let content = await renderTemplate("systems/magna/templates/dice/standard-check-roll.hbs", data);
+    let content = await foundry.applications.handlebars.renderTemplate("systems/magna/templates/dice/action-roll.hbs", data);
 
     // Create the chat data
     const chatData = foundry.utils.duplicate(data);
