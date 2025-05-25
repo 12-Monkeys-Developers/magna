@@ -1,9 +1,16 @@
-.dialog-jet-action {
+.dialog-action {
   background: var(--background_dialog);
   font-family: "pillgothic";
   font-weight: bold;
-  input {
-    width: 4em;
+  h3 {
+    font-family: "pillgothic";
+    font-size: 17px;
+    color: #97141c;
+    text-align: center;
+    padding-top: 10px;
+    text-transform: uppercase;
+    border: 0px;
+    margin: 0px;
   }
   .dialog-intro {
     font-family: "codepro";
@@ -17,9 +24,19 @@
     text-transform: uppercase;
   }
   .dialog-grid {
+    color: black;
     grid-template-columns: 235px 235px;
     margin: 15px 10px 10px 10px;
     display: grid;
+    input {
+      width: 3em;
+      color: black;
+      background: rgba(0, 0, 0, 0.1);
+    }
+    select {
+      color: black;
+      background: rgba(0, 0, 0, 0.1);
+    }
   }
   .left_col {
     display: flex;
@@ -44,8 +61,13 @@
     margin-top: 10px;
     align-self: center;
   }
+  .form-footer{
+    display: flex;
+    justify-content:center;
+  }
   .dialog-button {
     padding: 10px;
+    color: white;
     border: solid 2px black;
     border-radius: 20px;
     margin: 20px 0px 0px 10px;

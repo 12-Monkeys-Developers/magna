@@ -1,0 +1,54 @@
+{{!log "chat standard check roll" this}}
+<div class="action-chat {{cssClass}}">
+  <div class="intro-chat">
+    {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
+      <div class="intro-img">
+        <img src="{{actingCharImg}}" title="{{actingCharName}}" />
+      </div>
+    {{/if}}
+    <div class="intro-right">
+      <p class="introText">{{{introText}}}</p>
+    </div>
+  </div>
+    <div class="dice-result">
+      {{#if doRoll}}
+        <p class="dice-result">
+            Jet de 
+        <span class="formulatooltip">{{label1}}
+          <span class="tooltiptext">{{{valeur1}}}</span></span>
+        {{#if part2}} + <span class="formulatooltip">{{label2}}<span class="tooltiptext">{{{valeur2}}}</span></span>{{/if}}
+        </p>
+        {{#if modificateur}}
+        <p class="dice-result">
+          Modificateur : {{getModText modificateurLab}}
+        </p>
+        {{/if}}
+        {{#if opposition}}
+        <p class="dice-result">
+          Opposition : {{opposition}}
+        </p>
+        {{/if}}
+        <p class="dice-result">
+          SR : {{seuilReussite}}
+        </p>
+        <div class="centerimg">
+          <img src="systems/magna/assets/system/griffes.webp"/>
+        </div>
+        <div class="diceicon">{{rolleddice}}</div>
+        <p>Marge du résultat : {{{result}}}</p>
+      {{/if}}
+      <p class="finalText">{{{finalText}}}</p>
+      {{#if showlasttext}}
+      <p class="finalText">{{{lasttext}}}</p>
+      {{/if}}
+    {{#if retracte}}
+      <div class="centerimg">
+        <img src="systems/magna/assets/system/griffes.webp"/>
+      </div>
+      <div class="retracte">
+        <p class="finalText"> Durée de l'aura : {{ valDuree }}</p> 
+        <p class="finalText"> {{ getContrecoupText actingCharName result degatsMentaux }}</p> 
+      </div>
+    {{/if}}
+  </div>
+</div>

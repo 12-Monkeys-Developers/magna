@@ -1,0 +1,252 @@
+{{#if tabMode}}
+<section class="tab competences {{tab.cssClass}}" data-group="primary" data-tab="competences">
+<div class="ligne_caract">
+  <div class="zone_carac">
+    <h2>Caractéristiques</h2>
+    <div class="grid_carac">
+    {{#each system.caracteristiques as |caracteristique id|}}
+      <div class="bloc_caracteristique {{caracteristique.label_short}} std-contextmenu" data-group="caracteristiques" data-compname="{{id}}">
+        <div title={{localize caracteristique.label}} class="nom_caracteristique">
+          {{localize caracteristique.label_short}}
+        </div>
+        <div class="val_caracteristique margin_carac" style="grid-row: 2 / 3; grid-column: 1 / 2;">
+          <input type="number" name="system.caracteristiques.{{id}}.valeur" value="{{getSystemProperty ../actor 'caracteristiques' id 'valeur'}}" />
+        </div>
+        <div class="val_caracteristique margin_carac" style="grid-row: 2 / 3; grid-column: 2 / 3;">
+          / {{#if ../unlocked}}
+            <input type="number" name="system.caracteristiques.{{id}}.max" value="{{getSystemProperty ../actor 'caracteristiques' id 'max'}}" placeholder="0" />
+          {{else}}
+            {{caracteristique.max}}
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+    </div>
+  </div>
+  <div class="zone_indices">
+    <h2>Indices</h2>
+    <div class="grid_indices">
+    {{#each indices as |indice id|}}
+    {{#if indice.showIndice}}
+      <div class="bloc_caracteristique {{id}} std-contextmenu" data-group="indices" data-compname="{{id}}">
+        <div class="nom_caracteristique" title="{{localize indice.label}}">
+          {{localize indice.label_short}}
+        </div>
+        <div class="val_caracteristique margin_indices" style="grid-row: 2 / 3; grid-column: 1 / 3;">
+          {{indice.valeur}}
+        </div>
+      </div>
+      {{else}}
+      <div></div>
+      {{/if}}
+    {{/each}}
+    </div>
+    <div class="grid_combat">
+    <div class="bloc_arme std-contextmenu" data-group="init">
+      <div class="nom_comp">
+        Initiative
+      </div>
+      <div class="val_comp">
+        {{system.caracteristiques.agi.valeur}}+1d20
+      </div>
+    </div>
+  {{#each armes as |arme id|}}
+    <div class="bloc_arme item-contextmenu" data-item-id="{{arme._id}}">
+      <div class="nom_comp">
+        {{arme.name}}
+      </div>
+      <div class="val_comp">
+        Dgts: {{arme.system.degatsmodifies}}
+      </div>
+    </div>
+    {{/each}}
+    </div>
+  </div>
+</div>
+<div class="zone_comp">
+  <h2>Compétences</h2>
+  <div class="grid_comp">
+  {{#each system.competences as |competence id|}}
+    <div class="bloc_comp std-contextmenu" data-group="competences" data-compname="{{id}}">
+      <div class="nom_comp">
+        {{localize competence.label}}
+      </div>
+      <div class="val_comp">
+        {{#if ../unlocked}}
+        <input type="number" name="system.competences.{{id}}.valeur" value="{{getSystemProperty ../actor 'competences' id 'valeur'}}"  min="0" max="10" placeholder="0" />
+        {{else}}
+        {{competence.valeur}}
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+  </div>
+</div>
+<div class="zone_compcombat">
+  <img style="width: 400px; margin-left: 140px;" src="systems/magna/assets/system/griffes_long.webp",/>
+  <div class="grid_comp">
+  {{#each system.combat as |competence id|}}
+    <div class="bloc_comp std-contextmenu" data-group="combat" data-compname="{{id}}">
+      <div class="nom_comp">
+        {{localize competence.label}}
+      </div>
+      <div class="val_comp">
+              {{#if ../unlocked}}
+              <input type="number" name="system.combat.{{id}}.valeur" value="{{getSystemProperty ../actor 'combat' id 'valeur'}}" min="0" max="10" placeholder="0" />
+              {{else}}
+              {{competence.valeur}}
+            {{/if}}
+      </div>
+    </div>
+  {{/each}}
+  </div>
+</div>
+<div class="zone_compcombat">  
+  <img style="width: 400px; margin-left: 140px;" src="systems/magna/assets/system/griffes_long.webp",/>
+  <div class="grid_spe">
+    <div class="bloc_vertical">
+      <div class="titre_compspe">Langues</div>
+        {{#each system.competences_spe.langues as |competence id|}}
+          {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='langues' }}
+        {{/each}}
+      {{#if unlocked}}
+      <span class="plusicon">
+        <i class="fas fa-plus" data-action="newComp" data-field="langues"></i>
+      </span>
+      {{/if}}
+    </div>
+    <div class="bloc_vertical">
+     <div class="titre_compspe">Connaissances</div>
+      {{#each system.competences_spe.connaissances as |competence id|}}
+        {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='connaissances' }}
+      {{/each}}
+      {{#if unlocked}}
+      <span class="plusicon">
+      <i class="fas fa-plus" data-action="newComp" data-field="connaissances"></i>
+      </span>
+      {{/if}}
+    </div>
+    <div class="bloc_vertical">
+      <div class="titre_compspe">Artisanats</div>
+      {{#each system.competences_spe.artisanats as |competence id|}}
+        {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='artisanats' }}
+      {{/each}}
+      {{#if unlocked}}
+      <span class="plusicon">
+        <i class="fas fa-plus" data-action="newComp" data-field="artisanats"></i>
+      </span>
+      {{/if}}
+    </div>
+    <div class="bloc_vertical">
+      <div class="titre_compspe">Pilotage</div>
+      {{#each system.competences_spe.pilotage as |competence id|}}
+        {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='pilotage' }}
+      {{/each}}
+      {{#if unlocked}}
+      <span class="plusicon">
+        <i class="fas fa-plus" data-action="newComp" data-field="pilotage"></i>
+      </span>
+      {{/if}}
+    </div>
+  </div>
+</div>
+</section>
+{{else}}
+<div class="ligne_caract">
+  <div class="zone_carac">
+    <div class="grid_carac">
+    {{#each system.caracteristiques as |caracteristique id|}}
+      <div class="bloc_caracteristique {{caracteristique.label_short}} std-contextmenu" data-group="caracteristiques" data-compname="{{id}}">
+        <div title={{localize caracteristique.label}} class="nom_caracteristique">
+          {{localize caracteristique.label_short}}
+        </div>
+        <div class="val_caracteristique margin_carac" style="grid-row: 2 / 3; grid-column: 1 / 2;">
+          <input type="number" name="system.caracteristiques.{{id}}.valeur" value="{{getSystemProperty ../actor 'caracteristiques' id 'valeur'}}" />
+        </div>
+        <div class="val_caracteristique margin_carac" style="grid-row: 2 / 3; grid-column: 2 / 3;">
+          / {{#if ../unlocked}}
+            <input type="number" name="system.caracteristiques.{{id}}.max" value="{{getSystemProperty ../actor 'caracteristiques' id 'max'}}" placeholder="0" />
+          {{else}}
+            {{caracteristique.max}}
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+    </div>
+  </div>
+  <div class="zone_indices">
+    <div class="grid_indices">
+    {{#each indices as |indice id|}}
+    {{#if indice.showIndice}}
+      <div class="bloc_caracteristique {{id}} std-contextmenu" data-group="indices" data-compname="{{id}}">
+        <div class="nom_caracteristique" title="{{localize indice.label}}">
+          {{localize indice.label_short}}
+        </div>
+        <div class="val_caracteristique margin_indices" style="grid-row: 2 / 3; grid-column: 1 / 3;">
+          {{indice.valeur}}
+        </div>
+      </div>
+      {{else}}
+      <div></div>
+      {{/if}}
+    {{/each}}
+    </div>
+    <div class="grid_combat">
+    <div class="bloc_arme std-contextmenu" data-group="init">
+      <div class="nom_comp">
+        Initiative
+      </div>
+      <div class="val_comp">
+        {{system.caracteristiques.agi.valeur}}+1d20
+      </div>
+    </div>
+  {{#each system.competences as |competence id|}}
+  {{#if (ne competence.valeur 0)}}
+    <div class="bloc_comp std-contextmenu" data-group="competences" data-compname="{{id}}">
+      <div class="nom_comp">
+        {{localize competence.label}}
+      </div>
+      <div class="val_comp">
+        {{competence.valeur}}
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+  {{#each system.combat as |competence id|}}
+  {{#if (ne competence.valeur 0)}}
+    <div class="bloc_comp std-contextmenu" data-group="combat" data-compname="{{id}}">
+      <div class="nom_comp">
+        {{localize competence.label}}
+      </div>
+      <div class="val_comp">
+              {{competence.valeur}}
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+  {{#each armes as |arme id|}}
+    <div class="bloc_arme item-contextmenu" data-item-id="{{arme._id}}">
+      <div class="nom_comp">
+        {{arme.name}}
+      </div>
+      <div class="val_comp">
+        Dgts: {{arme.system.degatsmodifies}}
+      </div>
+    </div>
+    {{/each}}
+    {{#each system.competences_spe.langues as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='langues' }}
+    {{/each}}
+    {{#each system.competences_spe.connaissances as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='connaissances' }}
+    {{/each}}
+    {{#each system.competences_spe.artisanats as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='artisanats' }}
+    {{/each}}
+    {{#each system.competences_spe.pilotage as |competence id|}}
+      {{> "systems/magna/templates/sheets/partials/actor-competences-spe.hbs" competence=competence id=id unlocked=../unlocked typecomp='pilotage' }}
+    {{/each}}
+    </div>
+  </div>
+</div>
+{{/if}}

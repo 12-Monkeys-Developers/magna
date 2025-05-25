@@ -1,0 +1,13 @@
+<header class="item-header">
+<div class="name-title">
+  <img src="{{item.img}}" data-edit="img" data-action="editImage" title="{{item.name}}" />
+  {{formInput
+    fields.name
+    name="name"
+    value=item._source.name
+    placeholder=(localize "Name")
+    disabled=locked
+  }}
+  {{> "systems/magna/templates/sheets/parts/unlock-icon.hbs"}}
+</div>
+</header>

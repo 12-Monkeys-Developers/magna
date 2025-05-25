@@ -1,0 +1,93 @@
+.item-sheet {
+  background: var(--background_dialog);
+  font-family: "pillgothic";
+  font-weight: bold;
+  color: black;
+  .item-header {
+    .name-title {
+      display: grid;
+      grid-template-columns: 60px 1fr ;
+      font-size: 20px;
+      background: #97141c;
+      border: solid 2px black;
+      text-align: center;
+      padding: 10px;
+      color: white;
+      img {
+        border: 0px;
+        max-height: 50px;
+        grid-row: 1/3;
+      }
+      input {
+        font-family: "codepro";
+        font-weight: bold;
+        border: 0px;
+        background: #97141c;
+        width: 15em;
+      }
+    }
+    
+    .change-lock {
+      width: 20px;
+      grid-row: 2/3;
+      grid-column: 2/3;
+      i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: medium;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    }
+  }
+  input {
+    width: 3em;
+    color: black;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  select {
+    width: 10em;
+    color: black;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  .input-large {
+    input {
+      width: 15em;
+    }
+    select {
+      width: 15em;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    label {
+      width: 150px;
+    }
+    .form-fields {
+      margin: 3px;
+
+    }
+  }
+  .item-description{
+    font-family: "pillgothic";
+    font-weight: normal;
+  .editor {
+    min-height: 235px;
+  }
+  .editor-content {
+    min-height: 235px;
+    font-weight: normal;
+    margin: 0px 5px;
+    background: rgba(0, 0, 0, 5%);
+  }
+  .editor-menu {
+    color: black;
+    background: rgba(0, 0, 0, 60%);
+  }
+}}

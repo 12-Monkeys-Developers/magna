@@ -1,14 +1,20 @@
-@import "./arme.less";
+@import "./item.less";
 @import "./chat.less";
 @import "./dialog.less";
 @import "./journal.less";
-@import "./pj.less";
-@import "./pouvoir.less";
+@import "./actor.less";
 
 .prosemirror menu {
   font-size: 0.8em;
   li {
     margin: 0px 0px;
+  }
+}
+.scrollable {
+  padding-right: initial;
+  scrollbar-gutter: auto;
+  .window-content {
+    overflow-y: scroll;
   }
 }
 @font-face {
@@ -61,4 +67,3 @@
   --font-pj-nb: 20px "garamond";
   --font-pj-nb-color: black;
 }
-

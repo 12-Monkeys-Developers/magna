@@ -10,6 +10,50 @@
     }
   },
   "MAGNA": {
+    "actor": {
+      "tabs": {
+        "competences": "Compétences",
+        "pouvoirs": "Pouvoirs",
+        "description": "Description"
+      }
+    },
+    "Source": {
+      "FIELDS": {
+        "auraDeployee": {
+          "label": "Aura Déployée"
+        },
+        "cibles": {
+          "label": "Cibles"
+        },
+        "competence": {
+          "label": "Compétence utilisée"
+        },
+        "defaultAtt": {
+          "label": "Attribut par défaut"
+        },
+        "degats": {
+          "label": "Dégats"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "portee": {
+          "label": "portee"
+        },
+        "rang": {
+          "label": "Rang"
+        },
+        "rang_min": {
+          "label": "Rang minimum"
+        },
+        "resume": {
+          "label": "Résumé"
+        },
+        "voie": {
+          "label": "Voie"
+        }
+      }
+    },
     "CHATMESSAGE": {
       "introActionStd": "{actingCharName}",
       "introDeployerAura": "{actingCharName} tente de déployer une aura.",
@@ -32,10 +76,10 @@
       "textdegats_triples": "Dégâts de l’arme (triplés) : {degats}",
       "textdeployeraura": "L’aura du pouvoir {nompouvoir} se déploie.",
       "contrecoup": {
-        "reussite" : "{actingCharName} a une simple sensation de tournis.",
-        "largereussite" : "La douleur disparaît d’un coup, {actingCharName} récupère 1 point de Mental.",
-        "rate" : "Ressentant une vive douleur, {actingCharName} doit interrompre ses actions pendant un tour de jeu ({degatsMentaux} points de dégâts au Mental).",
-        "completementrate" : "{actingCharName} subit une douleur très forte et doit interrompre ses actions pendant deux tours de jeu ({degatsMentaux} points de dégâts au Mental)."
+        "reussite": "{actingCharName} a une simple sensation de tournis.",
+        "largereussite": "La douleur disparaît d’un coup, {actingCharName} récupère 1 point de Mental.",
+        "rate": "Ressentant une vive douleur, {actingCharName} doit interrompre ses actions pendant un tour de jeu ({degatsMentaux} points de dégâts au Mental).",
+        "completementrate": "{actingCharName} subit une douleur très forte et doit interrompre ses actions pendant deux tours de jeu ({degatsMentaux} points de dégâts au Mental)."
       }
     },
     "CARACTERISTIQUE": {
@@ -401,6 +445,9 @@
       "normale": "Normale",
       "difficile": "Difficile  -5",
       "tresdifficile": "Très difficile  -10"
+    },
+    "DIALOG":{
+      "throw":"Lancer le dé"
     }
   }
 }

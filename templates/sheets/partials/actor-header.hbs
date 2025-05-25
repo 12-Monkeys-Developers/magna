@@ -1,14 +1,18 @@
-<header class="pj-header">
+<header class="actor-header">
   {{! Sheet Navigation }}
-  <nav class="sheet-navigation tabs tablist" data-group="primary">
-    <a class="choix_tab" data-tab="competences"><i class="fa-solid fa-chart-simple"></i></a>
-    <a class="choix_tab" data-tab="pouvoirs"><i class="fa-solid fa-bolt"></i></a>
-    <a class="choix_tab" data-tab="description"><i class="fa-regular fa-clipboard"></i></a>
+  {{#if tabMode}}
+  <nav class="sheet-tabs tabs tablist" aria-roledescription="{{localize 'SHEETS.FormNavLabel'}}">
+    {{#each tabs as |tab|}}
+    <a class="choix_tab {{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+        {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+        {{#if tab.icon}}<i class="{{tab.icon}}"></i>{{/if}}
+        {{#if tab.label}}<label>{{localize tab.label}}</label>{{/if}}
+    </a>
+    {{/each}}
   </nav>
-    <div class="change-lock" title="{{localize 'MAGNA.LABEL.unlockSheet'}}">
-      <a>{{#if unlocked}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
-  </div>
-  <div class="pj-portrait std-contextmenu" data-group="portrait">
+  {{/if}}
+  {{> "systems/magna/templates/sheets/parts/unlock-icon.hbs"}}
+  <div class="actor-portrait std-contextmenu" data-group="portrait">
   {{#if unlocked}}
       <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
   {{else if (ne actor.img "icons/svg/mystery-man.svg")}}
@@ -20,7 +24,7 @@
   </div>
     <div class="aura" title="{{localize 'MAGNA.LABEL.deployerAura'}}">
         {{#if nbAuraDeployees}}<i class="fa-solid fa-person-rays"></i>{{else}}<i class="fas fa-person"></i>{{/if}}
-      <div class="val_stats" style="margin:5px;">
+      <div class="val_stats">
         : {{nbAuraDeployees}}
       </div>
     </div>
@@ -46,27 +50,29 @@
       {{actor.system.mental.max}}
     </div>
   </div>
+  {{#if showpex}}
   <div class="bloc_stats pex-contextmenu" style="grid-row: 3/4; grid-column:4/5">
     <div class="nom_stat">
       PEX
     </div>
     <div class="val_stats" title="Disponibles">
       {{#if autopex}}
-        {{pexvalue}} /
+        {{pexvalue}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
       {{else}}
         {{#if unlocked}}
           <input type="number" name="system.pex.valeur" value="{{actor.system.pex.valeur}}" /> / 
         {{else}}
-        {{actor.system.pex.valeur}}
+          {{actor.system.pex.valeur}}
         {{/if}}
       {{/if}}
     </div>
     <div class="val_stats" title="Total acquis">
-        {{#if unlocked}}
-      <input type="number" name="system.pex.total" value="{{actor.system.pex.total}}" title="Total" />
-        {{else}}
+      {{#if unlocked}}
+        <input type="number" name="system.pex.total" value="{{actor.system.pex.total}}" title="Total" />
+      {{else}}
         {{actor.system.pex.total}}
-        {{/if}}
+      {{/if}}
     </div>
   </div>
+  {{/if}}
 </header>

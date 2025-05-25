@@ -6,9 +6,9 @@ globalThis.SYSTEM = SYSTEM;
 
 // Import modules
 import * as applications from "./module/applications/_module.mjs";
-import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
+import * as rolls from "./module/applications/rolls/_module.mjs";
 
 Hooks.once("init", async function () {
   console.log(`MAGNA - Initialisation du système...`);
@@ -19,9 +19,9 @@ Hooks.once("init", async function () {
     pj: models.MagnaPJ,
     pnj: models.MagnaPNJ,
   };
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(SYSTEM.id, applications.PJSheet, { types: ["pj"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.PNJSheet, { types: ["pnj"], makeDefault: true });
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.PJSheet, { types: ["pj"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.PNJSheet, { types: ["pnj"], makeDefault: true });
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.MagnaItem;
@@ -32,31 +32,28 @@ Hooks.once("init", async function () {
     arme: models.MagnaArme
   };
 
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
 
   
   // Dice system configuration
-  CONFIG.Dice.rolls.push(dice.StandardCheck);
+  CONFIG.Dice.rolls.push(rolls.ActionRoll);
 
-  loadTemplates([
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-competences.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-competences-spe.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-description.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-header.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pj-pouvoirs.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pnj-header.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/pnj-light.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/pj.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/pnj.hbs`,
+  foundry.applications.handlebars.loadTemplates([
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-header.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-competences.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-competences-spe.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-pouvoirs.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-description.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/parts/unlock-icon.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/pouvoir.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/contrecoup-dialog.hbs`
   ]);
 
-  // menu de gauche
+  // left menu
   initControlButtons();
 
   //configuration Handlebars
@@ -142,22 +139,3 @@ function preLocalizeConfig() {
   localizeConfigObject(SYSTEM.DOMAINES, ["label"]);
   localizeConfigObject(SYSTEM.DIFFICULTES, ["label"]);
 }
-
-Hooks.on("renderChatMessage", (message, html, data) => {
-  console.debug("renderChatMessage", message, html, data);
-
-  const typeMessage = data.message.flags.world?.type;
-
-  // Bouton calcul Contrecoup
-  if (typeMessage === "retractationAura") {
-    if (game.user.isGM) {
-      html.find("#calculer-retractation-aura").click((event) => {
-        const actor = game.actors.get(data.message.flags.world.userId)
-        actor.calculerContrecoup();
-      });
-    } else {
-      const chatActions = html.find(".retractation-aura");
-      chatActions[0].style.display = "none";
-    }
-  }
-});

@@ -1,3 +1,5 @@
+# Version 2.0.0
+- Version pour Foundry v13
 # Version 1.3.1
 - ajout d'une entrée dans le menu des auras pour déployer une aura sans jet ni coût
 - nettoyage du code

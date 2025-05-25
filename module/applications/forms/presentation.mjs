@@ -1,24 +1,79 @@
-export class PresentationForm extends FormApplication {
-  /** @override */
-  constructor(object, options = {}) {
-    super(object, options);
-  }
+const { api, sheets } = foundry.applications;
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+import { SYSTEM } from "../../config/system.mjs";
 
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      title: "Présentation du système",
-      id: "guide-systeme",
-      width: 800,
-      resizable: true,
+export class PresentationForm extends HandlebarsApplicationMixin(ApplicationV2) {
+  static DEFAULT_OPTIONS = {
+    classes: [SYSTEM.id, "scrollable"],
+    tag: "form",
+    form: {
+      submitOnChange: false,
       closeOnSubmit: false,
-    });
-  }
-  async getData(options) {
-    const context = {};
+    },
+    window: {
+      resizable: true,
+      icon: "fas fa-gear",
+    },
+    position: { width: 900 },
+  };
 
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    // Add the item document.
+    context.document = this.document;
     context.images = SYSTEM.IMAGES;
 
     return context;
+  }
+}
+
+export class GuideSystPresentationForm extends PresentationForm {
+  static DEFAULT_OPTIONS = {
+    position: { height: 700},
+    id: "guide-systeme",
+  };
+
+  static PARTS = {
+    presentation: {
+      template: `systems/magna/templates/forms/guide-systeme.hbs`,
+    },
+  };
+
+  get title() {
+    return "Présentation du système";
+  }
+}
+
+export class AidePerceptionPresentationForm extends PresentationForm {
+  static DEFAULT_OPTIONS = {
+    position: { height: 640},
+    id: "aide-perception",
+  };
+
+  static PARTS = {
+    presentation: {
+      template: `systems/magna/templates/forms/aide-perception.hbs`,
+    },
+  };
+
+  get title() {
+    return "Perception des auras";
+  }
+}
+
+export class ContrecoupPresentationForm extends PresentationForm {
+  static DEFAULT_OPTIONS = {
+    position: { height: 700},
+    id: "aide-contrecoup",
+  };
+
+  static PARTS = {
+    presentation: {
+      template: `systems/magna/templates/forms/aide-contrecoup.hbs`,
+    },
+  };
+
+  get title() {
+    return "Calcul du contrecoup";
   }
 }

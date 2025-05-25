@@ -1,0 +1,16 @@
+{{#if tabMode}}
+<section class="tab description {{tab.cssClass}}" data-group="primary" data-tab="description">
+  <div class="ongletdesc">
+    <div class="description-bloc">
+      <h2>Description</h2>
+  {{#if unlocked}}{{formInput systemFields.description enriched=descriptionhtml value=system.description}}
+  {{else}}{{{descriptionhtml}}}
+  {{/if}}
+    </div>
+  </div>
+</section>
+{{else}}
+  <div class="description-bloc">
+    {{{descriptionhtml}}}
+  </div>
+{{/if}}

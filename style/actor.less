@@ -2,6 +2,7 @@
   .window-content {
     background: no-repeat url("../assets/system/fond_fdp.webp") rgba(79.6, 20.4, 18, 0.8);
     font-family: "pillgothic";
+    padding-top: 0.5rem;
   }
   .pnj {
     background: no-repeat url("../assets/system/fond_pnj.webp") rgba(79.6, 20.4, 18, 0.8);
@@ -38,18 +39,23 @@
     gap: 5px;
     color: var(--font-pj-color);
   }
-  .pj-header {
+  .actor-header {
     display: grid;
     grid-template-columns: 50px 90px 360px 170px;
-    grid-template-rows: 35px 35px 35px;
+    grid-template-rows: 35px 35px 50px;
     .tablist {
       grid-row: 1/3;
       display: flex;
       flex-direction: column;
       color: white;
       font-size: 21px;
+      border: none;
+      .choix_tab {
+        line-height: 5px;
+        font-size: 15px;
+      }
     }
-    .pj-portrait {
+    .actor-portrait {
       grid-row: 1/4;
       grid-column: 2/3;
       border: none;
@@ -67,6 +73,7 @@
       grid-column: 3/4;
       display: flex;
       input {
+        background: rgba(0, 0, 0, 0.25);
         font-size: 32px;
         color: white;
         text-align: left;
@@ -114,12 +121,15 @@
         height: 100%;
         border: none;
       }
+      .val_stats {
+        margin: 12px 0px 0px 0px;
+      }
     }
     .bloc_stats {
       display: grid;
       margin-left: 10px;
       align-items: center;
-      grid-template-columns: 85px 50px 20px;
+      grid-template-columns: 85px 60px 20px;
       grid-template-rows: 35px;
       .nom_stat {
         font-size: 18px;
@@ -132,6 +142,7 @@
         font-size: 15px;
         margin: 5px 5px 3px 5px;
         input {
+          background: rgba(0, 0, 0, 0.25);
           width: 2em;
           color: white;
           font-size: 15px;
@@ -258,10 +269,13 @@
       font-weight: bold;
 
       input {
-        width: 1.5em;
-        margin: -4px 0px 0px 0px;
+        background: rgba(0, 0, 0, 0.15);
+        color: #31191f;
+        width: 1.3em;
+        margin: -4px 0px 0px 3px;
         border: 0px;
         font-weight: bold;
+        border-radius: 15px;
       }
     }
     .attribut-icon {
@@ -280,7 +294,6 @@
   .zone_compcombat {
     img {
       border: 0px;
-      
     }
   }
   .grid_spe {
@@ -303,11 +316,15 @@
       padding: 5px;
       text-transform: uppercase;
     }
+    .plusicon{
+      align-self: center;
+      color: black;
+    }
   }
   .bloc_comp {
     display: grid;
     grid-template-columns: 130px 35px;
-    margin: 2px;
+    margin: 1px 2px 2px 0px;
     padding-left: 20px;
     height: 22px;
     .nom_comp {
@@ -410,11 +427,13 @@
     display: flex;
     flex-direction: column;
     margin: 10px 0px;
+    color: black;
   }
   .ligne-pouvoir {
     display: flex;
     flex-direction: row;
     margin: 5px;
+    color: #31191f;
     .pouvoir-rang {
       margin-right: 5px;
       font-size: 1.2em;
@@ -437,10 +456,14 @@
       margin-right: 15px;
     }
   }
+  .desc {
+    color: #31191f;
+  }
   .description-bloc {
     background: repeat url("../assets/system/fond_pouv.webp");
     padding: 5px;
     border: solid 3px #316967;
+    color: black;
     .editor {
       width: 100%;
       height: 100%;

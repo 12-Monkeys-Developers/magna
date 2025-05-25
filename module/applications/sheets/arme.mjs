@@ -1,29 +1,34 @@
 import MagnaItemSheet from "./item.mjs";
+import { SYSTEM } from "../../config/system.mjs";
+const { api, sheets } = foundry.applications;
 
 export default class ArmeSheet extends MagnaItemSheet {
-  /**
-   * Le type d'Item qu'affiche cette Sheet
-   * @type {string}
-   */
-  static itemType = "arme";
-  
-  static get defaultOptions() {
-    const options = super.defaultOptions;
-    return Object.assign(options, {
+  static DEFAULT_OPTIONS = {
+    id: "arme",
+    classes: ["arme-sheet"],
+    position: {
       height: 400,
-      width: 400,
-      classes: [SYSTEM.id, "sheet", "item", this.itemType],
-      template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
-      resizable: true,
-    });
-  }
+      width: 450,
+    },
+    window: {
+      title: "ArmeSheet.form.title",
+    },
+  };
 
-  /** @override */
-  async getData(options) {
-    const context = await super.getData(options);
+  static PARTS = {
+    header: {
+      template: `systems/${SYSTEM.id}/templates/sheets/partials/item-header.hbs`,
+    },
+    arme: {
+      template: `systems/${SYSTEM.id}/templates/sheets/arme.hbs`,
+    },
+    description: {
+      template: `systems/${SYSTEM.id}/templates/sheets/partials/item-description.hbs`,
+    },
+  };
 
-    context.competencescombat = SYSTEM.COMPETENCES_COMBAT;
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
     return context;
   }
 }
