@@ -143,8 +143,7 @@ export default class MagnaActor extends Actor {
       context.seuilReussite = this.system.mental.valeur;
     } else if (context.group1 === "pouvoir") {
       let pouvoir = this.items.get(context.field1);
-      context.itemId = context.field1,
-      context.valeur1 = pouvoir.system.rang;
+      (context.itemId = context.field1), (context.valeur1 = pouvoir.system.rang);
       context.pouvName = pouvoir.name;
       const valeurs = await this.getValeurs([{ group: context.group2, field: context.field2 }]);
       context.valeur2 = valeurs[0];
@@ -308,11 +307,12 @@ export default class MagnaActor extends Actor {
         validate: {
           label: "Afficher le portrait de " + this.name + " à tous les joueurs et joueuses connectés.",
           callback: () => {
-            let print = new ImagePopout(this.img, {
-              title: this.name,
-              shareable: true,
+            const print = new ImagePopout({
+              src: this.img,
               uuid: this.uuid,
-            }).render(true);
+              window: { title: "Personnage" },
+            });
+            print.render(true);
             print.shareImage();
           },
         },
@@ -497,13 +497,13 @@ export default class MagnaActor extends Actor {
 
   async chatMessage(introText, finalText, retracte, flags) {
     const data = {
-        actorId: this.id,
-        actingCharImg: this.img,
-        actingCharName: this.name,
-        doRoll: false,
-        finalText: finalText,
-        introText: introText,
-        retracte: retracte,
+      actorId: this.id,
+      actingCharImg: this.img,
+      actingCharName: this.name,
+      doRoll: false,
+      finalText: finalText,
+      introText: introText,
+      retracte: retracte,
     };
     // Create the chat content
     let content = await foundry.applications.handlebars.renderTemplate("systems/magna/templates/dice/action-roll.hbs", data);

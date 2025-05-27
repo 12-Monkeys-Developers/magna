@@ -1,3 +1,5 @@
+# Version 2.0.1
+- bug modification portraits
 # Version 2.0.0
 - Version pour Foundry v13
 # Version 1.3.1
