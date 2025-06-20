@@ -146,23 +146,6 @@
   position: relative;
   display: inline-block;
 }
-.action-chat .formulatooltip .tooltiptext {
-  visibility: hidden;
-  font-size: 12px;
-  width: 30px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  z-index: 1;
-}
-.action-chat .formulatooltip:hover .tooltiptext {
-  visibility: visible;
-}
 .dialog-action {
   background: var(--background_dialog);
   font-family: "pillgothic";

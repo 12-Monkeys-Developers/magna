@@ -14,9 +14,8 @@
       {{#if doRoll}}
         <p class="dice-result">
             Jet de 
-        <span class="formulatooltip">{{label1}}
-          <span class="tooltiptext">{{{valeur1}}}</span></span>
-        {{#if part2}} + <span class="formulatooltip">{{label2}}<span class="tooltiptext">{{{valeur2}}}</span></span>{{/if}}
+        <span class="formulatooltip" data-tooltip="{{valeur1}}">{{label1}}</span>
+        {{#if part2}} + <span class="formulatooltip" data-tooltip="{{valeur2}}">{{label2}}</span>{{/if}}
         </p>
         {{#if modificateur}}
         <p class="dice-result">
