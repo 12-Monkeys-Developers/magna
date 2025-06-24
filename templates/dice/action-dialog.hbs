@@ -6,13 +6,13 @@
       <div class="dialog-colgrid">
         <div class="comp-titre">Caractéristiques</div>
         <div class="comp-titre">
-          <select class="changefield" name="caracteristiques" data-action="caracteristiqueChange">
+          <select class="changefield" name="caracteristiques">
           {{selectOptions caracteristiques selected=carac labelAttr="label_short" blank="Aucune"}}
           </select>
         </div>
         <div class="comp-titre">Indices</div>
         <div class="comp-titre">
-          <select class="changefield" name="indices" data-action="indiceChange">
+          <select class="changefield" name="indices">
             {{selectOptions indices selected=indice labelAttr="label_short" blank="Aucun"}}
           </select>
         </div>
@@ -22,13 +22,13 @@
       <div class="dialog-colgrid">
         <div class="comp-titre">Modificateur</div>
         <div class="comp-titre">
-          <select class="changefield" data-action="modificateurChange" name="modificateurLab">
+          <select class="changeMod" name="modificateur">
             {{selectOptions difficultes selected=modificateurLab labelAttr="label"}}
           </select>
         </div>
         <div class="comp-titre">Opposition</div>
         <div class="comp-titre">
-          <input class="changefield oppositionChange" data-field="oppositionChange" name="opposition" type="number" value="{{opposition}}" placeholder="Pas d'opposition" />
+          <input class="oppositionChange" data-field="oppositionChange" name="opposition" type="number" value="{{opposition}}" placeholder="Pas d'opposition" />
         </div>
       </div>
     </div>

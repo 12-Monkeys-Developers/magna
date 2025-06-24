@@ -10,15 +10,10 @@ export class ActionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       width: 500,
       height: 345,
     },
-    actions: {
-      modificateurChange: this.modificateurChange,
-      caracteristiqueChange: this.caracteristiqueChange,
-      indiceChange: this.indiceChange,
-    },
     tag: "form",
     window: {
       icon: "fa-solid fa-dice-d20",
-    resizable: true,
+      resizable: true,
     },
     form: {
       closeOnSubmit: true,
@@ -38,30 +33,6 @@ export class ActionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   };
 
   /**
-   * Actions
-   */
-  static modificateurChange(event, target) {
-    if (target.value.length && target.value !== this.options.context.modificateurLab) {
-      this.options.context.modificateurLab = target.value;
-      this.options.context.modificateur = parseInt(SYSTEM.DIFFICULTES[this.options.context.modificateurLab].modificateur);
-      this.render();
-    }
-  }
-  static caracteristiqueChange(event, target) {
-    if (target.value.length && target.value !== this.options.context.field2) {
-      this.options.context.group2 = "caracteristiques";
-      this.options.context.field2 = target.value;
-      this.render();
-    }
-  }
-  static indiceChange(event, target) {
-    if (target.value.length && target.value !== this.options.context.field2) {
-      this.options.context.group2 = "indices";
-      this.options.context.field2 = target.value;
-      this.render();
-    }
-  }
-  /**
    * Actions performed after any render of the Application.
    * Post-render steps are not awaited by the render process.
    * @param {ApplicationRenderContext} context      Prepared context data
@@ -69,6 +40,31 @@ export class ActionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
    * @protected
    */
   _onRender(context, options) {
+    const fieldChange = this.element.querySelectorAll('select[class="changefield"]');
+    for (const select of fieldChange) {
+      select.addEventListener("change", (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (e.currentTarget.value.length && e.currentTarget.value !== this.options.context.field2) {
+          this.options.context.group2 = e.currentTarget.name;
+          this.options.context.field2 = e.currentTarget.value;
+        }
+        this.render();
+      });
+    }
+    const modChange = this.element.querySelectorAll('select[class="changeMod"]');
+    for (const select of modChange) {
+      select.addEventListener("change", (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (e.currentTarget.value.length && e.currentTarget.value !== this.options.context.modificateurLab) {
+          this.options.context.modificateurLab = e.currentTarget.value;
+          this.options.context.modificateur = parseInt(SYSTEM.DIFFICULTES[this.options.context.modificateurLab].modificateur);
+        }
+        this.render();
+      });
+    }
+
     const oppositionChange = this.element.querySelectorAll(".oppositionChange");
     for (const input of oppositionChange) {
       input.addEventListener("change", (e) => {
@@ -76,6 +72,7 @@ export class ActionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         e.stopImmediatePropagation();
         const newValue = e.currentTarget.value;
         this.options.context.opposition = parseInt(newValue);
+        this.render();
       });
     }
   }

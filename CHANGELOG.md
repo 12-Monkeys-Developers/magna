@@ -1,3 +1,5 @@
+# Version 2.1.0
+- bug dialog on chrome
 # Version 2.0.1
 - bug modification portraits
 # Version 2.0.0

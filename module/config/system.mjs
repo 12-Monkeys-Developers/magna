@@ -130,6 +130,7 @@ export const COMPETENCES = Object.freeze({
   filature: {
     id: "filature",
     label: "MAGNA.COMPETENCE.filature.label",
+    defaultCarac: "per",
   },
   forcer: {
     id: "forcer",

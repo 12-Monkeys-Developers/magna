@@ -15,6 +15,16 @@
   ],
   "esmodules": ["magna.mjs"],
   "styles": ["css/magna.css"],
+  "documentTypes": {
+    "Actor": {
+      "pj": { "htmlFields": ["description", "equipement"] },
+      "pnj": { "htmlFields": ["description", "equipement"] }
+    },
+    "Item": {
+      "arme": { "htmlFields": ["description"] },
+      "pouvoir": { "htmlFields": ["description"] }
+    }
+  },
   "packs": [],
   "languages": [
     {
