@@ -182,6 +182,7 @@ export default class ActionRoll extends foundry.dice.Roll {
         title: title,
       },
     });
+    if (!promptValue || Object.keys(promptValue).length === 0) return null;
 
     foundry.utils.mergeObject(this.options, promptValue, {
       insertKeys: true,
@@ -189,7 +190,6 @@ export default class ActionRoll extends foundry.dice.Roll {
       overwrite: true,
     });
 
-    if (!promptValue) return null;
     return this;
   }
 }

@@ -174,6 +174,8 @@ export default class MagnaActor extends Actor {
     if (context.askDialog) {
       // Prompt the user with a roll dialog
       const promptValue = await action_roll.prompt(context);
+      // if dialog was closed without submitting, do not roll
+      if (!promptValue || Object.keys(promptValue).length === 0) return (null);
     }
     const evaluatedRoll = await action_roll.evaluate();
     const resultRoll = await action_roll.render();
