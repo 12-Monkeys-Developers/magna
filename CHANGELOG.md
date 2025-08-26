@@ -1,3 +1,5 @@
+# Version 2.1.1
+- bug on cloase dialog
 # Version 2.1.0
 - bug dialog on chrome
 # Version 2.0.1

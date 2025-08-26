@@ -18,6 +18,7 @@ export class ActionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     form: {
       closeOnSubmit: true,
       submitOnChange: false,
+      submitOnClose: false,
       handler: this.#onSubmit,
     },
   };
@@ -137,7 +138,7 @@ export class ActionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       dialog.addEventListener(
         "close",
         (event) => {
-          if (dialog.promptValue) resolve(dialog.promptValue);
+          if (Object.keys(dialog.promptValue).length !== 0) resolve(dialog.promptValue);
           else resolve(null);
         },
         { once: true }
