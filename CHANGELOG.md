@@ -1,5 +1,7 @@
+# Version 2.1.2
+- bug on Appv2 sheets
 # Version 2.1.1
-- bug on cloase dialog
+- bug on close dialog
 # Version 2.1.0
 - bug dialog on chrome
 # Version 2.0.1
