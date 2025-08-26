@@ -7,7 +7,6 @@ import { SYSTEM } from "../../config/system.mjs";
  */
 export default class PNJSheet extends MagnaActorSheet {
   static DEFAULT_OPTIONS = {
-    id: "pnj",
     classes: ["pnj-sheet"],
     position: {
       width: 720,

@@ -4,7 +4,6 @@ const { api, sheets } = foundry.applications;
 
 export default class ArmeSheet extends MagnaItemSheet {
   static DEFAULT_OPTIONS = {
-    id: "arme",
     classes: ["arme-sheet"],
     position: {
       height: 400,
