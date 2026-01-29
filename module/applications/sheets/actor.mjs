@@ -18,11 +18,11 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
     tag: "form", // The default is "div"
     window: {
       resizable: true,
-      icon: "fas fa-gear", // You can now add an icon to the header
+      icon: "fas fa-person", // You can now add an icon to the header
     },
   };
   get title() {
-    return `${game.i18n.localize("TYPES.Actor." + this.id)}`;
+    return `${game.i18n.localize("TYPES.Actor." + this.actor.type)}`;
   }
 
   static PARTS = {
@@ -229,7 +229,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
       hookName: "StdContext",
       parentClassHooks: false,
     });
-    if (game.settings.get("magna", "calculPex") && this.actor.isUnlocked) {
+    if (game.settings.get("magna", "calculPex")) {
       this._createContextMenu(this._getPexContextOptions, ".pex-contextmenu", {
         fixed: true,
         hookName: "PexContext",
@@ -536,7 +536,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         name: `Fixer la valeur de création`,
         icon: `<i class="fa-solid fa-flag-checkered"></i>`,
         condition: (li) => {
-          return game.user.isGM;
+          return (game.user.isGM && this.actor.isUnlocked);
         },
         callback: async (li) => {
           await this.askBasePex();

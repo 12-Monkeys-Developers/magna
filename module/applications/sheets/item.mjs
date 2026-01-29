@@ -18,7 +18,7 @@ export default class MagnaItemSheet extends api.HandlebarsApplicationMixin(sheet
     },
   };
   get title() {
-    return `${game.i18n.localize("TYPES.Item." + this.id)}`;
+    return `${game.i18n.localize("TYPES.Item." + this.item.type)}`;
   }
 
 

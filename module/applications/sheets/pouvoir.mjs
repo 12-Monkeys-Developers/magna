@@ -11,6 +11,7 @@ export default class PouvoirSheet extends MagnaItemSheet {
     },
     window: {
       title: "pouvoirSheet.form.title",
+      icon: "fa-solid fa-person-rays"
     },
   };
 
