@@ -3,7 +3,7 @@ const { api, sheets } = foundry.applications;
 
 export default class MagnaItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ["item-sheet", "scrollable"],
+    classes: [SYSTEM.id, "item", "item-sheet", "magna-scrollable"],
     actions: {
       toggleLockMode: this._toggleLockMode,
       editHTML: this._editHTML,
@@ -18,7 +18,7 @@ export default class MagnaItemSheet extends api.HandlebarsApplicationMixin(sheet
     },
   };
   get title() {
-    return `${game.i18n.localize("TYPES.Item." + this.item.type)}`;
+    return this.item.name;
   }
 
 

@@ -3,8 +3,7 @@ const { api, sheets } = foundry.applications;
 
 export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: [SYSTEM.id, "sheet", "actor", "actor-sheet", "scrollable"],
-    resizable: true,
+    classes: [SYSTEM.id, "actor", "magna-scrollable"],
 
     actions: {
       toggleLockMode: this._toggleLockMode,
@@ -22,7 +21,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
     },
   };
   get title() {
-    return `${game.i18n.localize("TYPES.Actor." + this.actor.type)}`;
+    return this.actor.name;
   }
 
   static PARTS = {
@@ -246,7 +245,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
    * @protected
    */
   async _onRender(context, options) {
-  await super._onRender(context, options);
+    await super._onRender(context, options);
     // Inputs with on class `compSpeEdit`
     const compSpe = this.element.querySelectorAll(".compSpeEdit");
     for (const input of compSpe) {
@@ -269,32 +268,32 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
   _getStdContextOptions() {
     return [
       {
-        name: `Afficher`,
+        label: `Afficher`,
         icon: `<i class="fa-regular fa-image-portrait"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return li.dataset.group === "portrait";
         },
-        callback: (li) => {
+        onClick: (event, target) => {
           return this.actor.showPortrait();
         },
       },
       {
-        name: `Jet d'Initiative`,
+        label: `Jet d'Initiative`,
         icon: `<i class="fa-solid fa-hourglass-start"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return li.dataset.group === "init";
         },
-        callback: (li) => {
+        onClick: (event, target) => {
           return this.actor.rollInit();
         },
       },
       {
-        name: `Jet de Mental`,
+        label: `Jet de Mental`,
         icon: `<i class="fa-solid fa-head-side-medical"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return li.dataset.group === "mental";
         },
-        callback: async (li) => {
+        onClick: async (event, target) => {
           const introText = game.i18n.format("MAGNA.CHATMESSAGE.introMental", { actingCharName: this.actor.name });
           let data = {
             group1: "mental",
@@ -309,14 +308,14 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         },
       },
       {
-        name: `Jet simple`,
+        label: `Jet simple`,
         icon: `<i class="fa-solid fa-dice-d20"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return ["competences", "competences_spe", "combat"].includes(li.dataset.group);
         },
-        callback: async (li) => {
-          const compname = li.dataset.compname;
-          const group = li.dataset.group;
+        onClick: async (event, target) => {
+          const compname = target.dataset.compname;
+          const group = target.dataset.group;
           const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", { actingCharName: this.actor.name });
           let data = {
             group1: group,
@@ -332,7 +331,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
           } else if (group === "combat") {
             data.field2 = SYSTEM.COMPETENCES_COMBAT[compname].defaultCarac;
           } else if (group === "competences_spe") {
-            const compSpe = await this.actor.lectureCompSpe(li.dataset.type, compname);
+            const compSpe = await this.actor.lectureCompSpe(target.dataset.type, compname);
             data.field1 = compSpe;
             data.field2 = compSpe.defaultCarac;
           }
@@ -340,14 +339,14 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         },
       },
       {
-        name: `Jet modifiable`,
+        label: `Jet modifiable`,
         icon: `<i class="fa-solid fa-dice-d20"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return ["competences", "competences_spe", "combat", "indices", "caracteristiques"].includes(li.dataset.group);
         },
-        callback: async (li) => {
-          const compname = li.dataset.compname;
-          const group = li.dataset.group;
+        onClick: async (event, target) => {
+          const compname = target.dataset.compname;
+          const group = target.dataset.group;
           const introText = game.i18n.format("MAGNA.CHATMESSAGE.introActionStd", { actingCharName: this.actor.name });
           let data = {
             group1: group,
@@ -363,7 +362,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
           } else if (group === "combat") {
             data.field2 = SYSTEM.COMPETENCES_COMBAT[compname].defaultCarac;
           } else if (group === "competences_spe") {
-            const compSpe = await this.actor.lectureCompSpe(li.dataset.type, compname);
+            const compSpe = await this.actor.lectureCompSpe(target.dataset.type, compname);
             data.field1 = compSpe;
             data.field2 = compSpe.defaultCarac;
           }
@@ -371,27 +370,27 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         },
       },
       {
-        name: `Supprimer`,
+        label: `Supprimer`,
         icon: `<i class="fa-solid fa-trash"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return ["competences_spe"].includes(li.dataset.group);
         },
-        callback: async (li) => {
-          const compType = li.dataset.type;
-          const compIndex = li.dataset.groupid;
+        onClick: async (event, target) => {
+          const compType = target.dataset.type;
+          const compIndex = target.dataset.groupid;
           this.actor.supprimerCompSpe(compType, compIndex);
         },
       },
       {
-        name: `Remettre au max`,
+        label: `Remettre au max`,
         icon: `<i class="fa-solid fa-gauge-max"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           return ["mental", "vitalite", "caracteristiques"].includes(li.dataset.group);
         },
-        callback: async (li) => {
-          const group = li.dataset.group;
+        onClick: async (event, target) => {
+          const group = target.dataset.group;
           if (group === "caracteristiques") {
-            const compname = li.dataset.compname;
+            const compname = target.dataset.compname;
             return this.actor.setCaracToMax(compname);
           } else return this.actor.setToMax(group);
         },
@@ -407,16 +406,16 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
   _getItemEntryContextOptions() {
     return [
       {
-        name: `Utiliser pouvoir (Jet d'action)`,
+        label: `Utiliser pouvoir (Jet d'action)`,
         icon: `<i class="fa-regular fa-bolt"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           const itemId = li.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           return item.type === "pouvoir" && item.system.auraDeployee;
         },
-        callback: (li) => {
-          const itemId = li.dataset.itemId;
+        onClick: (event, target) => {
+          const itemId = target.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           const introText = game.i18n.format("MAGNA.CHATMESSAGE.introPouvoir", { pouvName: item.name, actingCharName: this.actor.name });
@@ -435,94 +434,94 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
         },
       },
       {
-        name: `Frapper / Tirer`,
+        label: `Frapper / Tirer`,
         icon: `<i class="fa-regular fa-gun"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           const itemId = li.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           return item.type === "arme";
         },
-        callback: (li) => {
-          const itemId = li.dataset.itemId;
+        onClick: (event, target) => {
+          const itemId = target.dataset.itemId;
           this.actor.utiliserArme(itemId);
         },
       },
       {
-        name: `Déployer l'aura (Jet d'action)`,
+        label: `Déployer l'aura (Jet d'action)`,
         icon: `<i class="fa-regular fa-person-rays"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           const itemId = li.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           return item.type === "pouvoir" && !item.system.auraDeployee;
         },
-        callback: async (li) => {
-          const itemId = li.dataset.itemId;
+        onClick: async (event, target) => {
+          const itemId = target.dataset.itemId;
           if (await this.actor.deployerAura(itemId, false, false)) this.actor.sheet.render(true);
           return;
         },
       },
       {
-        name: `Rétracter l'aura`,
+        label: `Rétracter l'aura`,
         icon: `<i class="fa-regular fa-person"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           const itemId = li.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           return item.type === "pouvoir" && item.system.auraDeployee;
         },
-        callback: async (li) => {
-          const itemId = li.dataset.itemId;
+        onClick: async (event, target) => {
+          const itemId = target.dataset.itemId;
           this.actor.retracterAura(itemId);
           return;
         },
       },
       {
-        name: `Forcer l'aura (3 pts mental)`,
+        label: `Forcer l'aura (3 pts mental)`,
         icon: `<i class="fa-regular fa-person-rays"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           const itemId = li.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           return item.type === "pouvoir" && !item.system.auraDeployee;
         },
-        callback: (li) => {
-          const itemId = li.dataset.itemId;
+        onClick: (event, target) => {
+          const itemId = target.dataset.itemId;
           if (this.actor.deployerAura(itemId, true, false)) this.actor.sheet.render(true);
           return;
         },
       },
       {
-        name: `Déployer l'aura sans jet ni coût`,
+        label: `Déployer l'aura sans jet ni coût`,
         icon: `<i class="fa-regular fa-person-rays"></i>`,
-        condition: (li) => {
+        visible: (li) => {
           const itemId = li.dataset.itemId;
           const item = this.actor.items.get(itemId);
           if (!item) return false;
           return item.type === "pouvoir" && !item.system.auraDeployee;
         },
-        callback: (li) => {
-          const itemId = li.dataset.itemId;
+        onClick: (event, target) => {
+          const itemId = target.dataset.itemId;
           if (this.actor.deployerAura(itemId, true, true)) this.actor.sheet.render(true);
           return;
         },
       },
       {
-        name: `Détails`,
+        label: `Détails`,
         icon: `<i class="fa-regular fa-cogs"></i>`,
-        condition: true,
-        callback: (li) => {
-          const itemId = li.dataset.itemId;
+        visible: true,
+        onClick: (event, target) => {
+          const itemId = target.dataset.itemId;
           this._ouvrirItem(itemId);
         },
       },
       {
-        name: `Supprimer`,
+        label: `Supprimer`,
         icon: `<i class="fa-solid fa-trash"></i>`,
-        condition: true,
-        callback: (li) => {
-          const itemId = li.dataset.itemId;
+        visible: true,
+        onClick: (event, target) => {
+          const itemId = target.dataset.itemId;
           this._supprimerItem(itemId);
         },
       },
@@ -533,12 +532,12 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
   _getPexContextOptions() {
     return [
       {
-        name: `Fixer la valeur de création`,
+        label: `Fixer la valeur de création`,
         icon: `<i class="fa-solid fa-flag-checkered"></i>`,
-        condition: (li) => {
-          return (game.user.isGM && this.actor.isUnlocked);
+        visible: (li) => {
+          return game.user.isGM && this.actor.isUnlocked;
         },
-        callback: async (li) => {
+        onClick: async (event, target) => {
           await this.askBasePex();
           return;
         },
@@ -568,7 +567,7 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
   }
 
   async askBasePex() {
-    const coutactuel = await this.actor.pextotal();
+    /*   const coutactuel = await this.actor.pextotal();
     const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`, { coutactuel: coutactuel });
     let x = new Dialog({
       content: dialog_content,
@@ -578,11 +577,29 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
       },
       default: "Ok",
     });
-
     x.options.width = 400;
     x.position.width = 400;
-
     x.render(true);
+*/
+    const coutactuel = await this.actor.pextotal();
+    const dialog_content = await renderTemplate(`systems/${SYSTEM.id}/templates/sheets/setpex-dialog.hbs`, { coutactuel: coutactuel });
+
+    let pexbase;
+    try {
+      pexbase = await foundry.applications.api.DialogV2.prompt({
+        window: { title: "Valeur de base en Pex" },
+        content: dialog_content,
+        ok: {
+          label: "Ok",
+          callback: (event, button, dialog) => button.form.elements.pexbase.valueAsNumber,
+        },
+        Cancel: { label: `Cancel` },
+      });
+    } catch {
+      console.log("User did not make a guess.");
+      return;
+    }
+    await this.setBasePex(pexbase);
   }
 
   async setBasePex(creationValue) {
@@ -591,6 +608,4 @@ export default class MagnaActorSheet extends api.HandlebarsApplicationMixin(shee
     await this.actor.update({ [`system.pex.creation`]: creationNumber });
     return this.actor.sheet.render(true);
   }
-
-
 }

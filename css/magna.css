@@ -1,10 +1,10 @@
-.item-sheet {
+.magna.item {
   background: var(--background_dialog);
   font-family: "pillgothic";
   font-weight: bold;
   color: black;
 }
-.item-sheet .item-header .name-title {
+.magna.item .item-header .name-title {
   display: grid;
   grid-template-columns: 60px 1fr ;
   font-size: 20px;
@@ -14,24 +14,24 @@
   padding: 10px;
   color: white;
 }
-.item-sheet .item-header .name-title img {
+.magna.item .item-header .name-title img {
   border: 0px;
   max-height: 50px;
   grid-row: 1/3;
 }
-.item-sheet .item-header .name-title input {
+.magna.item .item-header .name-title input {
   font-family: "codepro";
   font-weight: bold;
   border: 0px;
   background: #97141c;
   width: 15em;
 }
-.item-sheet .item-header .change-lock {
+.magna.item .item-header .change-lock {
   width: 20px;
   grid-row: 2/3;
   grid-column: 2/3;
 }
-.item-sheet .item-header .change-lock i {
+.magna.item .item-header .change-lock i {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,46 +42,46 @@
   height: 100%;
   border: none;
 }
-.item-sheet input {
+.magna.item input {
   width: 3em;
   color: black;
   background: rgba(0, 0, 0, 0.05);
 }
-.item-sheet select {
+.magna.item select {
   width: 10em;
   color: black;
   background: rgba(0, 0, 0, 0.05);
 }
-.item-sheet .input-large input {
+.magna.item .input-large input {
   width: 15em;
 }
-.item-sheet .input-large select {
+.magna.item .input-large select {
   width: 15em;
 }
-.item-sheet .form-group {
+.magna.item .form-group {
   display: flex;
   align-items: center;
 }
-.item-sheet .form-group label {
+.magna.item .form-group label {
   width: 150px;
 }
-.item-sheet .form-group .form-fields {
+.magna.item .form-group .form-fields {
   margin: 3px;
 }
-.item-sheet .item-description {
+.magna.item .item-description {
   font-family: "pillgothic";
   font-weight: normal;
 }
-.item-sheet .item-description .editor {
+.magna.item .item-description .editor {
   min-height: 235px;
 }
-.item-sheet .item-description .editor-content {
+.magna.item .item-description .editor-content {
   min-height: 235px;
   font-weight: normal;
   margin: 0px 5px;
   background: rgba(0, 0, 0, 0.05);
 }
-.item-sheet .item-description .editor-menu {
+.magna.item .item-description .editor-menu {
   color: black;
   background: rgba(0, 0, 0, 0.6);
 }
@@ -296,15 +296,15 @@
 .magna_journal tr:nth-child(odd) {
   background-color: #f4e6e2;
 }
-.magna.sheet.actor .window-content {
+.magna.actor .window-content {
   background: no-repeat url("../assets/system/fond_fdp.webp") rgba(80, 20, 18, 0.8);
   font-family: "pillgothic";
   padding-top: 0.5rem;
 }
-.magna.sheet.actor .pnj {
+.magna.actor .pnj {
   background: no-repeat url("../assets/system/fond_pnj.webp") rgba(80, 20, 18, 0.8);
 }
-.magna.sheet.actor .editor {
+.magna.actor .editor {
   width: 100%;
   height: 100%;
   background-color: #f9f6f1;
@@ -316,11 +316,11 @@
   padding-right: 5px;
   min-height: 5em;
 }
-.magna.sheet.actor .editor-content {
+.magna.actor .editor-content {
   min-height: 5em;
   margin: 0px 5px 0px 5px;
 }
-.magna.sheet.actor h2 {
+.magna.actor h2 {
   font-family: "codepro";
   font-weight: bold;
   font-size: 18px;
@@ -331,17 +331,17 @@
   text-transform: uppercase;
   border: 0px;
 }
-.magna.sheet.actor .pj-sheet {
+.magna.actor .pj-sheet {
   display: grid;
   gap: 5px;
   color: var(--font-pj-color);
 }
-.magna.sheet.actor .actor-header {
+.magna.actor .actor-header {
   display: grid;
   grid-template-columns: 50px 90px 360px 170px;
   grid-template-rows: 35px 35px 50px;
 }
-.magna.sheet.actor .actor-header .tablist {
+.magna.actor .actor-header .tablist {
   grid-row: 1/3;
   display: flex;
   flex-direction: column;
@@ -349,11 +349,11 @@
   font-size: 21px;
   border: none;
 }
-.magna.sheet.actor .actor-header .tablist .choix_tab {
+.magna.actor .actor-header .tablist .choix_tab {
   line-height: 5px;
   font-size: 15px;
 }
-.magna.sheet.actor .actor-header .actor-portrait {
+.magna.actor .actor-header .actor-portrait {
   grid-row: 1/4;
   grid-column: 2/3;
   border: none;
@@ -363,15 +363,15 @@
   height: 60px;
   z-index: 2;
 }
-.magna.sheet.actor .actor-header .actor-portrait img {
+.magna.actor .actor-header .actor-portrait img {
   border-radius: 50%;
 }
-.magna.sheet.actor .actor-header .charname {
+.magna.actor .actor-header .charname {
   grid-row: 1/3;
   grid-column: 3/4;
   display: flex;
 }
-.magna.sheet.actor .actor-header .charname input {
+.magna.actor .actor-header .charname input {
   background: rgba(0, 0, 0, 0.25);
   font-size: 32px;
   color: white;
@@ -379,14 +379,14 @@
   border: none;
   height: 100%;
 }
-.magna.sheet.actor .actor-header .change-lock {
+.magna.actor .actor-header .change-lock {
   width: 20px;
   color: white;
   grid-row: 3/4;
   grid-column: 1/2;
   padding-top: 5px;
 }
-.magna.sheet.actor .actor-header .change-lock i {
+.magna.actor .actor-header .change-lock i {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -397,7 +397,7 @@
   height: 100%;
   border: none;
 }
-.magna.sheet.actor .actor-header .aura {
+.magna.actor .actor-header .aura {
   display: flex;
   flex-direction: row;
   width: 80px;
@@ -409,7 +409,7 @@
   border-radius: 10px;
   margin-left: 52px;
 }
-.magna.sheet.actor .actor-header .aura i {
+.magna.actor .actor-header .aura i {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -420,46 +420,46 @@
   height: 100%;
   border: none;
 }
-.magna.sheet.actor .actor-header .aura .val_stats {
+.magna.actor .actor-header .aura .val_stats {
   margin: 12px 0px 0px 0px;
 }
-.magna.sheet.actor .actor-header .bloc_stats {
+.magna.actor .actor-header .bloc_stats {
   display: grid;
   margin-left: 10px;
   align-items: center;
   grid-template-columns: 85px 60px 20px;
   grid-template-rows: 35px;
 }
-.magna.sheet.actor .actor-header .bloc_stats .nom_stat {
+.magna.actor .actor-header .bloc_stats .nom_stat {
   font-size: 18px;
   color: white;
   margin: 5px 5px 3px 5px;
   text-transform: uppercase;
 }
-.magna.sheet.actor .actor-header .bloc_stats .val_stats {
+.magna.actor .actor-header .bloc_stats .val_stats {
   color: white;
   font-size: 15px;
   margin: 5px 5px 3px 5px;
 }
-.magna.sheet.actor .actor-header .bloc_stats .val_stats input {
+.magna.actor .actor-header .bloc_stats .val_stats input {
   background: rgba(0, 0, 0, 0.25);
   width: 2em;
   color: white;
   font-size: 15px;
 }
-.magna.sheet.actor .ligne_caract {
+.magna.actor .ligne_caract {
   display: flex;
   flex-direction: row;
 }
-.magna.sheet.actor .zone_carac {
+.magna.actor .zone_carac {
   flex-direction: column;
   width: 250px;
 }
-.magna.sheet.actor .zone_indices {
+.magna.actor .zone_indices {
   flex-direction: column;
   margin-left: 20px;
 }
-.magna.sheet.actor .grid_carac {
+.magna.actor .grid_carac {
   margin-top: 15px;
   margin-left: 45px;
   padding-top: 20px;
@@ -468,32 +468,32 @@
   grid-template-columns: 75px 70px 70px;
   grid-template-rows: 75px 70px 70px;
 }
-.magna.sheet.actor .grid_carac .margin_caracteristique {
+.magna.actor .grid_carac .margin_caracteristique {
   margin: 0px;
 }
-.magna.sheet.actor .grid_carac .PSI {
+.magna.actor .grid_carac .PSI {
   margin-top: -70px;
   margin-left: -14px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
-.magna.sheet.actor .grid_carac .CHA {
+.magna.actor .grid_carac .CHA {
   margin-top: -75px;
   margin-left: -14px;
 }
-.magna.sheet.actor .grid_carac .INS {
+.magna.actor .grid_carac .INS {
   margin-top: -75px;
   margin-left: -14px;
 }
-.magna.sheet.actor .grid_carac .PER {
+.magna.actor .grid_carac .PER {
   margin-left: -23px;
 }
-.magna.sheet.actor .grid_carac .INT {
+.magna.actor .grid_carac .INT {
   margin-left: -23px;
 }
-.magna.sheet.actor .grid_carac .VOL {
+.magna.actor .grid_carac .VOL {
   margin-left: -23px;
 }
-.magna.sheet.actor .grid_indices {
+.magna.actor .grid_indices {
   margin-top: -7px;
   margin-left: 47px;
   display: grid;
@@ -501,49 +501,49 @@
   grid-template-columns: 75px 70px 70px 70px 70px 10px;
   grid-template-rows: 75px 50px;
 }
-.magna.sheet.actor .grid_indices .margin_indices {
+.magna.actor .grid_indices .margin_indices {
   margin: 4px 0px 0px -3px;
 }
-.magna.sheet.actor .grid_indices .cac {
+.magna.actor .grid_indices .cac {
   margin-left: -47px;
 }
-.magna.sheet.actor .grid_indices .cacpsi {
+.magna.actor .grid_indices .cacpsi {
   margin-top: 71px;
   margin-left: -64px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
-.magna.sheet.actor .grid_indices .cacpsi .nom_caracteristique {
+.magna.actor .grid_indices .cacpsi .nom_caracteristique {
   font-size: 11px;
   width: 42px;
   margin: 10px 10px;
 }
-.magna.sheet.actor .grid_indices .dist {
+.magna.actor .grid_indices .dist {
   margin-left: -76px;
 }
-.magna.sheet.actor .grid_indices .distpsi {
+.magna.actor .grid_indices .distpsi {
   margin-top: 71px;
   margin-left: -88px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
-.magna.sheet.actor .grid_indices .distpsi .nom_caracteristique {
+.magna.actor .grid_indices .distpsi .nom_caracteristique {
   font-size: 11px;
   width: 42px;
   margin: 10px 10px;
 }
-.magna.sheet.actor .grid_indices .ref {
+.magna.actor .grid_indices .ref {
   margin-left: -99px;
 }
-.magna.sheet.actor .grid_indices .refpsi {
+.magna.actor .grid_indices .refpsi {
   margin-top: 71px;
   margin-left: -109px;
   background: no-repeat url("../assets/system/hexa_r.webp");
 }
-.magna.sheet.actor .grid_indices .refpsi .nom_caracteristique {
+.magna.actor .grid_indices .refpsi .nom_caracteristique {
   font-size: 12px;
   width: 42px;
   margin: 10px 10px;
 }
-.magna.sheet.actor .bloc_caracteristique {
+.magna.actor .bloc_caracteristique {
   background: no-repeat url("../assets/system/hexa.webp");
   display: grid;
   grid-template-columns: 20px 45px;
@@ -551,7 +551,7 @@
   padding-left: 6px;
   text-align: center;
 }
-.magna.sheet.actor .bloc_caracteristique .nom_caracteristique {
+.magna.actor .bloc_caracteristique .nom_caracteristique {
   grid-row: 1 / 2;
   grid-column: 1 / 3;
   font-size: 14px;
@@ -561,12 +561,12 @@
   text-transform: uppercase;
   font-weight: bold;
 }
-.magna.sheet.actor .bloc_caracteristique .val_caracteristique {
+.magna.actor .bloc_caracteristique .val_caracteristique {
   color: #31191f;
   font-size: 21px;
   font-weight: bold;
 }
-.magna.sheet.actor .bloc_caracteristique .val_caracteristique input {
+.magna.actor .bloc_caracteristique .val_caracteristique input {
   background: rgba(0, 0, 0, 0.15);
   color: #31191f;
   width: 1.3em;
@@ -575,33 +575,33 @@
   font-weight: bold;
   border-radius: 15px;
 }
-.magna.sheet.actor .bloc_caracteristique .attribut-icon {
+.magna.actor .bloc_caracteristique .attribut-icon {
   font-size: 14px;
   color: #31191f;
   margin: 0px;
 }
-.magna.sheet.actor .grid_comp {
+.magna.actor .grid_comp {
   display: grid;
   align-items: center;
   background: no-repeat url("../assets/system/fond_comp.webp");
   grid-template-columns: 170px 170px 170px 170px;
   grid-auto-rows: 25px;
 }
-.magna.sheet.actor .zone_compcombat img {
+.magna.actor .zone_compcombat img {
   border: 0px;
 }
-.magna.sheet.actor .grid_spe {
+.magna.actor .grid_spe {
   display: grid;
   align-items: center;
   background: no-repeat url("../assets/system/fond_compspe.webp");
   grid-template-columns: 170px 170px 170px 170px;
 }
-.magna.sheet.actor .bloc_vertical {
+.magna.actor .bloc_vertical {
   display: flex;
   flex-direction: column;
   align-self: start;
 }
-.magna.sheet.actor .bloc_vertical .titre_compspe {
+.magna.actor .bloc_vertical .titre_compspe {
   font-family: "codepro";
   font-weight: bold;
   font-size: 15px;
@@ -611,18 +611,18 @@
   padding: 5px;
   text-transform: uppercase;
 }
-.magna.sheet.actor .bloc_vertical .plusicon {
+.magna.actor .bloc_vertical .plusicon {
   align-self: center;
   color: black;
 }
-.magna.sheet.actor .bloc_comp {
+.magna.actor .bloc_comp {
   display: grid;
   grid-template-columns: 130px 35px;
   margin: 1px 2px 2px 0px;
   padding-left: 20px;
   height: 22px;
 }
-.magna.sheet.actor .bloc_comp .nom_comp {
+.magna.actor .bloc_comp .nom_comp {
   align-self: center;
   font-weight: bold;
   font-size: 16px;
@@ -631,32 +631,32 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.magna.sheet.actor .bloc_comp .nom_comp input {
+.magna.actor .bloc_comp .nom_comp input {
   font-size: 15px;
   height: 18px;
 }
-.magna.sheet.actor .bloc_comp .val_comp {
+.magna.actor .bloc_comp .val_comp {
   color: #31191f;
   font-weight: bold;
   align-self: center;
   font-size: 18px;
 }
-.magna.sheet.actor .bloc_comp .val_comp input {
+.magna.actor .bloc_comp .val_comp input {
   width: 2em;
   font-size: 15px;
   height: 18px;
 }
-.magna.sheet.actor .bloc_comp .attribut-icon {
+.magna.actor .bloc_comp .attribut-icon {
   font-size: 14px;
   color: #31191f;
   margin: 5px 5px 3px 5px;
 }
-.magna.sheet.actor .grid_combat {
+.magna.actor .grid_combat {
   display: grid;
   grid-template-columns: 190px 190px;
   grid-template-rows: 27px 27px 27px 27px;
 }
-.magna.sheet.actor .grid_combat .bloc_comp {
+.magna.actor .grid_combat .bloc_comp {
   display: grid;
   background: no-repeat url("../assets/system/cadrebiais.webp");
   grid-template-columns: 130px 35px;
@@ -664,7 +664,7 @@
   padding-left: 20px;
   height: 22px;
 }
-.magna.sheet.actor .bloc_arme {
+.magna.actor .bloc_arme {
   display: grid;
   grid-template-columns: 110px 70px;
   background: no-repeat url("../assets/system/cadrebiais.webp");
@@ -672,7 +672,7 @@
   padding-left: 2px;
   border-radius: 5px;
 }
-.magna.sheet.actor .bloc_arme .nom_comp {
+.magna.actor .bloc_arme .nom_comp {
   margin-left: 15px;
   font-weight: bold;
   align-self: center;
@@ -682,25 +682,25 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.magna.sheet.actor .bloc_arme .val_comp {
+.magna.actor .bloc_arme .val_comp {
   color: #31191f;
   font-weight: bold;
   align-self: center;
   font-size: 18px;
 }
-.magna.sheet.actor .bloc_arme .val_comp input {
+.magna.actor .bloc_arme .val_comp input {
   width: 2em;
 }
-.magna.sheet.actor .bloc_arme .attribut-icon {
+.magna.actor .bloc_arme .attribut-icon {
   font-size: 14px;
   color: #31191f;
   margin: 5px 5px 3px 5px;
 }
-.magna.sheet.actor .bloc-voie {
+.magna.actor .bloc-voie {
   background: no-repeat url("../assets/system/fond_pouv.webp");
   border: solid 3px #316967;
 }
-.magna.sheet.actor .bloc-voie .titre_voie {
+.magna.actor .bloc-voie .titre_voie {
   font-family: "codepro";
   font-weight: bold;
   font-size: 20px;
@@ -710,56 +710,56 @@
   padding: 5px;
   text-transform: uppercase;
 }
-.magna.sheet.actor .bloc-voie .desc {
+.magna.actor .bloc-voie .desc {
   margin: 5px 10px;
 }
-.magna.sheet.actor .bloc-voie .desc p {
+.magna.actor .bloc-voie .desc p {
   font-weight: normal;
   text-align: justify;
 }
-.magna.sheet.actor .bloc-pouvoir {
+.magna.actor .bloc-pouvoir {
   display: flex;
   flex-direction: column;
   margin: 10px 0px;
   color: black;
 }
-.magna.sheet.actor .ligne-pouvoir {
+.magna.actor .ligne-pouvoir {
   display: flex;
   flex-direction: row;
   margin: 5px;
   color: #31191f;
 }
-.magna.sheet.actor .ligne-pouvoir .pouvoir-rang {
+.magna.actor .ligne-pouvoir .pouvoir-rang {
   margin-right: 5px;
   font-size: 1.2em;
   font-weight: bold;
 }
-.magna.sheet.actor .ligne-pouvoir .change-aura {
+.magna.actor .ligne-pouvoir .change-aura {
   margin: 0px 5px;
 }
-.magna.sheet.actor .ligne-pouvoir .pouvoir-name {
+.magna.actor .ligne-pouvoir .pouvoir-name {
   margin: 0px 10px;
   font-size: 1.2em;
   font-weight: bold;
 }
-.magna.sheet.actor .ligne-pouvoir .field-name {
+.magna.actor .ligne-pouvoir .field-name {
   margin-right: 5px;
   font-weight: bold;
 }
-.magna.sheet.actor .ligne-pouvoir .pouvoir-value {
+.magna.actor .ligne-pouvoir .pouvoir-value {
   font-weight: normal;
   margin-right: 15px;
 }
-.magna.sheet.actor .desc {
+.magna.actor .desc {
   color: #31191f;
 }
-.magna.sheet.actor .description-bloc {
+.magna.actor .description-bloc {
   background: repeat url("../assets/system/fond_pouv.webp");
   padding: 5px;
   border: solid 3px #316967;
   color: black;
 }
-.magna.sheet.actor .description-bloc .editor {
+.magna.actor .description-bloc .editor {
   width: 100%;
   height: 100%;
   background-color: #f9f6f1;
@@ -771,7 +771,7 @@
   padding-right: 5px;
   min-height: 45em;
 }
-.magna.sheet.actor .description-bloc .editor-content {
+.magna.actor .description-bloc .editor-content {
   min-height: 40em;
   margin: 0px 5px 0px 5px;
 }
@@ -781,11 +781,11 @@
 .prosemirror menu li {
   margin: 0px 0px;
 }
-.scrollable {
+.magna-scrollable {
   padding-right: initial;
   scrollbar-gutter: auto;
 }
-.scrollable .window-content {
+.magna-scrollable .window-content {
   overflow-y: scroll;
 }
 @font-face {

@@ -55,7 +55,7 @@ export default class ActionRoll extends foundry.dice.Roll {
     reussite: false,
     result: 0,
     rollType: SYSTEM.ROLLTYPE.normal,
-    rollModes: CONFIG.Dice.rollModes,
+    rollModes: CONFIG.ChatMessage.modes,
     valDuree: "",
   });
 

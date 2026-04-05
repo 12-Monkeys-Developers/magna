@@ -4,7 +4,6 @@ const { api, sheets } = foundry.applications;
 
 export default class PouvoirSheet extends MagnaItemSheet {
   static DEFAULT_OPTIONS = {
-    classes: ["pouvoir-sheet"],
     position: {
       height: 490,
       width: 450,

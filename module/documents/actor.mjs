@@ -143,7 +143,7 @@ export default class MagnaActor extends Actor {
       context.seuilReussite = this.system.mental.valeur;
     } else if (context.group1 === "pouvoir") {
       let pouvoir = this.items.get(context.field1);
-      (context.itemId = context.field1), (context.valeur1 = pouvoir.system.rang);
+      ((context.itemId = context.field1), (context.valeur1 = pouvoir.system.rang));
       context.pouvName = pouvoir.name;
       const valeurs = await this.getValeurs([{ group: context.group2, field: context.field2 }]);
       context.valeur2 = valeurs[0];
@@ -175,7 +175,7 @@ export default class MagnaActor extends Actor {
       // Prompt the user with a roll dialog
       const promptValue = await action_roll.prompt(context);
       // if dialog was closed without submitting, do not roll
-      if (!promptValue || Object.keys(promptValue).length === 0) return (null);
+      if (!promptValue || Object.keys(promptValue).length === 0) return null;
     }
     const evaluatedRoll = await action_roll.evaluate();
     const resultRoll = await action_roll.render();
@@ -300,31 +300,21 @@ export default class MagnaActor extends Actor {
 
   /*Affiche le portrait du personnage aux joueurs et joueuses connectés*/
   async showPortrait(options = {}) {
-    let htmlTemplate = `
-    <h3>Portrait</h3>`;
-    new Dialog({
-      title: "Portrait",
-      content: htmlTemplate,
-      buttons: {
-        validate: {
-          label: "Afficher le portrait de " + this.name + " à tous les joueurs et joueuses connectés.",
-          callback: () => {
-            const print = new ImagePopout({
-              src: this.img,
-              uuid: this.uuid,
-              window: { title: "Personnage" },
-            });
-            print.render(true);
-            print.shareImage();
-          },
-        },
-        close: {
-          label: "annuler",
-        },
-      },
-    }).render(true);
+    const proceed = await foundry.applications.api.DialogV2.confirm({
+      content: "Afficher le portrait de " + this.name + " à tous les joueurs et joueuses connectés.",
+      rejectClose: false,
+      modal: true,
+    });
+    if (proceed) {
+      const print = new foundry.applications.apps.ImagePopout({
+        src: this.img,
+        uuid: this.uuid,
+        window: { title: this.name },
+      });
+      print.render(true);
+      print.shareImage();
+    }
   }
-
   async rollInit(options = {}) {
     // Produce an initiative roll for the Combatant
     const roll = new Roll("1d20 + @agi", { agi: this.system.caracteristiques.agi.valeur });
@@ -345,7 +335,7 @@ export default class MagnaActor extends Actor {
         }),
         flavor: game.i18n.format("MAGNA.COMBAT.initiative", { name: this.name, rangaction: rangaction }),
       },
-      options
+      options,
     );
     const chatData = await roll.toMessage(messageData);
   }
